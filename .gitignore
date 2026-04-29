@@ -1,0 +1,7 @@
+# Power BI Desktop local state
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+**/.pbi/editorSettings.json
+
+# macOS
+.DS_Store
