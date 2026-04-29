@@ -1,0 +1,97 @@
+table DimPaymentTerm
+	lineageTag: ea85b566-a71a-4ad4-8e36-dcf4e2f08388
+
+	column PaymentTermsID
+		dataType: string
+		lineageTag: 1d92367b-a34b-4d04-a8fa-c2d3c3fe1cc6
+		summarizeBy: none
+		sourceColumn: PaymentTermsID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentTermsCode
+		dataType: string
+		lineageTag: 951902e2-57a1-41fa-adac-de61afa7ae1c
+		summarizeBy: none
+		sourceColumn: PaymentTermsCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentTermsName
+		dataType: string
+		lineageTag: a8f7a62e-77bd-40cd-ad1f-ab447e6b2f6c
+		summarizeBy: none
+		sourceColumn: PaymentTermsName
+
+		annotation SummarizationSetBy = Automatic
+
+	column DueDateCalculation
+		dataType: string
+		lineageTag: 390d66f4-28a7-4e74-9c64-064c85afdc4d
+		summarizeBy: none
+		sourceColumn: DueDateCalculation
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountDateCalculation
+		dataType: string
+		lineageTag: ae52b68d-9043-4988-8ab3-ec83250425f9
+		summarizeBy: none
+		sourceColumn: DiscountDateCalculation
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiscountPercent
+		dataType: double
+		lineageTag: b6f3cd6b-ba3d-44dc-8859-1a28bc2790f7
+		summarizeBy: none
+		sourceColumn: DiscountPercent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CalculateDiscountOnCreditMemos
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a33053e4-21cf-4db1-bf37-b34541be2419
+		summarizeBy: none
+		sourceColumn: CalculateDiscountOnCreditMemos
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPaymentTerm = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    paymentTerms_table = v2.0{[Name="paymentTerms",Signature="table"]}[Data],
+				
+				    Kept = Table.SelectColumns(
+				        paymentTerms_table,
+				        {"id", "code", "displayName", "dueDateCalculation", "discountDateCalculation", "discountPercent", "calculateDiscountOnCreditMemos"},
+				        MissingField.Ignore
+				    ),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "PaymentTermsID"},
+				            {"code", "PaymentTermsCode"},
+				            {"displayName", "PaymentTermsName"},
+				            {"dueDateCalculation", "DueDateCalculation"},
+				            {"discountDateCalculation", "DiscountDateCalculation"},
+				            {"discountPercent", "DiscountPercent"},
+				            {"calculateDiscountOnCreditMemos", "CalculateDiscountOnCreditMemos"}
+				        },
+				        MissingField.Ignore
+				    )
+				in
+				    Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,54 @@
+table MeasureInventory
+	lineageTag: f88ef3a1-ee2d-4f3d-ac3e-0d06dfd01114
+
+	measure 'Inventory Cost Amount' =
+			
+			CALCULATE (
+			    SUM ( FactItemLedgerEntry[CostAmountActual] ),
+			    FactItemLedgerEntry[EntryType] = "Sale"
+			)
+		lineageTag: 53a28be5-b808-46e3-844a-45abf8a502e9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Sales Amount' =
+			
+			CALCULATE (
+			    SUM ( FactItemLedgerEntry[SalesAmountActual] ),
+			    FactItemLedgerEntry[EntryType] = "Sale"
+			)
+		lineageTag: 8873e0ac-8201-40c2-ba91-5bf44ee2d4b6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Margin' =
+			
+			[Inventory Sales Amount] + [Inventory Cost Amount]
+		lineageTag: 3db7e4e0-925b-4cfa-ba26-fc25f7e288e9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Margin %' =
+			
+			DIVIDE ( [Inventory Margin], [Inventory Sales Amount] )
+		lineageTag: c59dcf48-95b1-48f8-b82f-845adcb70ac2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		formatString: 0
+		lineageTag: 2347fa58-a03f-4437-915d-0feeacad26da
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasureInventory = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 112793e30b8e45818b86c08519358ada
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

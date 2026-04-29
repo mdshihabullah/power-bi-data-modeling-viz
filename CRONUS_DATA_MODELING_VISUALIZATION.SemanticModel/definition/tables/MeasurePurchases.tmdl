@@ -1,0 +1,87 @@
+table MeasurePurchases
+	lineageTag: 3d231d59-2211-47a0-9ab9-777f82fc2c42
+
+	measure 'Total Purchase Excl Tax' =
+			
+			SUMX (
+			    VALUES ( FactPurchaseInvoiceLine[PurchaseInvoiceID] ),
+			    CALCULATE ( MIN ( FactPurchaseInvoiceLine[HeaderTotalAmountExcludingTax] ) )
+			)
+		lineageTag: 02aeb645-636d-4d6f-b5f9-220db5654240
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Purchase Incl Tax' =
+			
+			SUMX (
+			    VALUES ( FactPurchaseInvoiceLine[PurchaseInvoiceID] ),
+			    CALCULATE ( MIN ( FactPurchaseInvoiceLine[HeaderTotalAmountIncludingTax] ) )
+			)
+		lineageTag: 0fead841-f554-455b-951c-6eb290da0ff6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Purchase Invoice Count' =
+			
+			DISTINCTCOUNT ( FactPurchaseInvoiceLine[PurchaseInvoiceID] )
+		formatString: 0
+		lineageTag: 6032f395-592f-448b-9e22-e46e0cd9372f
+
+	measure 'Average Purchase per Invoice' =
+			
+			DIVIDE ( [Total Purchase Excl Tax], [Purchase Invoice Count] )
+		lineageTag: 394f6a03-436b-4090-9246-8c78898899f5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Purchase YTD' =
+			
+			TOTALYTD ( [Total Purchase Excl Tax], DimDate[Date] )
+		lineageTag: 184dc2d7-66f2-4eaa-b588-2efa4e4acc50
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Purchase MTD' =
+			
+			TOTALMTD ( [Total Purchase Excl Tax], DimDate[Date] )
+		lineageTag: 3054aefc-5ae9-4a4d-bb80-29b5fcbf24d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Purchase PY' =
+			
+			CALCULATE ( [Total Purchase Excl Tax], SAMEPERIODLASTYEAR ( DimDate[Date] ) )
+		lineageTag: 51e67ca1-2a3b-4703-bd3e-79512c30d97f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Purchase YoY %' =
+			
+			DIVIDE ( [Total Purchase Excl Tax] - [Purchase PY], [Purchase PY] )
+		lineageTag: abb2b59a-9a1f-4f6f-b5d1-adc1680fb932
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Purchase Tax Amount' =
+			
+			[Total Purchase Incl Tax] - [Total Purchase Excl Tax]
+		lineageTag: b3c4d5e6-f7a8-4b9c-0d1e-2f3a4b5c6d7e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Dummy
+		isHidden
+		formatString: 0
+		lineageTag: efb96e6e-0465-4388-b989-3cb73cb8dd24
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dummy]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasurePurchases = calculated
+		mode: import
+		source = ROW ( "Dummy", 1 )
+
+	annotation PBI_Id = 91fa260bd86b4f5dac57e9b7b6f52ab4
+

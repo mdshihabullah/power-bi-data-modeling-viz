@@ -1,0 +1,87 @@
+table DimCurrency
+	lineageTag: f4b16e8c-51b9-4918-9a23-98a66170e3e4
+
+	column CurrencyID
+		dataType: string
+		lineageTag: 3466298c-7320-49ae-adda-e99fc3333793
+		summarizeBy: none
+		sourceColumn: CurrencyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyCode
+		dataType: string
+		lineageTag: 9f187f41-f30d-44b5-909d-c1a3906c8911
+		summarizeBy: none
+		sourceColumn: CurrencyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyName
+		dataType: string
+		lineageTag: 83f91e26-9ae9-449c-ae11-3b1bdeb73103
+		summarizeBy: none
+		sourceColumn: CurrencyName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Symbol
+		dataType: string
+		lineageTag: 3f178cd6-95a4-4c7e-9750-21b083916268
+		summarizeBy: none
+		sourceColumn: Symbol
+
+		annotation SummarizationSetBy = Automatic
+
+	column AmountDecimalPlaces
+		dataType: string
+		lineageTag: b9813db5-ba35-46c5-a733-cfbc4ee43569
+		summarizeBy: none
+		sourceColumn: AmountDecimalPlaces
+
+		annotation SummarizationSetBy = Automatic
+
+	column AmountRoundingPrecision
+		dataType: double
+		lineageTag: 6d5591bb-7338-4681-862b-a4ad8a8f60e2
+		summarizeBy: sum
+		sourceColumn: AmountRoundingPrecision
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DimCurrency = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    currencies_table = v2.0{[Name="currencies",Signature="table"]}[Data],
+				
+				    Kept = Table.SelectColumns(
+				        currencies_table,
+				        {"id", "code", "displayName", "symbol", "amountDecimalPlaces", "amountRoundingPrecision"},
+				        MissingField.Ignore
+				    ),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "CurrencyID"},
+				            {"code", "CurrencyCode"},
+				            {"displayName", "CurrencyName"},
+				            {"symbol", "Symbol"},
+				            {"amountDecimalPlaces", "AmountDecimalPlaces"},
+				            {"amountRoundingPrecision", "AmountRoundingPrecision"}
+				        },
+				        MissingField.Ignore
+				    )
+				in
+				    Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

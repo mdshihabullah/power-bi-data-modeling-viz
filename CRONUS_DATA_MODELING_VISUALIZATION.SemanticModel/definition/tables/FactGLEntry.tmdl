@@ -1,0 +1,172 @@
+table FactGLEntry
+	lineageTag: 3fdb7e68-7d43-4ae0-940f-629017504b4e
+
+	column GLEntryID
+		dataType: string
+		lineageTag: 0028f1a6-06ce-4ca5-b0cc-99b79d4cb29d
+		summarizeBy: none
+		sourceColumn: GLEntryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EntryNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 8753ae1f-00a2-49ee-8580-fd413df11519
+		summarizeBy: none
+		sourceColumn: EntryNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 265e8ed8-2815-466d-aea0-8f17cb4ab999
+		summarizeBy: none
+		sourceColumn: PostingDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DocumentNumber
+		dataType: string
+		lineageTag: 56bc1e3c-a2e9-4b89-bbd4-79322b2b2e2b
+		summarizeBy: none
+		sourceColumn: DocumentNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentType
+		dataType: string
+		lineageTag: 52f7b35e-f6c0-45d3-a24b-4d1077293749
+		summarizeBy: none
+		sourceColumn: DocumentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountID
+		dataType: string
+		lineageTag: f27ad6d2-c10c-4017-b326-a964fd7b42b6
+		summarizeBy: none
+		sourceColumn: AccountID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountNumber
+		dataType: string
+		lineageTag: 7d50ad8e-413c-4823-ae68-38d820e10d19
+		summarizeBy: none
+		sourceColumn: AccountNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: de9bb691-b22a-4b6c-961a-17bf8e43fe55
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column DebitAmount
+		dataType: double
+		lineageTag: af2d4c01-f4e5-488d-80e4-4f3c7cd6604d
+		summarizeBy: sum
+		sourceColumn: DebitAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CreditAmount
+		dataType: double
+		lineageTag: 145cb88c-6b81-4c85-901e-8948c1f0d8c1
+		summarizeBy: sum
+		sourceColumn: CreditAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AdditionalCurrencyDebitAmount
+		dataType: double
+		lineageTag: 0092e60f-4639-4e2b-84f4-0d8f5670d062
+		summarizeBy: sum
+		sourceColumn: AdditionalCurrencyDebitAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AdditionalCurrencyCreditAmount
+		dataType: double
+		lineageTag: 851509ae-cf40-431a-a0e8-a909464ead30
+		summarizeBy: sum
+		sourceColumn: AdditionalCurrencyCreditAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LastModifiedDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2f0fe3b8-90ae-4351-b9ce-d845888cc5d8
+		summarizeBy: none
+		sourceColumn: LastModifiedDateTime
+
+		variation Variation
+			isDefault
+			relationship: 00a6c024-db60-4df7-8a4a-737db3b8c02a
+			defaultHierarchy: LocalDateTable_de1af8de-3011-4a2e-894a-691b68e96994.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactGLEntry = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    generalLedgerEntries_table = v2.0{[Name="generalLedgerEntries",Signature="table"]}[Data],
+				
+				    Kept = Table.SelectColumns(
+				        generalLedgerEntries_table,
+				        {
+				            "id", "entryNumber", "postingDate", "documentNumber", "documentType",
+				            "accountId", "accountNumber", "description",
+				            "debitAmount", "creditAmount",
+				            "additionalCurrencyDebitAmount", "additionalCurrencyCreditAmount",
+				            "lastModifiedDateTime"
+				        },
+				        MissingField.Ignore
+				    ),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "GLEntryID"},
+				            {"entryNumber", "EntryNumber"},
+				            {"postingDate", "PostingDate"},
+				            {"documentNumber", "DocumentNumber"},
+				            {"documentType", "DocumentType"},
+				            {"accountId", "AccountID"},
+				            {"accountNumber", "AccountNumber"},
+				            {"description", "Description"},
+				            {"debitAmount", "DebitAmount"},
+				            {"creditAmount", "CreditAmount"},
+				            {"additionalCurrencyDebitAmount", "AdditionalCurrencyDebitAmount"},
+				            {"additionalCurrencyCreditAmount", "AdditionalCurrencyCreditAmount"},
+				            {"lastModifiedDateTime", "LastModifiedDateTime"}
+				        },
+				        MissingField.Ignore
+				    )
+				in
+				    Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

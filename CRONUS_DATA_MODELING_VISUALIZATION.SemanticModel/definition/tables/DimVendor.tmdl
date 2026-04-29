@@ -1,0 +1,237 @@
+table DimVendor
+	lineageTag: 64b87ac7-955b-407a-9e20-2ef71c3e78d0
+
+	column VendorID
+		dataType: string
+		lineageTag: f81a2c95-e7dc-4ae9-b295-8a2f8d98a5bb
+		summarizeBy: none
+		sourceColumn: VendorID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VendorNumber
+		dataType: string
+		lineageTag: c81257b8-7563-4e28-949e-7dfad4aef348
+		summarizeBy: none
+		sourceColumn: VendorNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column VendorName
+		dataType: string
+		lineageTag: 7e409e2a-a8e2-424f-8261-aec381a31db6
+		summarizeBy: none
+		sourceColumn: VendorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine1
+		dataType: string
+		lineageTag: 49d5ec33-a747-4db4-96bd-63a0df42a731
+		summarizeBy: none
+		sourceColumn: AddressLine1
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine2
+		dataType: string
+		lineageTag: 24bffcbf-2320-4175-8613-00f8bbb9d895
+		summarizeBy: none
+		sourceColumn: AddressLine2
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: ece11d88-0dc5-492e-8b08-6fdeb2af13c1
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 2d31cc50-eded-40e8-b752-90229a3ceb6f
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 98e1c6d8-7758-4156-887f-dc8c44a9c190
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: da95ccd3-199f-4f20-9933-67613cb4c8d4
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhoneNumber
+		dataType: string
+		lineageTag: 342ebfc7-9055-4c79-927e-55236685c473
+		summarizeBy: none
+		sourceColumn: PhoneNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 05e05cb3-71c5-4bbb-af17-f0f790cd5983
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Website
+		dataType: string
+		lineageTag: 4a4ebf95-ea11-43dc-ade0-90ade635d3f5
+		summarizeBy: none
+		sourceColumn: Website
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyID
+		dataType: string
+		lineageTag: 23bab874-65ca-4ec6-b583-3f9cc2c0aed7
+		summarizeBy: none
+		sourceColumn: CurrencyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyCode
+		dataType: string
+		lineageTag: ba0586e6-6c6c-41c2-8338-c2eae7a4e1ee
+		summarizeBy: none
+		sourceColumn: CurrencyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentTermsID
+		dataType: string
+		lineageTag: 2e972a34-10ab-4186-9203-d24f6f7aa1b0
+		summarizeBy: none
+		sourceColumn: PaymentTermsID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentMethodID
+		dataType: string
+		lineageTag: 364f8b17-9c3a-434d-abbd-20ac9b07babd
+		summarizeBy: none
+		sourceColumn: PaymentMethodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxLiable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 76eeb783-b1ac-4a7f-89f6-70a75bb41df5
+		summarizeBy: none
+		sourceColumn: TaxLiable
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxRegistrationNumber
+		dataType: string
+		lineageTag: 25faf4e4-c2c9-4777-9a73-9dd847e175dc
+		summarizeBy: none
+		sourceColumn: TaxRegistrationNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Blocked
+		dataType: string
+		lineageTag: a196765b-126b-4187-b3de-f3f41c247a6f
+		summarizeBy: none
+		sourceColumn: Blocked
+
+		annotation SummarizationSetBy = Automatic
+
+	column Balance
+		dataType: double
+		lineageTag: 9f83f2d7-5bb5-43cf-8b2c-623000c92acd
+		summarizeBy: sum
+		sourceColumn: Balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LastModifiedDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fc230a4b-39c2-4afe-a1a7-4ea847bc1d68
+		summarizeBy: none
+		sourceColumn: LastModifiedDateTime
+
+		variation Variation
+			isDefault
+			relationship: ea6feced-9097-4b05-af2b-ac599da05bf4
+			defaultHierarchy: LocalDateTable_a8e1ea8b-2499-41ea-bea6-2b3634092d8c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimVendor = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    vendors_table = v2.0{[Name="vendors",Signature="table"]}[Data],
+				
+				    Kept = Table.SelectColumns(
+				        vendors_table,
+				        {
+				            "id", "number", "displayName",
+				            "addressLine1", "addressLine2", "city", "state", "country", "postalCode",
+				            "phoneNumber", "email", "website",
+				            "currencyId", "currencyCode",
+				            "paymentTermsId", "paymentMethodId",
+				            "taxLiable", "taxRegistrationNumber", "blocked",
+				            "balance", "lastModifiedDateTime"
+				        },
+				        MissingField.Ignore
+				    ),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "VendorID"},
+				            {"number", "VendorNumber"},
+				            {"displayName", "VendorName"},
+				            {"addressLine1", "AddressLine1"},
+				            {"addressLine2", "AddressLine2"},
+				            {"city", "City"},
+				            {"state", "State"},
+				            {"country", "Country"},
+				            {"postalCode", "PostalCode"},
+				            {"phoneNumber", "PhoneNumber"},
+				            {"email", "Email"},
+				            {"website", "Website"},
+				            {"currencyId", "CurrencyID"},
+				            {"currencyCode", "CurrencyCode"},
+				            {"paymentTermsId", "PaymentTermsID"},
+				            {"paymentMethodId", "PaymentMethodID"},
+				            {"taxLiable", "TaxLiable"},
+				            {"taxRegistrationNumber", "TaxRegistrationNumber"},
+				            {"blocked", "Blocked"},
+				            {"balance", "Balance"},
+				            {"lastModifiedDateTime", "LastModifiedDateTime"}
+				        },
+				        MissingField.Ignore
+				    )
+				in
+				    Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,41 @@
+table MeasureGL
+	lineageTag: 310a4acf-96e3-4527-bb14-b74f2f792e6a
+
+	measure 'GL Debit' =
+			
+			SUM ( FactGLEntry[DebitAmount] )
+		lineageTag: 97c10e00-57f9-4884-8414-bf25769358be
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Credit' =
+			
+			SUM ( FactGLEntry[CreditAmount] )
+		lineageTag: c0a71da9-b86b-42b2-85f3-f127595eb498
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'GL Net' =
+			
+			ROUND ( [GL Debit] - [GL Credit], 2 )
+		lineageTag: 18b53858-6080-44d3-b2af-964737ad9312
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		formatString: 0
+		lineageTag: 4202efb7-2883-4b24-a0f0-8ce5af84f6cd
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasureGL = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 977e3c638ff74ad99f117253e617b418
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

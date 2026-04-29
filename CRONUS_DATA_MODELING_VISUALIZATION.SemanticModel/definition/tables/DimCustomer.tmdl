@@ -1,0 +1,266 @@
+table DimCustomer
+	lineageTag: da53be43-58e0-4b62-8ded-b4a7beb5cb87
+
+	column CustomerID
+		dataType: string
+		lineageTag: 3675ddc3-23d8-4c76-a827-2feb8215b755
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerNumber
+		dataType: string
+		lineageTag: 61356233-24d8-4d07-8ca3-60146a9dd2c2
+		summarizeBy: none
+		sourceColumn: CustomerNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 191f83f4-b626-4cf0-8143-5fb1b4620e6e
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerType
+		dataType: string
+		lineageTag: aaafc71d-0092-44b4-99d6-74c2e11fdf0a
+		summarizeBy: none
+		sourceColumn: CustomerType
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine1
+		dataType: string
+		lineageTag: 649f5525-8ed2-4dc7-9bcb-04e2e503460a
+		summarizeBy: none
+		sourceColumn: AddressLine1
+
+		annotation SummarizationSetBy = Automatic
+
+	column AddressLine2
+		dataType: string
+		lineageTag: fb43b791-f763-4143-98ea-3fd3666f007e
+		summarizeBy: none
+		sourceColumn: AddressLine2
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 2fe0948b-f51b-4523-b79c-73e65ebd00a2
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: c5e848b2-57ac-4310-967a-7d5654de630d
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: fee2c708-3613-4512-84cc-d721411ca670
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostalCode
+		dataType: string
+		lineageTag: 5eb8d261-0b33-4695-99aa-461ca329c166
+		summarizeBy: none
+		sourceColumn: PostalCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhoneNumber
+		dataType: string
+		lineageTag: 2521deb4-bca9-4e7e-85ab-d8b7f95b8923
+		summarizeBy: none
+		sourceColumn: PhoneNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 942fd344-9034-42fd-a9a2-e66f51bc07c9
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Website
+		dataType: string
+		lineageTag: 7d63c1e6-a5f7-4e04-95ff-84d6896bb67e
+		summarizeBy: none
+		sourceColumn: Website
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalespersonCode
+		dataType: string
+		lineageTag: 7aaecc22-766d-4be0-aea7-edcff65e9921
+		summarizeBy: none
+		sourceColumn: SalespersonCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyID
+		dataType: string
+		lineageTag: a86004b7-47e6-440a-8acb-ecd594c551ac
+		summarizeBy: none
+		sourceColumn: CurrencyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyCode
+		dataType: string
+		lineageTag: 84830d58-384e-4d2c-ab8b-b9e9eb1a4d75
+		summarizeBy: none
+		sourceColumn: CurrencyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentTermsID
+		dataType: string
+		lineageTag: 2eae227f-5ddb-4b73-a0a1-83db3f953dc3
+		summarizeBy: none
+		sourceColumn: PaymentTermsID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipmentMethodID
+		dataType: string
+		lineageTag: a0f203e9-872c-4ce9-a428-e5a36485c5c0
+		summarizeBy: none
+		sourceColumn: ShipmentMethodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxLiable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a0446b45-4a29-4dd9-ab9c-4bd2e9caeae6
+		summarizeBy: none
+		sourceColumn: TaxLiable
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxRegistrationNumber
+		dataType: string
+		lineageTag: 4c7c43f2-b01e-4136-b292-4dd851bc07e8
+		summarizeBy: none
+		sourceColumn: TaxRegistrationNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Blocked
+		dataType: string
+		lineageTag: d132859f-faed-4cb8-a0b0-590842fc3e35
+		summarizeBy: none
+		sourceColumn: Blocked
+
+		annotation SummarizationSetBy = Automatic
+
+	column BalanceDue
+		dataType: double
+		lineageTag: d8b64149-4b4e-4c68-beab-42ac739b66fb
+		summarizeBy: sum
+		sourceColumn: BalanceDue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CreditLimit
+		dataType: double
+		lineageTag: cb493317-f469-4d35-becb-adb29ced6b11
+		summarizeBy: sum
+		sourceColumn: CreditLimit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LastModifiedDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: edcdf719-637e-485a-bf8d-17cacabb407d
+		summarizeBy: none
+		sourceColumn: LastModifiedDateTime
+
+		variation Variation
+			isDefault
+			relationship: 21be030f-9626-4149-8838-7447948380db
+			defaultHierarchy: LocalDateTable_1bbafdeb-9a8a-4f94-abcc-85c9620fc76d.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCustomer = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    customers_table = v2.0{[Name="customers",Signature="table"]}[Data],
+				
+				    Kept = Table.SelectColumns(
+				        customers_table,
+				        {
+				            "id", "number", "displayName", "type",
+				            "addressLine1", "addressLine2", "city", "state", "country", "postalCode",
+				            "phoneNumber", "email", "website",
+				            "salespersonCode", "currencyId", "currencyCode",
+				            "paymentTermsId", "shipmentMethodId",
+				            "taxLiable", "taxRegistrationNumber", "blocked",
+				            "balanceDue", "creditLimit", "lastModifiedDateTime"
+				        },
+				        MissingField.Ignore
+				    ),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "CustomerID"},
+				            {"number", "CustomerNumber"},
+				            {"displayName", "CustomerName"},
+				            {"type", "CustomerType"},
+				            {"addressLine1", "AddressLine1"},
+				            {"addressLine2", "AddressLine2"},
+				            {"city", "City"},
+				            {"state", "State"},
+				            {"country", "Country"},
+				            {"postalCode", "PostalCode"},
+				            {"phoneNumber", "PhoneNumber"},
+				            {"email", "Email"},
+				            {"website", "Website"},
+				            {"salespersonCode", "SalespersonCode"},
+				            {"currencyId", "CurrencyID"},
+				            {"currencyCode", "CurrencyCode"},
+				            {"paymentTermsId", "PaymentTermsID"},
+				            {"shipmentMethodId", "ShipmentMethodID"},
+				            {"taxLiable", "TaxLiable"},
+				            {"taxRegistrationNumber", "TaxRegistrationNumber"},
+				            {"blocked", "Blocked"},
+				            {"balanceDue", "BalanceDue"},
+				            {"creditLimit", "CreditLimit"},
+				            {"lastModifiedDateTime", "LastModifiedDateTime"}
+				        },
+				        MissingField.Ignore
+				    )
+				in
+				    Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

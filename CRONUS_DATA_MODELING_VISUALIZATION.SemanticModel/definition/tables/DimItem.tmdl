@@ -1,0 +1,246 @@
+table DimItem
+	lineageTag: acde10f5-f2ba-4b2b-a16b-092a81eebbd2
+
+	column ItemID
+		dataType: string
+		lineageTag: 09d73079-116a-4489-bd8d-07fffc8e5829
+		summarizeBy: none
+		sourceColumn: ItemID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemNumber
+		dataType: string
+		lineageTag: 5a212509-89fc-4350-856b-82ec4341a255
+		summarizeBy: none
+		sourceColumn: ItemNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemName
+		dataType: string
+		lineageTag: 51eb169a-2db4-4638-bd6b-366d29f4c244
+		summarizeBy: none
+		sourceColumn: ItemName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemType
+		dataType: string
+		lineageTag: b31c1068-438d-4869-80e1-c0e4bef231f5
+		summarizeBy: none
+		sourceColumn: ItemType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCategoryID
+		dataType: string
+		lineageTag: 007f0446-8f2c-4826-981f-011dc571b52a
+		summarizeBy: none
+		sourceColumn: ItemCategoryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemCategoryCode
+		dataType: string
+		lineageTag: a8dac2be-4470-4a4e-979f-347c5df70d8a
+		summarizeBy: none
+		sourceColumn: ItemCategoryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Blocked
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: c4cc5db9-b582-43f9-a41d-d1a59244a389
+		summarizeBy: none
+		sourceColumn: Blocked
+
+		annotation SummarizationSetBy = Automatic
+
+	column GTIN
+		dataType: string
+		lineageTag: 35f12bd1-7c8b-4182-8721-8545ba2483c8
+		summarizeBy: none
+		sourceColumn: GTIN
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inventory
+		dataType: double
+		lineageTag: 155885e7-b483-4d00-a603-aaf387391a75
+		summarizeBy: sum
+		sourceColumn: Inventory
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column UnitPrice
+		dataType: double
+		lineageTag: 3bd058d4-63f0-4479-a4ae-a3d80289e1e6
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PriceIncludesTax
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 987768ac-6a32-478f-b017-8c87163e9a0d
+		summarizeBy: none
+		sourceColumn: PriceIncludesTax
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitCost
+		dataType: double
+		lineageTag: 4b1aa9eb-c73e-45eb-a6aa-e21c8ba69544
+		summarizeBy: sum
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TaxGroupID
+		dataType: string
+		lineageTag: 68de8b5d-bf29-4b81-9f12-6dc4c48f2863
+		summarizeBy: none
+		sourceColumn: TaxGroupID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxGroupCode
+		dataType: string
+		lineageTag: 41db9492-0d7a-44d0-9c3b-9f2b9c4e837a
+		summarizeBy: none
+		sourceColumn: TaxGroupCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column BaseUnitOfMeasureID
+		dataType: string
+		lineageTag: e2fa8777-08b7-4ae3-a17f-a8c1eacb5636
+		summarizeBy: none
+		sourceColumn: BaseUnitOfMeasureID
+
+		annotation SummarizationSetBy = Automatic
+
+	column BaseUnitOfMeasureCode
+		dataType: string
+		lineageTag: a56b8d83-77bf-447b-9e90-68543740a966
+		summarizeBy: none
+		sourceColumn: BaseUnitOfMeasureCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeneralProductPostingGroupID
+		dataType: string
+		lineageTag: e21686a2-bc24-4b56-b282-09bac257fd99
+		summarizeBy: none
+		sourceColumn: GeneralProductPostingGroupID
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeneralProductPostingGroupCode
+		dataType: string
+		lineageTag: dfe36bc2-67c9-4bc6-af42-40b7ab3ed68b
+		summarizeBy: none
+		sourceColumn: GeneralProductPostingGroupCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column InventoryPostingGroupID
+		dataType: string
+		lineageTag: 60e85345-8afc-4bd8-9cf9-4baac9d19cc9
+		summarizeBy: none
+		sourceColumn: InventoryPostingGroupID
+
+		annotation SummarizationSetBy = Automatic
+
+	column InventoryPostingGroupCode
+		dataType: string
+		lineageTag: 92e5148e-4e42-42f8-9c63-01bb15ebdec6
+		summarizeBy: none
+		sourceColumn: InventoryPostingGroupCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastModifiedDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3c8d45d9-db22-4d0c-b372-b22748c9d6c5
+		summarizeBy: none
+		sourceColumn: LastModifiedDateTime
+
+		variation Variation
+			isDefault
+			relationship: 1a9852ce-170a-4044-8d6a-3b78c3efc525
+			defaultHierarchy: LocalDateTable_9c16d641-8b92-41aa-9678-d517131e8092.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimItem = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    items_table = v2.0{[Name="items",Signature="table"]}[Data],
+				
+				    Kept = Table.SelectColumns(
+				        items_table,
+				        {
+				            "id", "number", "displayName", "displayName2", "type",
+				            "itemCategoryId", "itemCategoryCode",
+				            "blocked", "gtin",
+				            "inventory", "unitPrice", "priceIncludesTax", "unitCost",
+				            "taxGroupId", "taxGroupCode",
+				            "baseUnitOfMeasureId", "baseUnitOfMeasureCode",
+				            "generalProductPostingGroupId", "generalProductPostingGroupCode",
+				            "inventoryPostingGroupId", "inventoryPostingGroupCode",
+				            "lastModifiedDateTime"
+				        },
+				        MissingField.Ignore
+				    ),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "ItemID"},
+				            {"number", "ItemNumber"},
+				            {"displayName", "ItemName"},
+				            {"displayName2", "ItemName2"},
+				            {"type", "ItemType"},
+				            {"itemCategoryId", "ItemCategoryID"},
+				            {"itemCategoryCode", "ItemCategoryCode"},
+				            {"blocked", "Blocked"},
+				            {"gtin", "GTIN"},
+				            {"inventory", "Inventory"},
+				            {"unitPrice", "UnitPrice"},
+				            {"priceIncludesTax", "PriceIncludesTax"},
+				            {"unitCost", "UnitCost"},
+				            {"taxGroupId", "TaxGroupID"},
+				            {"taxGroupCode", "TaxGroupCode"},
+				            {"baseUnitOfMeasureId", "BaseUnitOfMeasureID"},
+				            {"baseUnitOfMeasureCode", "BaseUnitOfMeasureCode"},
+				            {"generalProductPostingGroupId", "GeneralProductPostingGroupID"},
+				            {"generalProductPostingGroupCode", "GeneralProductPostingGroupCode"},
+				            {"inventoryPostingGroupId", "InventoryPostingGroupID"},
+				            {"inventoryPostingGroupCode", "InventoryPostingGroupCode"},
+				            {"lastModifiedDateTime", "LastModifiedDateTime"}
+				        },
+				        MissingField.Ignore
+				    ),
+				    #"Removed Columns" = Table.RemoveColumns(Renamed,{"ItemName2"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

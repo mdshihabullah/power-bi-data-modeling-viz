@@ -1,0 +1,49 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DimCustomer","DimVendor","DimItem","DimAccount","DimCurrency","DimPaymentTerm","DimPaymentMethod","DimShipmentMethod","FactSalesInvoiceLine","FactPurchaseInvoiceLine","FactGLEntry","FactItemLedgerEntry","DimDate"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DimCustomer
+ref table DateTableTemplate_caeaa12d-f6a0-4855-92b0-0d9fd2a26fb8
+ref table LocalDateTable_1bbafdeb-9a8a-4f94-abcc-85c9620fc76d
+ref table DimVendor
+ref table LocalDateTable_a8e1ea8b-2499-41ea-bea6-2b3634092d8c
+ref table DimItem
+ref table LocalDateTable_9c16d641-8b92-41aa-9678-d517131e8092
+ref table DimAccount
+ref table DimCurrency
+ref table DimPaymentTerm
+ref table DimPaymentMethod
+ref table DimShipmentMethod
+ref table FactSalesInvoiceLine
+ref table LocalDateTable_5445adef-817c-42fb-a2b2-b347c5795ddf
+ref table LocalDateTable_b1b34958-fa34-4d3c-b930-7891dbe008a3
+ref table LocalDateTable_e44dd983-986a-4355-87eb-c71c49fc28d8
+ref table LocalDateTable_bd098cf0-d9cd-40fb-80f1-a4eb9b90b97f
+ref table LocalDateTable_5eeec66f-c67a-413e-a0c9-3dce3553a171
+ref table FactPurchaseInvoiceLine
+ref table LocalDateTable_c032a37e-87b5-4668-adec-0df2f6da25f2
+ref table LocalDateTable_45ee7292-07b7-4af6-837e-4085e6f5d0d1
+ref table LocalDateTable_5e4648e6-a944-4a5f-912d-4fa92e0d4e69
+ref table LocalDateTable_ae73bc6e-b32f-4f01-926d-cb492425cfd0
+ref table FactGLEntry
+ref table LocalDateTable_de1af8de-3011-4a2e-894a-691b68e96994
+ref table FactItemLedgerEntry
+ref table LocalDateTable_cfb43e9b-dcbe-4d0a-88ab-f8cd0bf35e7c
+ref table DimDate
+ref table MeasureSales
+ref table MeasurePurchases
+ref table MeasureGL
+ref table MeasureInventory
+
+ref cultureInfo en-US
+

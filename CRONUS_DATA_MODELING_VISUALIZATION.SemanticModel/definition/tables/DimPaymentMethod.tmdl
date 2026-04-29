@@ -1,0 +1,54 @@
+table DimPaymentMethod
+	lineageTag: 84898718-5724-4400-ab2f-aa3cd7d3de5b
+
+	column PaymentMethodID
+		dataType: string
+		lineageTag: 59044d09-3a25-41cc-b7ec-265fdccecab8
+		summarizeBy: none
+		sourceColumn: PaymentMethodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentMethodCode
+		dataType: string
+		lineageTag: 92c6e0b9-23db-4afe-bfa0-8648a194242d
+		summarizeBy: none
+		sourceColumn: PaymentMethodCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentMethodName
+		dataType: string
+		lineageTag: 6f9c7456-9213-4c15-a5ce-cb80b949d7d4
+		summarizeBy: none
+		sourceColumn: PaymentMethodName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimPaymentMethod = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    paymentMethods_table = v2.0{[Name="paymentMethods",Signature="table"]}[Data],
+				
+				    Kept = Table.SelectColumns(paymentMethods_table, {"id", "code", "displayName"}, MissingField.Ignore),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "PaymentMethodID"},
+				            {"code", "PaymentMethodCode"},
+				            {"displayName", "PaymentMethodName"}
+				        },
+				        MissingField.Ignore
+				    )
+				in
+				    Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,54 @@
+table DimShipmentMethod
+	lineageTag: 2efe72fb-fa3d-444a-9a22-fcc0e807e71d
+
+	column ShipmentMethodID
+		dataType: string
+		lineageTag: 63b9752d-1477-45d3-bc9b-2d81e11eb7df
+		summarizeBy: none
+		sourceColumn: ShipmentMethodID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipmentMethodCode
+		dataType: string
+		lineageTag: 83a8c2eb-4acf-4d36-9692-e33c06e34e2c
+		summarizeBy: none
+		sourceColumn: ShipmentMethodCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShipmentMethodName
+		dataType: string
+		lineageTag: f8a3256a-0a67-4efb-aa3e-7ca127248f78
+		summarizeBy: none
+		sourceColumn: ShipmentMethodName
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimShipmentMethod = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    shipmentMethods_table = v2.0{[Name="shipmentMethods",Signature="table"]}[Data],
+				
+				    Kept = Table.SelectColumns(shipmentMethods_table, {"id", "code", "displayName"}, MissingField.Ignore),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "ShipmentMethodID"},
+				            {"code", "ShipmentMethodCode"},
+				            {"displayName", "ShipmentMethodName"}
+				        },
+				        MissingField.Ignore
+				    )
+				in
+				    Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

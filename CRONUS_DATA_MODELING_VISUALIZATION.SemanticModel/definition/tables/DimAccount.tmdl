@@ -1,0 +1,76 @@
+table DimAccount
+	lineageTag: 8e07ee82-5400-4ca0-b331-20f2cd1a660e
+
+	column AccountID
+		dataType: string
+		lineageTag: 7f205feb-cf30-4a43-b5cd-d4ab357c2f03
+		summarizeBy: none
+		sourceColumn: AccountID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountNumber
+		dataType: string
+		lineageTag: c53cd68b-a8cd-4750-9227-02d785d6d2ce
+		summarizeBy: none
+		sourceColumn: AccountNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountName
+		dataType: string
+		lineageTag: 11dc64df-416d-44d8-9056-79b26e8db594
+		summarizeBy: none
+		sourceColumn: AccountName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 2d946e1c-3757-4ae9-a271-45c510f35c7c
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubCategory
+		dataType: string
+		lineageTag: 5adba9ce-7565-4590-ad56-8dc596e51639
+		summarizeBy: none
+		sourceColumn: SubCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimAccount = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    accounts_table = v2.0{[Name="accounts",Signature="table"]}[Data],
+				
+				    Kept = Table.SelectColumns(
+				        accounts_table,
+				        {"id", "number", "displayName", "category", "subCategory"},
+				        MissingField.Ignore
+				    ),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "AccountID"},
+				            {"number", "AccountNumber"},
+				            {"displayName", "AccountName"},
+				            {"category", "Category"},
+				            {"subCategory", "SubCategory"}
+				        },
+				        MissingField.Ignore
+				    )
+				in
+				    Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

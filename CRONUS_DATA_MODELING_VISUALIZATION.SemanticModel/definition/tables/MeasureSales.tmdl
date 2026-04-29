@@ -1,0 +1,87 @@
+table MeasureSales
+	lineageTag: 0e1187c9-9bc1-4b6f-b970-db7c70b7b7ad
+
+	measure 'Total Sales Excl Tax' =
+			
+			SUMX (
+			    VALUES ( FactSalesInvoiceLine[SalesInvoiceID] ),
+			    CALCULATE ( MIN ( FactSalesInvoiceLine[HeaderTotalAmountExcludingTax] ) )
+			)
+		lineageTag: 9a94abe1-4102-48d9-96af-d4bca8d4cc7e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Sales Incl Tax' =
+			
+			SUMX (
+			    VALUES ( FactSalesInvoiceLine[SalesInvoiceID] ),
+			    CALCULATE ( MIN ( FactSalesInvoiceLine[HeaderTotalAmountIncludingTax] ) )
+			)
+		lineageTag: 7152834b-a957-4b35-b52b-d4d9f7767be4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Invoice Count' =
+			
+			DISTINCTCOUNT ( FactSalesInvoiceLine[SalesInvoiceID] )
+		formatString: 0
+		lineageTag: 87043796-c061-4425-95d0-8e588fc3030b
+
+	measure 'Average Sales per Invoice' =
+			
+			DIVIDE ( [Total Sales Excl Tax], [Sales Invoice Count] )
+		lineageTag: 519fc188-0d82-478a-8dd4-6bac0d4a366b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales YoY %' =
+			
+			DIVIDE ( [Total Sales Excl Tax] - [Sales PY], [Sales PY] )
+		lineageTag: 6b6eb1f4-6931-4ceb-ab30-fceb268eb173
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales YTD' =
+			
+			TOTALYTD ( [Total Sales Excl Tax], DimDate[Date] )
+		lineageTag: 3c0d6268-41a3-4c36-9031-015e654e11c7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales MTD' =
+			
+			TOTALMTD ( [Total Sales Excl Tax], DimDate[Date] )
+		lineageTag: 34902901-afe1-4ef2-aebd-86511744f5e4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales PY' =
+			
+			CALCULATE ( [Total Sales Excl Tax], SAMEPERIODLASTYEAR ( DimDate[Date] ) )
+		lineageTag: c19af002-3c07-4163-9251-5c665357def2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales Tax Amount' =
+			
+			[Total Sales Incl Tax] - [Total Sales Excl Tax]
+		lineageTag: a2b3c4d5-e6f7-4a8b-9c0d-1e2f3a4b5c6d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Dummy
+		isHidden
+		formatString: 0
+		lineageTag: 7d7b54e4-f7c0-4275-b871-afcae0828a62
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dummy]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition MeasureSales = calculated
+		mode: import
+		source = ROW ( "Dummy", 1 )
+
+	annotation PBI_Id = 76470b12ff254ddeadb4a3b8184c76f4
+

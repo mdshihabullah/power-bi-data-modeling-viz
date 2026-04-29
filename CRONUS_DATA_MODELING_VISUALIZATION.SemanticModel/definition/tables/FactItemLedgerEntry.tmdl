@@ -1,0 +1,178 @@
+table FactItemLedgerEntry
+	lineageTag: 09c81f6c-cfe1-4390-b846-45f8fa4d2f02
+
+	column ItemLedgerEntryID
+		dataType: string
+		lineageTag: 4f8a31fb-ef11-4545-8213-03a77a645f21
+		summarizeBy: none
+		sourceColumn: ItemLedgerEntryID
+
+		annotation SummarizationSetBy = Automatic
+
+	column EntryNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: 40ed79a0-cbda-4817-bd21-841549ce5ac5
+		summarizeBy: none
+		sourceColumn: EntryNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemNumber
+		dataType: string
+		lineageTag: 60a4912b-b54a-4433-a1b9-c4025ea06b1c
+		summarizeBy: none
+		sourceColumn: ItemNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column PostingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b73738be-0399-414e-a4e9-ebfc2c638a2d
+		summarizeBy: none
+		sourceColumn: PostingDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EntryType
+		dataType: string
+		lineageTag: e0b05a57-70af-4efc-b717-764cd622da52
+		summarizeBy: none
+		sourceColumn: EntryType
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceNumber
+		dataType: string
+		lineageTag: f3623c39-d1e2-41f2-ae80-a8b4429de65d
+		summarizeBy: none
+		sourceColumn: SourceNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceType
+		dataType: string
+		lineageTag: 0e8e9fde-d701-49f9-85c9-80f04cc591f8
+		summarizeBy: none
+		sourceColumn: SourceType
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentNumber
+		dataType: string
+		lineageTag: e8bc4ab0-5ac4-447a-8191-5437ea2750eb
+		summarizeBy: none
+		sourceColumn: DocumentNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentType
+		dataType: string
+		lineageTag: 2fa88a7c-d03c-49f1-aa9a-ecaca6804921
+		summarizeBy: none
+		sourceColumn: DocumentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: b20d7fc1-0ae8-42f4-90a1-93f49344e3a3
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: double
+		lineageTag: d04f2ff6-370f-4402-9f6c-a6f518f04776
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SalesAmountActual
+		dataType: double
+		lineageTag: 73275d3c-9625-4103-a078-ec7c1c0f440b
+		summarizeBy: sum
+		sourceColumn: SalesAmountActual
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CostAmountActual
+		dataType: double
+		lineageTag: a32c0c73-a51d-4e35-abf2-fc3e9c233dd0
+		summarizeBy: sum
+		sourceColumn: CostAmountActual
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LastModifiedDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6750dca6-6733-46dc-a38c-e5ae1e6620c4
+		summarizeBy: none
+		sourceColumn: LastModifiedDateTime
+
+		variation Variation
+			isDefault
+			relationship: 0b32e640-99b7-4f49-b1ab-3ea8deb5a9a3
+			defaultHierarchy: LocalDateTable_cfb43e9b-dcbe-4d0a-88ab-f8cd0bf35e7c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactItemLedgerEntry = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    itemLedgerEntries_table = v2.0{[Name="itemLedgerEntries",Signature="table"]}[Data],
+				
+				    Kept = Table.SelectColumns(
+				        itemLedgerEntries_table,
+				        {
+				            "id", "entryNumber", "itemNumber", "postingDate", "entryType",
+				            "sourceNumber", "sourceType", "documentNumber", "documentType",
+				            "description", "quantity", "salesAmountActual", "costAmountActual",
+				            "lastModifiedDateTime"
+				        },
+				        MissingField.Ignore
+				    ),
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "ItemLedgerEntryID"},
+				            {"entryNumber", "EntryNumber"},
+				            {"itemNumber", "ItemNumber"},
+				            {"postingDate", "PostingDate"},
+				            {"entryType", "EntryType"},
+				            {"sourceNumber", "SourceNumber"},
+				            {"sourceType", "SourceType"},
+				            {"documentNumber", "DocumentNumber"},
+				            {"documentType", "DocumentType"},
+				            {"description", "Description"},
+				            {"quantity", "Quantity"},
+				            {"salesAmountActual", "SalesAmountActual"},
+				            {"costAmountActual", "CostAmountActual"},
+				            {"lastModifiedDateTime", "LastModifiedDateTime"}
+				        },
+				        MissingField.Ignore
+				    )
+				in
+				    Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

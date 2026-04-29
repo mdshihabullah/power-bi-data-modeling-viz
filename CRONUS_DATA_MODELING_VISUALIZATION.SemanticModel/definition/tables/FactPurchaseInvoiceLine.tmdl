@@ -1,0 +1,530 @@
+table FactPurchaseInvoiceLine
+	lineageTag: b645b25c-5cd5-454d-a589-c85f9313ff31
+
+	column PurchaseInvoiceID
+		dataType: string
+		lineageTag: 92dd0da2-bdc5-42ba-bb4d-ab7fe587efed
+		summarizeBy: none
+		sourceColumn: PurchaseInvoiceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PurchaseInvoiceNumber
+		dataType: string
+		lineageTag: 5d2864de-6f8a-4e14-9818-93ba03368d26
+		summarizeBy: none
+		sourceColumn: PurchaseInvoiceNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 19740fab-f73c-48aa-9b76-e488b64e4921
+		summarizeBy: none
+		sourceColumn: InvoiceDate
+
+		variation Variation
+			isDefault
+			relationship: 0deeca6b-e3af-4da0-938a-97e0c06057a3
+			defaultHierarchy: LocalDateTable_c032a37e-87b5-4668-adec-0df2f6da25f2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DueDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c52f60d5-c217-4376-828c-3706f56c96c3
+		summarizeBy: none
+		sourceColumn: DueDate
+
+		variation Variation
+			isDefault
+			relationship: c623bc1e-d63d-410a-8a06-34c5db4b0ade
+			defaultHierarchy: LocalDateTable_45ee7292-07b7-4af6-837e-4085e6f5d0d1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column PostingDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d
+		summarizeBy: none
+		sourceColumn: PostingDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column VendorInvoiceNumber
+		dataType: string
+		lineageTag: b82644fe-48bd-42bd-b925-2161ecc21c88
+		summarizeBy: none
+		sourceColumn: VendorInvoiceNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column VendorID
+		dataType: string
+		lineageTag: 271337a7-d7e6-4cef-bb37-2049be9a4081
+		summarizeBy: none
+		sourceColumn: VendorID
+
+		annotation SummarizationSetBy = Automatic
+
+	column VendorNumber
+		dataType: string
+		lineageTag: 38af11e0-20ed-4fc7-8acf-413324f382f4
+		summarizeBy: none
+		sourceColumn: VendorNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column VendorName
+		dataType: string
+		lineageTag: 2ba1beb9-b0de-41cd-861c-42e9402aa3b2
+		summarizeBy: none
+		sourceColumn: VendorName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyID
+		dataType: string
+		lineageTag: f5296b7c-d66d-405e-a906-f10e75c369b5
+		summarizeBy: none
+		sourceColumn: CurrencyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CurrencyCode
+		dataType: string
+		lineageTag: 3f624797-8363-4969-a5b0-db119d3e833d
+		summarizeBy: none
+		sourceColumn: CurrencyCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: ebc1d29d-5ba8-46ab-9082-dc2a3cd14536
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column HeaderDiscountAmount
+		dataType: double
+		lineageTag: b48954cd-842f-451e-9aaa-3ae16b3e7523
+		summarizeBy: sum
+		sourceColumn: HeaderDiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HeaderDiscountAppliedBeforeTax
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1e7f7a05-b028-47f3-b3ef-1243ec7812db
+		summarizeBy: none
+		sourceColumn: HeaderDiscountAppliedBeforeTax
+
+		annotation SummarizationSetBy = Automatic
+
+	column HeaderTotalAmountExcludingTax
+		dataType: double
+		lineageTag: 505f0f6a-d279-4df3-8839-1cfa03c17ed6
+		summarizeBy: sum
+		sourceColumn: HeaderTotalAmountExcludingTax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HeaderTotalTaxAmount
+		dataType: double
+		lineageTag: ca9a0f31-23f1-4083-8055-2385885264d7
+		summarizeBy: sum
+		sourceColumn: HeaderTotalTaxAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column HeaderTotalAmountIncludingTax
+		dataType: double
+		lineageTag: 7916844f-2012-46cc-af70-cc387f853866
+		summarizeBy: sum
+		sourceColumn: HeaderTotalAmountIncludingTax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PricesIncludeTax
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b5e04b3f-0b8c-4ee6-9ccb-1212237e5d0f
+		summarizeBy: none
+		sourceColumn: PricesIncludeTax
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastModifiedDateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f53d2802-83cf-42f4-ba1f-decf08d1a967
+		summarizeBy: none
+		sourceColumn: LastModifiedDateTime
+
+		variation Variation
+			isDefault
+			relationship: f1e984a0-f932-410a-b79a-a48445ab2611
+			defaultHierarchy: LocalDateTable_5e4648e6-a944-4a5f-912d-4fa92e0d4e69.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineID
+		dataType: string
+		lineageTag: 7deb393c-b2ee-44ab-8f84-62c08d66e430
+		summarizeBy: none
+		sourceColumn: LineID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DocumentID
+		dataType: string
+		lineageTag: 86d3f450-ee43-4434-ae17-6adedc776b43
+		summarizeBy: none
+		sourceColumn: DocumentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sequence
+		dataType: int64
+		formatString: 0
+		lineageTag: 0aa511f8-e4a3-4e39-a6b7-49a7d9d73625
+		summarizeBy: sum
+		sourceColumn: Sequence
+
+		annotation SummarizationSetBy = Automatic
+
+	column ItemID
+		dataType: string
+		lineageTag: 431e85fd-a8e4-4504-8472-9bd0f4dc06d8
+		summarizeBy: none
+		sourceColumn: ItemID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AccountID
+		dataType: string
+		lineageTag: 7c5cdc4e-709f-46b7-8901-0cc175abb822
+		summarizeBy: none
+		sourceColumn: AccountID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineType
+		dataType: string
+		lineageTag: f0f7cfcd-66ac-4734-a31a-e52c4c082255
+		summarizeBy: none
+		sourceColumn: LineType
+
+		annotation SummarizationSetBy = Automatic
+
+	column LineObjectNumber
+		dataType: string
+		lineageTag: 27424325-90c6-43e3-99a2-dd5960759717
+		summarizeBy: none
+		sourceColumn: LineObjectNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: bd5a10e6-c1e9-4d26-a8d8-4ec926b14138
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description2
+		dataType: string
+		lineageTag: aae2cc45-e278-489f-84fd-801854c8f757
+		summarizeBy: none
+		sourceColumn: Description2
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitOfMeasureID
+		dataType: string
+		lineageTag: 3c2b6891-a24e-4a02-9d7d-f0da07e5c173
+		summarizeBy: none
+		sourceColumn: UnitOfMeasureID
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitOfMeasureCode
+		dataType: string
+		lineageTag: 2190ce2e-6dfa-4b69-9974-0e9ed1f0d5c9
+		summarizeBy: none
+		sourceColumn: UnitOfMeasureCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitCost
+		dataType: double
+		lineageTag: bbc141ba-3227-40f7-9a8a-7e8db08efaee
+		summarizeBy: sum
+		sourceColumn: UnitCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Quantity
+		dataType: double
+		lineageTag: 6589bfe4-b799-46a8-89a3-d90c2d647f45
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountAmount
+		dataType: double
+		lineageTag: 0cd41b4a-a7a0-4b09-99f7-bc2f4aef8c26
+		summarizeBy: sum
+		sourceColumn: DiscountAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountPercent
+		dataType: double
+		lineageTag: b61d4ce2-5f21-4254-aed4-420cc11e2b71
+		summarizeBy: sum
+		sourceColumn: DiscountPercent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DiscountAppliedBeforeTax
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 038b4f27-792c-42fc-8c0f-0d109db0cd5d
+		summarizeBy: none
+		sourceColumn: DiscountAppliedBeforeTax
+
+		annotation SummarizationSetBy = Automatic
+
+	column AmountExcludingTax
+		dataType: double
+		lineageTag: 5573eb2f-a134-4427-a751-c8d9b7c01aab
+		summarizeBy: sum
+		sourceColumn: AmountExcludingTax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TaxCode
+		dataType: string
+		lineageTag: 17c08ec0-156b-41ab-bccb-9a4c1f1dbca3
+		summarizeBy: none
+		sourceColumn: TaxCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column TaxPercent
+		dataType: double
+		lineageTag: 184373da-a864-4c71-87fa-7c5122318e02
+		summarizeBy: sum
+		sourceColumn: TaxPercent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalTaxAmount
+		dataType: double
+		lineageTag: 2bdb8783-53f0-4e98-a741-27ab6783eb08
+		summarizeBy: sum
+		sourceColumn: TotalTaxAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AmountIncludingTax
+		dataType: double
+		lineageTag: d27639d9-ae48-444a-99f4-c80e20abc17c
+		summarizeBy: sum
+		sourceColumn: AmountIncludingTax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column InvoiceDiscountAllocation
+		dataType: double
+		lineageTag: 53db030a-50ec-44da-a522-3d8fa96e139a
+		summarizeBy: sum
+		sourceColumn: InvoiceDiscountAllocation
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetAmount
+		dataType: double
+		lineageTag: 79c2293f-776d-4850-a605-6803cd09e4f7
+		summarizeBy: sum
+		sourceColumn: NetAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetTaxAmount
+		dataType: double
+		lineageTag: 6cbaea01-f820-4ea0-afbc-49966175ab02
+		summarizeBy: sum
+		sourceColumn: NetTaxAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column NetAmountIncludingTax
+		dataType: double
+		lineageTag: 9b5f1412-4b0b-4a2b-90af-0d47444c386d
+		summarizeBy: sum
+		sourceColumn: NetAmountIncludingTax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ExpectedReceiptDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: efdd4cf1-4076-4aa9-b315-74d929424bbc
+		summarizeBy: none
+		sourceColumn: ExpectedReceiptDate
+
+		variation Variation
+			isDefault
+			relationship: e83ecb27-868f-435b-bf84-26d7ed05695c
+			defaultHierarchy: LocalDateTable_ae73bc6e-b32f-4f01-926d-cb492425cfd0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ItemVariantID
+		dataType: string
+		lineageTag: c6598053-a3ac-47df-b43d-f1a01bf9f3fc
+		summarizeBy: none
+		sourceColumn: ItemVariantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocationID
+		dataType: string
+		lineageTag: d4ea8a1f-a002-4f51-97c2-76f4f3a462f7
+		summarizeBy: none
+		sourceColumn: LocationID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FactPurchaseInvoiceLine = m
+		mode: import
+		source =
+				let
+				    Source = Dynamics365BusinessCentral.ApiContentsWithOptions(null, null, null, null),
+				    PRODUCTION = Source{[Name="PRODUCTION"]}[Data],
+				    #"CRONUS UK Ltd." = PRODUCTION{[Name="CRONUS UK Ltd."]}[Data],
+				    v2.0 = #"CRONUS UK Ltd."{[Name="v2.0"]}[Data],
+				    purchaseInvoices_table = v2.0{[Name="purchaseInvoices",Signature="table"]}[Data],
+				
+				    ExpandedLines = Table.ExpandTableColumn(
+				        purchaseInvoices_table,
+				        "purchaseInvoiceLines",
+				        {
+				            "id", "documentId", "sequence", "itemId", "accountId", "lineType", "lineObjectNumber",
+				            "description", "description2", "unitOfMeasureId", "unitOfMeasureCode",
+				            "unitCost", "quantity", "discountAmount", "discountPercent", "discountAppliedBeforeTax",
+				            "amountExcludingTax", "taxCode", "taxPercent", "totalTaxAmount", "amountIncludingTax",
+				            "invoiceDiscountAllocation", "netAmount", "netTaxAmount", "netAmountIncludingTax",
+				            "expectedReceiptDate", "itemVariantId", "locationId"
+				        },
+				        {
+				            "LineID", "DocumentID", "Sequence", "ItemID", "AccountID", "LineType", "LineObjectNumber",
+				            "Description", "Description2", "UnitOfMeasureID", "UnitOfMeasureCode",
+				            "UnitCost", "Quantity", "DiscountAmount", "DiscountPercent", "DiscountAppliedBeforeTax",
+				            "AmountExcludingTax", "TaxCode", "TaxPercent", "TotalTaxAmount", "AmountIncludingTax",
+				            "InvoiceDiscountAllocation", "NetAmount", "NetTaxAmount", "NetAmountIncludingTax",
+				            "ExpectedReceiptDate", "ItemVariantID", "LocationID"
+				        }
+				    ),
+				
+				    Kept = Table.SelectColumns(
+				        ExpandedLines,
+				        {
+				            "id", "number", "invoiceDate", "postingDate", "dueDate", "vendorInvoiceNumber",
+				            "vendorId", "vendorNumber", "vendorName",
+				            "currencyId", "currencyCode",
+				            "status", "discountAmount", "discountAppliedBeforeTax",
+				            "totalAmountExcludingTax", "totalTaxAmount", "totalAmountIncludingTax", "pricesIncludeTax",
+				            "lastModifiedDateTime",
+				            "LineID", "DocumentID", "Sequence", "ItemID", "AccountID", "LineType", "LineObjectNumber",
+				            "Description", "Description2", "UnitOfMeasureID", "UnitOfMeasureCode",
+				            "UnitCost", "Quantity", "DiscountAmount", "DiscountPercent", "DiscountAppliedBeforeTax",
+				            "AmountExcludingTax", "TaxCode", "TaxPercent", "TotalTaxAmount", "AmountIncludingTax",
+				            "InvoiceDiscountAllocation", "NetAmount", "NetTaxAmount", "NetAmountIncludingTax",
+				            "ExpectedReceiptDate", "ItemVariantID", "LocationID"
+				        },
+				        MissingField.Ignore
+				    ),
+				
+				    Renamed = Table.RenameColumns(
+				        Kept,
+				        {
+				            {"id", "PurchaseInvoiceID"},
+				            {"number", "PurchaseInvoiceNumber"},
+				            {"invoiceDate", "InvoiceDate"},
+				            {"postingDate", "PostingDate"},
+				            {"dueDate", "DueDate"},
+				            {"vendorInvoiceNumber", "VendorInvoiceNumber"},
+				            {"vendorId", "VendorID"},
+				            {"vendorNumber", "VendorNumber"},
+				            {"vendorName", "VendorName"},
+				            {"currencyId", "CurrencyID"},
+				            {"currencyCode", "CurrencyCode"},
+				            {"status", "Status"},
+				            {"discountAmount", "HeaderDiscountAmount"},
+				            {"discountAppliedBeforeTax", "HeaderDiscountAppliedBeforeTax"},
+				            {"totalAmountExcludingTax", "HeaderTotalAmountExcludingTax"},
+				            {"totalTaxAmount", "HeaderTotalTaxAmount"},
+				            {"totalAmountIncludingTax", "HeaderTotalAmountIncludingTax"},
+				            {"pricesIncludeTax", "PricesIncludeTax"},
+				            {"lastModifiedDateTime", "LastModifiedDateTime"}
+				        },
+				        MissingField.Ignore
+				    )
+				in
+				    Renamed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
