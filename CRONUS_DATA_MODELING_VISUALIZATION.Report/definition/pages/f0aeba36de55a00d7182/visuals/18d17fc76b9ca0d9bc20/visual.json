@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "82ffbd5f3207986d1b8c",
+  "name": "18d17fc76b9ca0d9bc20",
   "position": {
-    "x": 1085.55023923445,
-    "y": 214.35406698564594,
-    "z": 7000,
-    "height": 107.17703349282297,
-    "width": 194.44976076555025,
-    "tabOrder": 7000
+    "x": 1162.1052631578948,
+    "y": 212.82296650717706,
+    "z": 9000,
+    "height": 81.148325358851679,
+    "width": 117.89473684210527,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "slicer",
@@ -38,13 +38,6 @@
       "data": [
         {
           "properties": {
-            "numericStart": {
-              "expr": {
-                "Literal": {
-                  "Value": "2021D"
-                }
-              }
-            },
             "numericEnd": {
               "expr": {
                 "Literal": {
@@ -55,7 +48,7 @@
             "mode": {
               "expr": {
                 "Literal": {
-                  "Value": "'Between'"
+                  "Value": "'Dropdown'"
                 }
               }
             }
@@ -64,28 +57,7 @@
       ],
       "general": [
         {
-          "properties": {
-            "orientation": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "header": [
-        {
-          "properties": {
-            "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            }
-          }
+          "properties": {}
         }
       ]
     },

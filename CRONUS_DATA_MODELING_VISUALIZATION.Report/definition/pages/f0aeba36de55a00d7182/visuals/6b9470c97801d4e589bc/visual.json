@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "7a1cfedd25d9dddd037b",
+  "name": "6b9470c97801d4e589bc",
   "position": {
-    "x": 768.61244019138758,
+    "x": 10.717703349282298,
     "y": 0,
-    "z": 8000,
+    "z": 10000,
     "height": 214.35406698564594,
-    "width": 249.56937799043064,
-    "tabOrder": 8000
+    "width": 280.19138755980862,
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "MeasureGL"
+                      "Entity": "MeasureSales"
                     }
                   },
-                  "Property": "GL Net"
+                  "Property": "Total Sales Excl Tax"
                 }
               },
-              "queryRef": "MeasureGL.GL Net",
-              "nativeQueryRef": "GL Net"
+              "queryRef": "MeasureSales.Total Sales Excl Tax",
+              "nativeQueryRef": "Total Sales Excl Tax"
             }
           ]
         }
@@ -39,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "MeasureGL"
+                    "Entity": "MeasureSales"
                   }
                 },
-                "Property": "GL Net"
+                "Property": "Total Sales Excl Tax"
               }
             },
             "direction": "Descending"
@@ -55,65 +55,21 @@
       "fillCustom": [
         {
           "properties": {
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "6D"
-                }
-              }
-            },
             "fillColor": {
               "solid": {
                 "color": {
                   "expr": {
-                    "FillRule": {
-                      "Input": {
-                        "Measure": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "MeasureGL"
-                            }
-                          },
-                          "Property": "GL Net"
-                        }
-                      },
-                      "FillRule": {
-                        "linearGradient2": {
-                          "min": {
-                            "color": {
-                              "Literal": {
-                                "Value": "'#F6416C'"
-                              }
-                            },
-                            "value": {
-                              "Literal": {
-                                "Value": "-0.000001D"
-                              }
-                            }
-                          },
-                          "max": {
-                            "color": {
-                              "Literal": {
-                                "Value": "'#00B8A9'"
-                              }
-                            },
-                            "value": {
-                              "Literal": {
-                                "Value": "0D"
-                              }
-                            }
-                          },
-                          "nullColoringStrategy": {
-                            "strategy": {
-                              "Literal": {
-                                "Value": "'asZero'"
-                              }
-                            }
-                          }
-                        }
-                      }
+                    "Literal": {
+                      "Value": "'#00B8A9'"
                     }
                   }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
                 }
               }
             }
@@ -138,7 +94,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 3,
+                      "ColorId": 0,
                       "Percent": 0
                     }
                   }
@@ -211,13 +167,6 @@
                   }
                 }
               }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
             }
           },
           "selector": {
@@ -244,13 +193,6 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            },
-            "heading": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Heading3'"
                 }
               }
             },
@@ -307,5 +249,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ab759dc8bc00e1639701",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Total Sales Excl Tax"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

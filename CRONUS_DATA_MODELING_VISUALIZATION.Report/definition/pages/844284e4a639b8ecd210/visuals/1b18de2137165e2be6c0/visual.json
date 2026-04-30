@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "59277c9c49bee889404a",
+  "name": "1b18de2137165e2be6c0",
   "position": {
-    "x": 12.248803827751196,
-    "y": 212.82296650717706,
-    "z": 1000,
-    "height": 275.59808612440196,
-    "width": 1120.7655502392345,
-    "tabOrder": 1000
+    "x": 13.779904306220097,
+    "y": 494.54545454545456,
+    "z": 4000,
+    "height": 214.35406698564594,
+    "width": 560.38277511961724,
+    "tabOrder": 4000
   },
   "visual": {
-    "visualType": "lineStackedColumnComboChart",
+    "visualType": "donutChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,37 +20,19 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimDate"
+                      "Entity": "DimItem"
                     }
                   },
-                  "Property": "MonthYear"
+                  "Property": "ItemCategoryCode"
                 }
               },
-              "queryRef": "DimDate.MonthYear",
-              "nativeQueryRef": "MonthYear",
+              "queryRef": "DimItem.ItemCategoryCode",
+              "nativeQueryRef": "ItemCategoryCode",
               "active": true
             }
           ]
         },
         "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "MeasureSales"
-                    }
-                  },
-                  "Property": "Total Sales Excl Tax"
-                }
-              },
-              "queryRef": "MeasureSales.Total Sales Excl Tax",
-              "nativeQueryRef": "Total Sales Excl Tax"
-            }
-          ]
-        },
-        "Y2": {
           "projections": [
             {
               "field": {
@@ -73,18 +55,19 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "DimDate"
+                    "Entity": "MeasurePurchases"
                   }
                 },
-                "Property": "MonthYear"
+                "Property": "Total Purchase Excl Tax"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": true
       }
     },
     "drillFilterOtherVisuals": true
