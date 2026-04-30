@@ -3,9 +3,12 @@ table DimVendor
 
 	column VendorID
 		dataType: string
+		isHidden
 		lineageTag: f81a2c95-e7dc-4ae9-b295-8a2f8d98a5bb
 		summarizeBy: none
 		sourceColumn: VendorID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -27,17 +30,23 @@ table DimVendor
 
 	column AddressLine1
 		dataType: string
+		isHidden
 		lineageTag: 49d5ec33-a747-4db4-96bd-63a0df42a731
 		summarizeBy: none
 		sourceColumn: AddressLine1
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column AddressLine2
 		dataType: string
+		isHidden
 		lineageTag: 24bffcbf-2320-4175-8613-00f8bbb9d895
 		summarizeBy: none
 		sourceColumn: AddressLine2
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -67,9 +76,12 @@ table DimVendor
 
 	column PostalCode
 		dataType: string
+		isHidden
 		lineageTag: da95ccd3-199f-4f20-9933-67613cb4c8d4
 		summarizeBy: none
 		sourceColumn: PostalCode
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -83,25 +95,34 @@ table DimVendor
 
 	column Email
 		dataType: string
+		isHidden
 		lineageTag: 05e05cb3-71c5-4bbb-af17-f0f790cd5983
 		summarizeBy: none
 		sourceColumn: Email
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Website
 		dataType: string
+		isHidden
 		lineageTag: 4a4ebf95-ea11-43dc-ade0-90ade635d3f5
 		summarizeBy: none
 		sourceColumn: Website
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column CurrencyID
 		dataType: string
+		isHidden
 		lineageTag: 23bab874-65ca-4ec6-b583-3f9cc2c0aed7
 		summarizeBy: none
 		sourceColumn: CurrencyID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -115,17 +136,23 @@ table DimVendor
 
 	column PaymentTermsID
 		dataType: string
+		isHidden
 		lineageTag: 2e972a34-10ab-4186-9203-d24f6f7aa1b0
 		summarizeBy: none
 		sourceColumn: PaymentTermsID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column PaymentMethodID
 		dataType: string
+		isHidden
 		lineageTag: 364f8b17-9c3a-434d-abbd-20ac9b07babd
 		summarizeBy: none
 		sourceColumn: PaymentMethodID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -140,9 +167,12 @@ table DimVendor
 
 	column TaxRegistrationNumber
 		dataType: string
+		isHidden
 		lineageTag: 25faf4e4-c2c9-4777-9a73-9dd847e175dc
 		summarizeBy: none
 		sourceColumn: TaxRegistrationNumber
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -166,6 +196,7 @@ table DimVendor
 
 	column LastModifiedDateTime
 		dataType: dateTime
+		isHidden
 		formatString: General Date
 		lineageTag: fc230a4b-39c2-4afe-a1a7-4ea847bc1d68
 		summarizeBy: none
@@ -175,6 +206,8 @@ table DimVendor
 			isDefault
 			relationship: ea6feced-9097-4b05-af2b-ac599da05bf4
 			defaultHierarchy: LocalDateTable_a8e1ea8b-2499-41ea-bea6-2b3634092d8c.'Date Hierarchy'
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 

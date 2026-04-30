@@ -3,9 +3,12 @@ table DimItem
 
 	column ItemID
 		dataType: string
+		isHidden
 		lineageTag: 09d73079-116a-4489-bd8d-07fffc8e5829
 		summarizeBy: none
 		sourceColumn: ItemID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -35,9 +38,12 @@ table DimItem
 
 	column ItemCategoryID
 		dataType: string
+		isHidden
 		lineageTag: 007f0446-8f2c-4826-981f-011dc571b52a
 		summarizeBy: none
 		sourceColumn: ItemCategoryID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -60,9 +66,12 @@ table DimItem
 
 	column GTIN
 		dataType: string
+		isHidden
 		lineageTag: 35f12bd1-7c8b-4182-8721-8545ba2483c8
 		summarizeBy: none
 		sourceColumn: GTIN
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -107,9 +116,12 @@ table DimItem
 
 	column TaxGroupID
 		dataType: string
+		isHidden
 		lineageTag: 68de8b5d-bf29-4b81-9f12-6dc4c48f2863
 		summarizeBy: none
 		sourceColumn: TaxGroupID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -123,9 +135,12 @@ table DimItem
 
 	column BaseUnitOfMeasureID
 		dataType: string
+		isHidden
 		lineageTag: e2fa8777-08b7-4ae3-a17f-a8c1eacb5636
 		summarizeBy: none
 		sourceColumn: BaseUnitOfMeasureID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -139,38 +154,51 @@ table DimItem
 
 	column GeneralProductPostingGroupID
 		dataType: string
+		isHidden
 		lineageTag: e21686a2-bc24-4b56-b282-09bac257fd99
 		summarizeBy: none
 		sourceColumn: GeneralProductPostingGroupID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column GeneralProductPostingGroupCode
 		dataType: string
+		isHidden
 		lineageTag: dfe36bc2-67c9-4bc6-af42-40b7ab3ed68b
 		summarizeBy: none
 		sourceColumn: GeneralProductPostingGroupCode
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column InventoryPostingGroupID
 		dataType: string
+		isHidden
 		lineageTag: 60e85345-8afc-4bd8-9cf9-4baac9d19cc9
 		summarizeBy: none
 		sourceColumn: InventoryPostingGroupID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column InventoryPostingGroupCode
 		dataType: string
+		isHidden
 		lineageTag: 92e5148e-4e42-42f8-9c63-01bb15ebdec6
 		summarizeBy: none
 		sourceColumn: InventoryPostingGroupCode
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column LastModifiedDateTime
 		dataType: dateTime
+		isHidden
 		formatString: General Date
 		lineageTag: 3c8d45d9-db22-4d0c-b372-b22748c9d6c5
 		summarizeBy: none
@@ -180,6 +208,8 @@ table DimItem
 			isDefault
 			relationship: 1a9852ce-170a-4044-8d6a-3b78c3efc525
 			defaultHierarchy: LocalDateTable_9c16d641-8b92-41aa-9678-d517131e8092.'Date Hierarchy'
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 

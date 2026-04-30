@@ -3,9 +3,12 @@ table DimCustomer
 
 	column CustomerID
 		dataType: string
+		isHidden
 		lineageTag: 3675ddc3-23d8-4c76-a827-2feb8215b755
 		summarizeBy: none
 		sourceColumn: CustomerID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -35,17 +38,23 @@ table DimCustomer
 
 	column AddressLine1
 		dataType: string
+		isHidden
 		lineageTag: 649f5525-8ed2-4dc7-9bcb-04e2e503460a
 		summarizeBy: none
 		sourceColumn: AddressLine1
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column AddressLine2
 		dataType: string
+		isHidden
 		lineageTag: fb43b791-f763-4143-98ea-3fd3666f007e
 		summarizeBy: none
 		sourceColumn: AddressLine2
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -75,33 +84,45 @@ table DimCustomer
 
 	column PostalCode
 		dataType: string
+		isHidden
 		lineageTag: 5eb8d261-0b33-4695-99aa-461ca329c166
 		summarizeBy: none
 		sourceColumn: PostalCode
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column PhoneNumber
 		dataType: string
+		isHidden
 		lineageTag: 2521deb4-bca9-4e7e-85ab-d8b7f95b8923
 		summarizeBy: none
 		sourceColumn: PhoneNumber
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Email
 		dataType: string
+		isHidden
 		lineageTag: 942fd344-9034-42fd-a9a2-e66f51bc07c9
 		summarizeBy: none
 		sourceColumn: Email
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column Website
 		dataType: string
+		isHidden
 		lineageTag: 7d63c1e6-a5f7-4e04-95ff-84d6896bb67e
 		summarizeBy: none
 		sourceColumn: Website
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -115,9 +136,12 @@ table DimCustomer
 
 	column CurrencyID
 		dataType: string
+		isHidden
 		lineageTag: a86004b7-47e6-440a-8acb-ecd594c551ac
 		summarizeBy: none
 		sourceColumn: CurrencyID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -131,17 +155,23 @@ table DimCustomer
 
 	column PaymentTermsID
 		dataType: string
+		isHidden
 		lineageTag: 2eae227f-5ddb-4b73-a0a1-83db3f953dc3
 		summarizeBy: none
 		sourceColumn: PaymentTermsID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
 	column ShipmentMethodID
 		dataType: string
+		isHidden
 		lineageTag: a0f203e9-872c-4ce9-a428-e5a36485c5c0
 		summarizeBy: none
 		sourceColumn: ShipmentMethodID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -156,9 +186,12 @@ table DimCustomer
 
 	column TaxRegistrationNumber
 		dataType: string
+		isHidden
 		lineageTag: 4c7c43f2-b01e-4136-b292-4dd851bc07e8
 		summarizeBy: none
 		sourceColumn: TaxRegistrationNumber
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
@@ -192,6 +225,7 @@ table DimCustomer
 
 	column LastModifiedDateTime
 		dataType: dateTime
+		isHidden
 		formatString: General Date
 		lineageTag: edcdf719-637e-485a-bf8d-17cacabb407d
 		summarizeBy: none
@@ -201,6 +235,8 @@ table DimCustomer
 			isDefault
 			relationship: 21be030f-9626-4149-8838-7447948380db
 			defaultHierarchy: LocalDateTable_1bbafdeb-9a8a-4f94-abcc-85c9620fc76d.'Date Hierarchy'
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 

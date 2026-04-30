@@ -28,6 +28,18 @@ table DimDate
 		lineageTag: 671d3ff4-cad7-4eea-998a-ae7798b8d7e6
 		summarizeBy: none
 		sourceColumn: Quarter
+		sortByColumn: QuarterSort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterSort
+		dataType: int64
+		formatString: 0
+		lineageTag: a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d
+		summarizeBy: sum
+		sourceColumn: QuarterSort
 
 		annotation SummarizationSetBy = Automatic
 
@@ -53,6 +65,18 @@ table DimDate
 		lineageTag: 98ec5e3c-b29e-4002-a052-bc437a4229b2
 		summarizeBy: none
 		sourceColumn: MonthYear
+		sortByColumn: MonthYearSort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthYearSort
+		dataType: int64
+		formatString: 0
+		lineageTag: b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e
+		summarizeBy: sum
+		sourceColumn: MonthYearSort
 
 		annotation SummarizationSetBy = Automatic
 
@@ -94,10 +118,12 @@ table DimDate
 				    T1 = Table.TransformColumnTypes(T0, {{"Date", type date}}),
 				    T2 = Table.AddColumn(T1, "Year", each Date.Year([Date]), Int64.Type),
 				    T3 = Table.AddColumn(T2, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
-				    T4 = Table.AddColumn(T3, "MonthNumber", each Date.Month([Date]), Int64.Type),
+				    T3q = Table.AddColumn(T3, "QuarterSort", each [Year] * 10 + Date.QuarterOfYear([Date]), Int64.Type),
+				    T4 = Table.AddColumn(T3q, "MonthNumber", each Date.Month([Date]), Int64.Type),
 				    T5 = Table.AddColumn(T4, "MonthName", each Date.ToText([Date], "MMMM"), type text),
 				    T6 = Table.AddColumn(T5, "MonthYear", each Date.ToText([Date], "MMM yyyy"), type text),
-				    T7 = Table.AddColumn(T6, "WeekNumber", each Date.WeekOfYear([Date], Day.Monday), Int64.Type),
+				    T6s = Table.AddColumn(T6, "MonthYearSort", each [Year] * 100 + [MonthNumber], Int64.Type),
+				    T7 = Table.AddColumn(T6s, "WeekNumber", each Date.WeekOfYear([Date], Day.Monday), Int64.Type),
 				    T8 = Table.AddColumn(T7, "DayName", each Date.ToText([Date], "dddd"), type text),
 				    T9 = Table.AddColumn(T8, "DayOfMonth", each Date.Day([Date]), Int64.Type)
 				in
@@ -106,4 +132,3 @@ table DimDate
 	annotation PBI_NavigationStepName = Navigation
 
 	annotation PBI_ResultType = Table
-

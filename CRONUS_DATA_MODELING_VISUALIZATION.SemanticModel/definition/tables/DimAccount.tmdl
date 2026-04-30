@@ -3,9 +3,12 @@ table DimAccount
 
 	column AccountID
 		dataType: string
+		isHidden
 		lineageTag: 7f205feb-cf30-4a43-b5cd-d4ab357c2f03
 		summarizeBy: none
 		sourceColumn: AccountID
+
+		changedProperty = IsHidden
 
 		annotation SummarizationSetBy = Automatic
 
