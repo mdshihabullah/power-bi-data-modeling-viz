@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "59277c9c49bee889404a",
+  "position": {
+    "x": 10.717703349282298,
+    "y": 214.35406698564594,
+    "z": 1000,
+    "height": 275.59808612440196,
+    "width": 1120.7655502392345,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineStackedColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "MonthYear"
+                }
+              },
+              "queryRef": "DimDate.MonthYear",
+              "nativeQueryRef": "MonthYear",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureSales"
+                    }
+                  },
+                  "Property": "Total Sales Excl Tax"
+                }
+              },
+              "queryRef": "MeasureSales.Total Sales Excl Tax",
+              "nativeQueryRef": "Total Sales Excl Tax"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasurePurchases"
+                    }
+                  },
+                  "Property": "Total Purchase Excl Tax"
+                }
+              },
+              "queryRef": "MeasurePurchases.Total Purchase Excl Tax",
+              "nativeQueryRef": "Total Purchase Excl Tax"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimDate"
+                  }
+                },
+                "Property": "MonthYear"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
