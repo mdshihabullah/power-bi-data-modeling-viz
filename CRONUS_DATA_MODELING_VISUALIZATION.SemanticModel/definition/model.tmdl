@@ -8,7 +8,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["DimCustomer","DimVendor","DimItem","DimAccount","DimCurrency","DimPaymentTerm","DimPaymentMethod","DimShipmentMethod","FactSalesInvoiceLine","FactPurchaseInvoiceLine","FactGLEntry","FactItemLedgerEntry","DimDate"]
+annotation PBI_QueryOrder = ["DimCustomer","DimVendor","DimItem","DimAccount","DimCurrency","DimPaymentTerm","DimShipmentMethod","FactSalesInvoiceLine","FactPurchaseInvoiceLine","FactGLEntry","FactItemLedgerEntry","DimDate"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -22,7 +22,6 @@ ref table LocalDateTable_9c16d641-8b92-41aa-9678-d517131e8092
 ref table DimAccount
 ref table DimCurrency
 ref table DimPaymentTerm
-ref table DimPaymentMethod
 ref table DimShipmentMethod
 ref table FactSalesInvoiceLine
 ref table LocalDateTable_5445adef-817c-42fb-a2b2-b347c5795ddf
