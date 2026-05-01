@@ -29,6 +29,21 @@
               "queryRef": "DimItem.ItemName",
               "nativeQueryRef": "ItemName",
               "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimCustomer"
+                    }
+                  },
+                  "Property": "CustomerName"
+                }
+              },
+              "queryRef": "DimCustomer.CustomerName",
+              "nativeQueryRef": "CustomerName",
+              "active": false
             }
           ]
         },
@@ -492,20 +507,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "909801a552e625b3c6a5",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Margin"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

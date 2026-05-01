@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "6b9470c97801d4e589bc",
   "position": {
-    "x": 10.717703349282298,
+    "x": 0,
     "y": 0,
-    "z": 8000,
+    "z": 7000,
     "height": 214.35406698564594,
-    "width": 280.19138755980862,
-    "tabOrder": 8000
+    "width": 240.38277511961724,
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -250,5 +250,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "27434242373c9d4d9b38",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Total Sales Excl Tax"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

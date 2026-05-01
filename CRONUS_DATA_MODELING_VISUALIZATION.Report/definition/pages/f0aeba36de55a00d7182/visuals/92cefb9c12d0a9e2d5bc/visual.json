@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "92cefb9c12d0a9e2d5bc",
   "position": {
-    "x": 532.822966507177,
+    "x": 488.42105263157896,
     "y": 0,
-    "z": 4000,
+    "z": 3000,
     "height": 214.35406698564594,
-    "width": 263.34928229665076,
-    "tabOrder": 4000
+    "width": 214.35406698564594,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "MeasureSales"
                     }
                   },
-                  "Property": "Gross Profit"
+                  "Property": "Sales YoY %"
                 }
               },
-              "queryRef": "MeasureSales.Gross Profit",
-              "nativeQueryRef": "Gross Profit"
+              "queryRef": "MeasureSales.Sales YoY %",
+              "nativeQueryRef": "Sales YoY %"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "MeasureSales"
                   }
                 },
-                "Property": "Gross Profit"
+                "Property": "Sales YoY %"
               }
             },
             "direction": "Descending"
@@ -366,5 +366,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4d1ebff98b8916970790",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Sales YoY %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

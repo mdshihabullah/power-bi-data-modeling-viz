@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "3b14298759496ea00769",
   "position": {
-    "x": 275.59808612440196,
+    "x": 223.54066985645935,
     "y": 0,
-    "z": 3000,
+    "z": 2000,
     "height": 214.35406698564594,
     "width": 280.19138755980862,
-    "tabOrder": 3000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -250,5 +250,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "880b203b6032e2784d75",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Total Purchase Excl Tax"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

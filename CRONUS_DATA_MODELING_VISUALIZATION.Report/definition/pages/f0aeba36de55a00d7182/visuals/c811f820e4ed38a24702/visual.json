@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "80d6b3227634a48c5d04",
+  "name": "c811f820e4ed38a24702",
   "position": {
-    "x": 10.717703349282298,
+    "x": 684.4019138755981,
     "y": 0,
-    "z": 0,
+    "z": 10000,
     "height": 214.35406698564594,
-    "width": 280.19138755980862,
-    "tabOrder": 0
+    "width": 217.41626794258374,
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "MeasureSales"
+                      "Entity": "MeasureGL"
                     }
                   },
-                  "Property": "Total Sales Excl Tax"
+                  "Property": "Net Profit %"
                 }
               },
-              "queryRef": "MeasureSales.Total Sales Excl Tax",
-              "nativeQueryRef": "Total Sales Excl Tax"
+              "queryRef": "MeasureGL.Net Profit %",
+              "nativeQueryRef": "Net Profit %"
             }
           ]
         }
@@ -39,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "MeasureSales"
+                    "Entity": "MeasureGL"
                   }
                 },
-                "Property": "Total Sales Excl Tax"
+                "Property": "Net Profit %"
               }
             },
             "direction": "Descending"
@@ -55,21 +55,76 @@
       "fillCustom": [
         {
           "properties": {
-            "fillColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#00B8A9'"
-                    }
-                  }
-                }
-              }
-            },
             "transparency": {
               "expr": {
                 "Literal": {
                   "Value": "6D"
+                }
+              }
+            },
+            "fillColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 3,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "MeasureGL"
+                                    }
+                                  },
+                                  "Property": "Net Profit %"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0.01D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#DD6B7F'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 2,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "MeasureGL"
+                                    }
+                                  },
+                                  "Property": "Net Profit %"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0.01D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#37A794'"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -94,7 +149,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
+                      "ColorId": 3,
                       "Percent": 0
                     }
                   }
@@ -167,6 +222,13 @@
                   }
                 }
               }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
             }
           },
           "selector": {
@@ -193,6 +255,13 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "heading": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Heading3'"
                 }
               }
             },
@@ -249,5 +318,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8f1873e70126831200de",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureGL"
+              }
+            },
+            "Property": "Net Profit %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
