@@ -4,10 +4,10 @@
   "position": {
     "x": 10.717703349282298,
     "y": 0,
-    "z": 1,
+    "z": 1000,
     "height": 214.35406698564594,
     "width": 284.78468899521533,
-    "tabOrder": 1
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -59,8 +59,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#00B8A9'"
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
                     }
                   }
                 }
@@ -249,23 +250,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "d335efe884d9098a7d01",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Sales Amount"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

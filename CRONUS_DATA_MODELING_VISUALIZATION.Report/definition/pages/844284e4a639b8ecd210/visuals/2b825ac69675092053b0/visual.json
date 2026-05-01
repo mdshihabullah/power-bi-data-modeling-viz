@@ -4,10 +4,10 @@
   "position": {
     "x": 587.94258373205741,
     "y": 494.54545454545456,
-    "z": 5000,
+    "z": 4000,
     "height": 214.35406698564594,
     "width": 633.87559808612446,
-    "tabOrder": 5000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "columnChart",
@@ -113,6 +113,19 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "gridlineShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }

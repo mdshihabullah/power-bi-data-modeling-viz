@@ -4,10 +4,10 @@
   "position": {
     "x": 10.717703349282298,
     "y": 480.76555023923447,
-    "z": 5,
+    "z": 5000,
     "height": 238.85167464114835,
     "width": 649.18660287081343,
-    "tabOrder": 5
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -98,7 +98,7 @@
             "showAxisTitle": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -260,45 +260,79 @@
                         },
                         {
                           "Condition": {
-                            "And": {
+                            "Comparison": {
+                              "ComparisonKind": 2,
                               "Left": {
-                                "Comparison": {
-                                  "ComparisonKind": 2,
-                                  "Left": {
-                                    "Measure": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "MeasureInventory"
-                                        }
-                                      },
-                                      "Property": "Inventory Margin %"
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "MeasureInventory"
                                     }
                                   },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "0.3D"
-                                    }
-                                  }
+                                  "Property": "Inventory Margin %"
                                 }
                               },
                               "Right": {
-                                "Comparison": {
-                                  "ComparisonKind": 3,
-                                  "Left": {
-                                    "Measure": {
+                                "RangePercent": {
+                                  "Min": {
+                                    "ScopedEval": {
                                       "Expression": {
-                                        "SourceRef": {
-                                          "Entity": "MeasureInventory"
+                                        "Aggregation": {
+                                          "Expression": {
+                                            "ScopedEval": {
+                                              "Expression": {
+                                                "Measure": {
+                                                  "Expression": {
+                                                    "SourceRef": {
+                                                      "Entity": "MeasureInventory"
+                                                    }
+                                                  },
+                                                  "Property": "Inventory Margin %"
+                                                }
+                                              },
+                                              "Scope": [
+                                                {
+                                                  "AllRolesRef": {}
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "Function": 3
                                         }
                                       },
-                                      "Property": "Inventory Margin %"
+                                      "Scope": []
                                     }
                                   },
-                                  "Right": {
-                                    "Literal": {
-                                      "Value": "1D"
+                                  "Max": {
+                                    "ScopedEval": {
+                                      "Expression": {
+                                        "Aggregation": {
+                                          "Expression": {
+                                            "ScopedEval": {
+                                              "Expression": {
+                                                "Measure": {
+                                                  "Expression": {
+                                                    "SourceRef": {
+                                                      "Entity": "MeasureInventory"
+                                                    }
+                                                  },
+                                                  "Property": "Inventory Margin %"
+                                                }
+                                              },
+                                              "Scope": [
+                                                {
+                                                  "AllRolesRef": {}
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "Function": 4
+                                        }
+                                      },
+                                      "Scope": []
                                     }
-                                  }
+                                  },
+                                  "Percent": 0.3
                                 }
                               }
                             }
@@ -339,6 +373,26 @@
             }
           }
         }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "gridlineShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -373,20 +427,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "f7a58f13051a54e0d74b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Margin %"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

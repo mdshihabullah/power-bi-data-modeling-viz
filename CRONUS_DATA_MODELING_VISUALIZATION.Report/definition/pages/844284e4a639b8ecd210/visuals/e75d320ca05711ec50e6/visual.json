@@ -3,11 +3,11 @@
   "name": "e75d320ca05711ec50e6",
   "position": {
     "x": 13.779904306220097,
-    "y": 244.97607655502395,
-    "z": 2000,
-    "height": 231.19617224880383,
-    "width": 1241.7224880382776,
-    "tabOrder": 2000
+    "y": 234.25837320574163,
+    "z": 1000,
+    "height": 241.91387559808615,
+    "width": 1208.0382775119617,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "lineChart",
@@ -112,6 +112,13 @@
                   "Value": "''"
                 }
               }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
             }
           }
         }
@@ -181,6 +188,39 @@
           },
           "selector": {
             "metadata": "MeasurePurchases.Total Purchase Excl Tax"
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "y2Axis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "secShowAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
           }
         }
       ]

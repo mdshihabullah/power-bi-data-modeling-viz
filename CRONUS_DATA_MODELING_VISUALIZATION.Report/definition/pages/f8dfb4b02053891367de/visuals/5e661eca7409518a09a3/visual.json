@@ -6,7 +6,7 @@
     "y": 108.70813397129187,
     "z": 1000,
     "height": 120.95693779904308,
-    "width": 222.00956937799046,
+    "width": 205.16746411483254,
     "tabOrder": 1000
   },
   "visual": {
@@ -59,8 +59,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#F6416C'"
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
                     }
                   }
                 }

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "e28e6afc161a228b8a3b",
+  "name": "cd2ed1b93bccc52301e6",
   "position": {
-    "x": 592.53588516746413,
-    "y": 13.779904306220097,
-    "z": 2000,
-    "height": 220.47846889952154,
-    "width": 571.10047846889961,
-    "tabOrder": 2000
+    "x": 0,
+    "y": 488.42105263157896,
+    "z": 10000,
+    "height": 231.19617224880383,
+    "width": 543.54066985645932,
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -20,14 +20,14 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimVendor"
+                      "Entity": "DimCustomer"
                     }
                   },
-                  "Property": "VendorName"
+                  "Property": "CustomerName"
                 }
               },
-              "queryRef": "DimVendor.VendorName",
-              "nativeQueryRef": "VendorName",
+              "queryRef": "DimCustomer.CustomerName",
+              "nativeQueryRef": "CustomerName",
               "active": true
             }
           ]
@@ -39,14 +39,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "MeasurePurchases"
+                      "Entity": "MeasureSales"
                     }
                   },
-                  "Property": "Total Purchase Excl Tax"
+                  "Property": "Total Sales Excl Tax"
                 }
               },
-              "queryRef": "MeasurePurchases.Total Purchase Excl Tax",
-              "nativeQueryRef": "Total Purchase Excl Tax"
+              "queryRef": "MeasureSales.Total Sales Excl Tax",
+              "nativeQueryRef": "Total Sales Excl Tax"
             }
           ]
         }
@@ -58,10 +58,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "MeasurePurchases"
+                    "Entity": "MeasureSales"
                   }
                 },
-                "Property": "Total Purchase Excl Tax"
+                "Property": "Total Sales Excl Tax"
               }
             },
             "direction": "Descending"
@@ -74,14 +74,14 @@
       "valueAxis": [
         {
           "properties": {
-            "gridlineShow": {
+            "showAxisTitle": {
               "expr": {
                 "Literal": {
                   "Value": "false"
                 }
               }
             },
-            "showAxisTitle": {
+            "gridlineShow": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -92,6 +92,26 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }
@@ -111,24 +131,32 @@
             "labelPosition": {
               "expr": {
                 "Literal": {
-                  "Value": "'OutsideEnd'"
+                  "Value": "'InsideEnd'"
                 }
               }
-            }
-          }
-        }
-      ],
-      "categoryAxis": [
-        {
-          "properties": {
-            "bold": {
+            },
+            "enableValueDataLabel": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
             },
-            "showAxisTitle": {
+            "enableDetailDataLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableBackground": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableTitleDataLabel": {
               "expr": {
                 "Literal": {
                   "Value": "false"

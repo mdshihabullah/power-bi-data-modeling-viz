@@ -217,7 +217,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#F6416C'"
+                              "Value": "'#DD6B7F'"
                             }
                           }
                         }
@@ -417,23 +417,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "162cb706345a214b60a4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Margin %"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

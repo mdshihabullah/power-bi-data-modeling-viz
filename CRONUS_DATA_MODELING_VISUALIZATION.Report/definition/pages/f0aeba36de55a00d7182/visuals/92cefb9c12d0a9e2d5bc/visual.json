@@ -4,10 +4,10 @@
   "position": {
     "x": 532.822966507177,
     "y": 0,
-    "z": 5000,
+    "z": 4000,
     "height": 214.35406698564594,
     "width": 263.34928229665076,
-    "tabOrder": 5000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -115,7 +115,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#F6416C'"
+                              "Value": "'#DD6B7F'"
                             }
                           }
                         },
@@ -166,7 +166,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#00B8A9'"
+                              "Value": "'#37A794'"
                             }
                           }
                         }
@@ -366,23 +366,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "e0ecd1c804da08d29ce7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureSales"
-              }
-            },
-            "Property": "Gross Profit"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

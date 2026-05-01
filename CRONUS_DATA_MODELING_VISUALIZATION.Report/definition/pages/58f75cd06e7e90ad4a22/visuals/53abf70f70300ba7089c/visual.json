@@ -5,8 +5,8 @@
     "x": 16.842105263157897,
     "y": 483.8277511961723,
     "z": 4000,
-    "height": 225.07177033492823,
-    "width": 546.6028708133972,
+    "height": 235.78947368421055,
+    "width": 560.38277511961724,
     "tabOrder": 4000
   },
   "visual": {
@@ -69,6 +69,28 @@
         ],
         "isDefaultSort": true
       }
+    },
+    "objects": {
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "drillFilterOtherVisuals": true
   }

@@ -4,10 +4,10 @@
   "position": {
     "x": 280.19138755980862,
     "y": 0,
-    "z": 2,
+    "z": 2000,
     "height": 214.35406698564594,
     "width": 278.66028708133973,
-    "tabOrder": 2
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -59,8 +59,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#F6416C'"
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
                     }
                   }
                 }
@@ -249,23 +250,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0dff72a1a07b0bc230ed",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Cost Amount"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

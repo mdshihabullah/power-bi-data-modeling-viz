@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "891e18148b2607c1a8bb",
+  "name": "68fd7acd22e48b8200b2",
   "position": {
     "x": 0,
     "y": 0,
-    "z": 0,
+    "z": 6000,
     "height": 214.35406698564594,
     "width": 278.66028708133973,
-    "tabOrder": 0
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -60,8 +60,8 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 2,
-                      "Percent": 0.4
+                      "ColorId": 1,
+                      "Percent": 0
                     }
                   }
                 }
@@ -162,7 +162,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 1,
+                      "ColorId": 0,
                       "Percent": 0
                     }
                   }
@@ -183,7 +183,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 1,
+                      "ColorId": 0,
                       "Percent": 0
                     }
                   }

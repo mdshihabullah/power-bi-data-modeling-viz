@@ -4,10 +4,10 @@
   "position": {
     "x": 1183.5406698564593,
     "y": 313.8755980861244,
-    "z": 7000,
+    "z": 5000,
     "height": 151.57894736842107,
     "width": 96.459330143540683,
-    "tabOrder": 7000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "slicer",
@@ -57,6 +57,19 @@
         {
           "properties": {
             "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "bold": {
               "expr": {
                 "Literal": {
                   "Value": "false"

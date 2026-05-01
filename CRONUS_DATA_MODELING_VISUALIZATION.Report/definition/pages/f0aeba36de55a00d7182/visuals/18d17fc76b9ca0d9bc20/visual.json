@@ -4,10 +4,10 @@
   "position": {
     "x": 1162.1052631578948,
     "y": 212.82296650717706,
-    "z": 9000,
+    "z": 7000,
     "height": 81.148325358851679,
     "width": 117.89473684210527,
-    "tabOrder": 9000
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "slicer",
@@ -58,6 +58,32 @@
       "general": [
         {
           "properties": {}
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "header": [
+        {
+          "properties": {
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
         }
       ]
     },

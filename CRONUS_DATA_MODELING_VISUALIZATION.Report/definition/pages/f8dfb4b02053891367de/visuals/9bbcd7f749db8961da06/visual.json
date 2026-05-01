@@ -91,23 +91,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "3757656820d4b097cdd1",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimAccount"
-              }
-            },
-            "Property": "SubCategory"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

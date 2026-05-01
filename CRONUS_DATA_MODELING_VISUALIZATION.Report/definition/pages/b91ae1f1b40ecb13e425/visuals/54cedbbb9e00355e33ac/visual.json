@@ -3,11 +3,11 @@
   "name": "54cedbbb9e00355e33ac",
   "position": {
     "x": 682.87081339712927,
-    "y": 231.19617224880383,
-    "z": 7,
-    "height": 238.85167464114835,
+    "y": 214.35406698564594,
+    "z": 7000,
+    "height": 255.69377990430624,
     "width": 597.12918660287085,
-    "tabOrder": 7
+    "tabOrder": 7000
   },
   "visual": {
     "visualType": "scatterChart",
@@ -115,7 +115,7 @@
             "gridlineShow": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -128,7 +128,7 @@
             "gridlineShow": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
             }
@@ -248,65 +248,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "a293d97f550a75a202ab",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Sales Amount"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "bc6589832dba97886acd",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Margin %"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "83781cfbe009d1c5ed3e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimItem"
-              }
-            },
-            "Property": "ItemNumber"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "43aaf21c0e702c80cdc1",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Margin"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -3,11 +3,11 @@
   "name": "18cc75f7120d5b14b7a1",
   "position": {
     "x": 10.717703349282298,
-    "y": 246.50717703349284,
-    "z": 4,
-    "height": 223.54066985645935,
+    "y": 214.35406698564594,
+    "z": 4000,
+    "height": 258.75598086124404,
     "width": 649.18660287081343,
-    "tabOrder": 4
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "areaChart",
@@ -47,11 +47,7 @@
               },
               "queryRef": "MeasureInventory.Inventory Sales Amount",
               "nativeQueryRef": "Inventory Sales Amount"
-            }
-          ]
-        },
-        "Y2": {
-          "projections": [
+            },
             {
               "field": {
                 "Measure": {
@@ -167,54 +163,34 @@
             "metadata": "MeasureInventory.Inventory Margin"
           }
         }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "08daa8c0d2c2139edaa4",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "MonthYear"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "ff72495b0ab7341d0719",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Sales Amount"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c23feee937c1e270254d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Margin"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

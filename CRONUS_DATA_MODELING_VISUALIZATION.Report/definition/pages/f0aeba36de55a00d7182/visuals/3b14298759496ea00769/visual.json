@@ -4,10 +4,10 @@
   "position": {
     "x": 275.59808612440196,
     "y": 0,
-    "z": 4000,
+    "z": 3000,
     "height": 214.35406698564594,
     "width": 280.19138755980862,
-    "tabOrder": 4000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -59,8 +59,9 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#F6416C'"
+                    "ThemeDataColor": {
+                      "ColorId": 5,
+                      "Percent": 0
                     }
                   }
                 }
@@ -249,23 +250,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "575a16ba6d6a5eb07c84",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Total Purchase Excl Tax"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -3,9 +3,9 @@
   "name": "896229108a795341c0bd",
   "position": {
     "x": 587.94258373205741,
-    "y": 494.54545454545456,
+    "y": 483.8277511961723,
     "z": 5000,
-    "height": 214.35406698564594,
+    "height": 235.78947368421055,
     "width": 633.87559808612446,
     "tabOrder": 5000
   },
@@ -28,6 +28,21 @@
               },
               "queryRef": "DimDate.Quarter",
               "nativeQueryRef": "Quarter",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "DimDate.Year",
+              "nativeQueryRef": "Year",
               "active": true
             }
           ]
@@ -113,6 +128,39 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "gridlineShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
