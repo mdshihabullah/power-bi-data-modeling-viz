@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "5e661eca7409518a09a3",
   "position": {
-    "x": 271.00478468899524,
-    "y": 0,
-    "z": 1001,
-    "height": 214.35406698564594,
-    "width": 272.53588516746413,
-    "tabOrder": 1001
+    "x": 0,
+    "y": 108.70813397129187,
+    "z": 1000,
+    "height": 120.95693779904308,
+    "width": 222.00956937799046,
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -249,23 +249,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "dc4c7d51d0adaec00310",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureGL"
-              }
-            },
-            "Property": "GL Credit"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

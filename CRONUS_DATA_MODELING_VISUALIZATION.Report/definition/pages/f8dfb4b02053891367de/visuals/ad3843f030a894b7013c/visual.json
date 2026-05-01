@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "ad3843f030a894b7013c",
   "position": {
-    "x": 10.717703349282298,
+    "x": 0,
     "y": 0,
-    "z": 1000,
-    "height": 214.35406698564594,
-    "width": 280.19138755980862,
-    "tabOrder": 1000
+    "z": 0,
+    "height": 130.14354066985646,
+    "width": 222.00956937799046,
+    "tabOrder": 0
   },
   "visual": {
     "visualType": "cardVisual",
@@ -249,23 +249,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "f43c1782e728cc5a1975",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureGL"
-              }
-            },
-            "Property": "GL Debit"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -249,23 +249,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ab759dc8bc00e1639701",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureSales"
-              }
-            },
-            "Property": "Total Sales Excl Tax"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

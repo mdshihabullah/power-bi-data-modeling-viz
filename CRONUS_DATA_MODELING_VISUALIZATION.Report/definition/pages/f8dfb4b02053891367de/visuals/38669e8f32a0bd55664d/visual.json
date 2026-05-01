@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "c1c792956123518c91c3",
+  "name": "38669e8f32a0bd55664d",
   "position": {
-    "x": 0,
+    "x": 465.4545454545455,
     "y": 244.97607655502395,
-    "z": 3000,
+    "z": 5000,
     "height": 231.19617224880383,
-    "width": 465.4545454545455,
-    "tabOrder": 3000
+    "width": 814.54545454545462,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -23,11 +23,11 @@
                       "Entity": "DimAccount"
                     }
                   },
-                  "Property": "Category"
+                  "Property": "AccountName"
                 }
               },
-              "queryRef": "DimAccount.Category",
-              "nativeQueryRef": "Category",
+              "queryRef": "DimAccount.AccountName",
+              "nativeQueryRef": "AccountName",
               "active": true
             }
           ]

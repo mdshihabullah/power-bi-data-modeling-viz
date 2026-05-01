@@ -1,0 +1,295 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "87f44c89054a30230b88",
+  "position": {
+    "x": 0,
+    "y": 476.17224880382776,
+    "z": 6000,
+    "height": 243.44497607655504,
+    "width": 1280,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "DimDate.Year",
+              "nativeQueryRef": "Year",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimAccount"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "DimAccount.Category",
+              "nativeQueryRef": "Category",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimAccount"
+                    }
+                  },
+                  "Property": "SubCategory"
+                }
+              },
+              "queryRef": "DimAccount.SubCategory",
+              "nativeQueryRef": "SubCategory",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimAccount"
+                    }
+                  },
+                  "Property": "AccountNumber"
+                }
+              },
+              "queryRef": "DimAccount.AccountNumber",
+              "nativeQueryRef": "AccountNumber",
+              "active": false
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureGL"
+                    }
+                  },
+                  "Property": "GL Debit"
+                }
+              },
+              "queryRef": "MeasureGL.GL Debit",
+              "nativeQueryRef": "GL Debit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureGL"
+                    }
+                  },
+                  "Property": "GL Credit"
+                }
+              },
+              "queryRef": "MeasureGL.GL Credit",
+              "nativeQueryRef": "GL Credit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MeasureGL"
+                    }
+                  },
+                  "Property": "GL Net"
+                }
+              },
+              "queryRef": "MeasureGL.GL Net",
+              "nativeQueryRef": "GL Net"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DimAccount"
+                  }
+                },
+                "Property": "Category"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "DimAccount.Category"
+            ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimAccount"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DimAccount.SubCategory"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "DimAccount.AccountNumber"
+            ],
+            "isCollapsed": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "aff7bbb75d06e342a784",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimAccount"
+              }
+            },
+            "Property": "Category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c0458de0ecc860545642",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimAccount"
+              }
+            },
+            "Property": "SubCategory"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "cd80adfc5debeb42a9e7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimAccount"
+              }
+            },
+            "Property": "AccountNumber"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c2f6f2a4489de2945293",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bdcfc0e05e82284aa2ce",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureGL"
+              }
+            },
+            "Property": "GL Debit"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b5104f968b708a71e23d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureGL"
+              }
+            },
+            "Property": "GL Credit"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e0d045918c917533e50e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureGL"
+              }
+            },
+            "Property": "GL Net"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

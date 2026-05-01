@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "9368262f021c8a213220",
   "position": {
-    "x": 10.717703349282298,
-    "y": 246.50717703349284,
-    "z": 1002,
-    "height": 315.40669856459334,
-    "width": 465.4545454545455,
-    "tabOrder": 1002
+    "x": 222.00956937799046,
+    "y": 15.311004784688997,
+    "z": 2000,
+    "height": 229.66507177033495,
+    "width": 901.81818181818187,
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "columnChart",
@@ -76,6 +76,34 @@
                   "Value": "true"
                 }
               }
+            },
+            "labelOverflow": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "optimizeLabelDisplay": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "labelContainerMaxWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "202D"
+                }
+              }
+            },
+            "labelOrientation": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
             }
           }
         }
@@ -118,6 +146,59 @@
             "metadata": "MeasureGL.GL Credit"
           }
         }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "showGradientLegend": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "layout": [
+        {
+          "properties": {
+            "stackedGapSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "stackedGapExplodes": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "innerPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "0L"
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -125,7 +206,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "daa1c13a0daddace061a",
+        "name": "2a4dbecf3c82713c1427",
         "field": {
           "Column": {
             "Expression": {
@@ -139,7 +220,7 @@
         "type": "Categorical"
       },
       {
-        "name": "99ee8ea6751808285dc0",
+        "name": "6473756338d3b6807386",
         "field": {
           "Measure": {
             "Expression": {
@@ -153,7 +234,7 @@
         "type": "Advanced"
       },
       {
-        "name": "e75a2cbc112c4aedbe4b",
+        "name": "60786a322d315ec58d3a",
         "field": {
           "Measure": {
             "Expression": {
