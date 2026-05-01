@@ -13,7 +13,7 @@ table FactItemLedgerEntry
 		dataType: int64
 		formatString: 0
 		lineageTag: 40ed79a0-cbda-4817-bd21-841549ce5ac5
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: EntryNumber
 
 		annotation SummarizationSetBy = Automatic
