@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "2e8f028765231861303c",
   "position": {
-    "x": 249.56937799043064,
+    "x": 251.10047846889955,
     "y": 0,
     "z": 1000,
     "height": 214.35406698564594,
@@ -249,5 +249,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "78d18c33ac291a811b4c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Average Sales per Invoice"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

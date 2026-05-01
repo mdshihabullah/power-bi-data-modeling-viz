@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "92cefb9c12d0a9e2d5bc",
+  "name": "9ba9a0af79bb915cdaa6",
   "position": {
-    "x": 532.822966507177,
+    "x": 999.8086124401915,
     "y": 0,
-    "z": 5000,
+    "z": 10001,
     "height": 214.35406698564594,
-    "width": 263.34928229665076,
-    "tabOrder": 5000
+    "width": 280.19138755980862,
+    "tabOrder": 10001
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "MeasureSales"
+                      "Entity": "MeasureInventory"
                     }
                   },
-                  "Property": "Gross Profit"
+                  "Property": "Inventory Margin %"
                 }
               },
-              "queryRef": "MeasureSales.Gross Profit",
-              "nativeQueryRef": "Gross Profit"
+              "queryRef": "MeasureInventory.Inventory Margin %",
+              "nativeQueryRef": "Inventory Margin %"
             }
           ]
         }
@@ -39,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "MeasureSales"
+                    "Entity": "MeasureInventory"
                   }
                 },
-                "Property": "Gross Profit"
+                "Property": "Inventory Margin %"
               }
             },
             "direction": "Descending"
@@ -78,15 +78,15 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "MeasureSales"
+                                          "Entity": "MeasureInventory"
                                         }
                                       },
-                                      "Property": "Gross Profit"
+                                      "Property": "Inventory Margin %"
                                     }
                                   },
                                   "Right": {
                                     "Literal": {
-                                      "Value": "-1.1111111111111112e+60D"
+                                      "Value": "0.3D"
                                     }
                                   }
                                 }
@@ -98,15 +98,15 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "MeasureSales"
+                                          "Entity": "MeasureInventory"
                                         }
                                       },
-                                      "Property": "Gross Profit"
+                                      "Property": "Inventory Margin %"
                                     }
                                   },
                                   "Right": {
                                     "Literal": {
-                                      "Value": "0D"
+                                      "Value": "1D"
                                     }
                                   }
                                 }
@@ -115,7 +115,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#F6416C'"
+                              "Value": "'#37A794'"
                             }
                           }
                         },
@@ -129,10 +129,61 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "MeasureSales"
+                                          "Entity": "MeasureInventory"
                                         }
                                       },
-                                      "Property": "Gross Profit"
+                                      "Property": "Inventory Margin %"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0.15D"
+                                    }
+                                  }
+                                }
+                              },
+                              "Right": {
+                                "Comparison": {
+                                  "ComparisonKind": 3,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "MeasureInventory"
+                                        }
+                                      },
+                                      "Property": "Inventory Margin %"
+                                    }
+                                  },
+                                  "Right": {
+                                    "Literal": {
+                                      "Value": "0.3D"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F5C869'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "And": {
+                              "Left": {
+                                "Comparison": {
+                                  "ComparisonKind": 2,
+                                  "Left": {
+                                    "Measure": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Entity": "MeasureInventory"
+                                        }
+                                      },
+                                      "Property": "Inventory Margin %"
                                     }
                                   },
                                   "Right": {
@@ -149,15 +200,15 @@
                                     "Measure": {
                                       "Expression": {
                                         "SourceRef": {
-                                          "Entity": "MeasureSales"
+                                          "Entity": "MeasureInventory"
                                         }
                                       },
-                                      "Property": "Gross Profit"
+                                      "Property": "Inventory Margin %"
                                     }
                                   },
                                   "Right": {
                                     "Literal": {
-                                      "Value": "1.111111111111111e+71D"
+                                      "Value": "0.15D"
                                     }
                                   }
                                 }
@@ -166,7 +217,7 @@
                           },
                           "Value": {
                             "Literal": {
-                              "Value": "'#00B8A9'"
+                              "Value": "'#F6416C'"
                             }
                           }
                         }
@@ -370,15 +421,15 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "e0ecd1c804da08d29ce7",
+        "name": "16cfa093de4ed68605ab",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "MeasureSales"
+                "Entity": "MeasureInventory"
               }
             },
-            "Property": "Gross Profit"
+            "Property": "Inventory Margin %"
           }
         },
         "type": "Advanced"

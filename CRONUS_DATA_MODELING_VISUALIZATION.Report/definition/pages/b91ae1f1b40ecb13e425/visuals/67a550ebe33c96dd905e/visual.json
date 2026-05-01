@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "6b9470c97801d4e589bc",
+  "name": "67a550ebe33c96dd905e",
   "position": {
     "x": 10.717703349282298,
     "y": 0,
-    "z": 10000,
+    "z": 1,
     "height": 214.35406698564594,
-    "width": 280.19138755980862,
-    "tabOrder": 10000
+    "width": 284.78468899521533,
+    "tabOrder": 1
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "MeasureSales"
+                      "Entity": "MeasureInventory"
                     }
                   },
-                  "Property": "Total Sales Excl Tax"
+                  "Property": "Inventory Sales Amount"
                 }
               },
-              "queryRef": "MeasureSales.Total Sales Excl Tax",
-              "nativeQueryRef": "Total Sales Excl Tax"
+              "queryRef": "MeasureInventory.Inventory Sales Amount",
+              "nativeQueryRef": "Inventory Sales Amount"
             }
           ]
         }
@@ -39,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "MeasureSales"
+                    "Entity": "MeasureInventory"
                   }
                 },
-                "Property": "Total Sales Excl Tax"
+                "Property": "Inventory Sales Amount"
               }
             },
             "direction": "Descending"
@@ -253,15 +253,15 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "f4188880db47b7d2a432",
+        "name": "d335efe884d9098a7d01",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "MeasureSales"
+                "Entity": "MeasureInventory"
               }
             },
-            "Property": "Total Sales Excl Tax"
+            "Property": "Inventory Sales Amount"
           }
         },
         "type": "Advanced"

@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "6533f7e8976a0ea5291d",
+  "name": "b8fcc0bf9b4d43c1be40",
   "position": {
-    "x": 999.8086124401915,
+    "x": 542.00956937799049,
     "y": 0,
-    "z": 6000,
+    "z": 3,
     "height": 214.35406698564594,
     "width": 280.19138755980862,
-    "tabOrder": 6000
+    "tabOrder": 3
   },
   "visual": {
     "visualType": "cardVisual",
@@ -23,11 +23,11 @@
                       "Entity": "MeasureInventory"
                     }
                   },
-                  "Property": "Inventory Margin %"
+                  "Property": "Inventory Margin"
                 }
               },
-              "queryRef": "MeasureInventory.Inventory Margin %",
-              "nativeQueryRef": "Inventory Margin %"
+              "queryRef": "MeasureInventory.Inventory Margin",
+              "nativeQueryRef": "Inventory Margin"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "MeasureInventory"
                   }
                 },
-                "Property": "Inventory Margin %"
+                "Property": "Inventory Margin"
               }
             },
             "direction": "Descending"
@@ -66,64 +66,63 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "FillRule": {
-                      "Input": {
-                        "Measure": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "MeasureInventory"
-                            }
-                          },
-                          "Property": "Inventory Margin %"
-                        }
-                      },
-                      "FillRule": {
-                        "linearGradient3": {
-                          "min": {
-                            "color": {
-                              "Literal": {
-                                "Value": "'#F6416C'"
-                              }
-                            },
-                            "value": {
-                              "Literal": {
-                                "Value": "0.14D"
+                    "Conditional": {
+                      "Cases": [
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 2,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "MeasureInventory"
+                                    }
+                                  },
+                                  "Property": "Inventory Margin"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0D"
+                                }
                               }
                             }
                           },
-                          "mid": {
-                            "color": {
-                              "Literal": {
-                                "Value": "'#FFB341'"
-                              }
-                            },
-                            "value": {
-                              "Literal": {
-                                "Value": "0.15D"
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F5C869'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 3,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "MeasureInventory"
+                                    }
+                                  },
+                                  "Property": "Inventory Margin"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0D"
+                                }
                               }
                             }
                           },
-                          "max": {
-                            "color": {
-                              "Literal": {
-                                "Value": "'#00B8A9'"
-                              }
-                            },
-                            "value": {
-                              "Literal": {
-                                "Value": "0.3D"
-                              }
-                            }
-                          },
-                          "nullColoringStrategy": {
-                            "strategy": {
-                              "Literal": {
-                                "Value": "'asZero'"
-                              }
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#F6416C'"
                             }
                           }
                         }
-                      }
+                      ]
                     }
                   }
                 }
@@ -150,7 +149,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 3,
+                      "ColorId": 0,
                       "Percent": 0
                     }
                   }
@@ -223,13 +222,6 @@
                   }
                 }
               }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
             }
           },
           "selector": {
@@ -256,13 +248,6 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
-                }
-              }
-            },
-            "heading": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Heading3'"
                 }
               }
             },
@@ -319,5 +304,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7f6fd26c11357c4028d5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureInventory"
+              }
+            },
+            "Property": "Inventory Margin"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

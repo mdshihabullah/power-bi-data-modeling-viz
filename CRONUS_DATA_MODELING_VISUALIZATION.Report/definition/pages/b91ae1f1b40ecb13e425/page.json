@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
-  "name": "844284e4a639b8ecd210",
-  "displayName": "Purchase Analysis",
+  "name": "b91ae1f1b40ecb13e425",
+  "displayName": "Inventory & Margin",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280

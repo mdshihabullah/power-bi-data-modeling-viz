@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "6b9470c97801d4e589bc",
+  "name": "88429e9094c1c8145258",
   "position": {
-    "x": 10.717703349282298,
+    "x": 280.19138755980862,
     "y": 0,
-    "z": 10000,
+    "z": 2,
     "height": 214.35406698564594,
-    "width": 280.19138755980862,
-    "tabOrder": 10000
+    "width": 278.66028708133973,
+    "tabOrder": 2
   },
   "visual": {
     "visualType": "cardVisual",
@@ -20,14 +20,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "MeasureSales"
+                      "Entity": "MeasureInventory"
                     }
                   },
-                  "Property": "Total Sales Excl Tax"
+                  "Property": "Inventory Cost Amount"
                 }
               },
-              "queryRef": "MeasureSales.Total Sales Excl Tax",
-              "nativeQueryRef": "Total Sales Excl Tax"
+              "queryRef": "MeasureInventory.Inventory Cost Amount",
+              "nativeQueryRef": "Inventory Cost Amount"
             }
           ]
         }
@@ -39,10 +39,10 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "MeasureSales"
+                    "Entity": "MeasureInventory"
                   }
                 },
-                "Property": "Total Sales Excl Tax"
+                "Property": "Inventory Cost Amount"
               }
             },
             "direction": "Descending"
@@ -60,7 +60,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#00B8A9'"
+                      "Value": "'#F6416C'"
                     }
                   }
                 }
@@ -94,7 +94,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
+                      "ColorId": 3,
                       "Percent": 0
                     }
                   }
@@ -253,15 +253,15 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "f4188880db47b7d2a432",
+        "name": "0dff72a1a07b0bc230ed",
         "field": {
           "Measure": {
             "Expression": {
               "SourceRef": {
-                "Entity": "MeasureSales"
+                "Entity": "MeasureInventory"
               }
             },
-            "Property": "Total Sales Excl Tax"
+            "Property": "Inventory Cost Amount"
           }
         },
         "type": "Advanced"

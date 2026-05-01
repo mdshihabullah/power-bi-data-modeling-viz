@@ -266,9 +266,13 @@ table DimItem
 				        },
 				        MissingField.Ignore
 				    ),
-				    #"Removed Columns" = Table.RemoveColumns(Renamed,{"ItemName2"})
+				    #"Removed Columns" = Table.RemoveColumns(Renamed,{"ItemName2"}),
+				    #"Replaced Category" = Table.TransformColumns(
+				        #"Removed Columns",
+				        {{"ItemCategoryCode", each if _ = null or _ = "" then "Uncategorized" else _, type text}}
+				    )
 				in
-				    #"Removed Columns"
+				    #"Replaced Category"
 
 	annotation PBI_NavigationStepName = Navigation
 
