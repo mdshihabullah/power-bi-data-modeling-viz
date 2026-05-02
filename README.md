@@ -1,6 +1,8 @@
 # CRONUS Data Modeling & Visualization
 
-A Power BI Desktop Project (PBIP) that models and visualizes financial data from **Dynamics 365 Business Central** — specifically the CRONUS UK Ltd. demo company. The semantic model follows a star schema with dedicated dimension and fact tables, calculated measure groups, and a custom date dimension.
+A Power BI Desktop Project (PBIP) that models and visualizes financial and operational data from **Microsoft Dynamics 365 Business Central** — specifically the CRONUS UK Ltd. demo company. The semantic model follows a **star schema** design with dedicated dimension tables, fact tables at invoice-line and entry-level grain, calculated measure groups organized by business domain, and a custom M-generated date dimension.
+
+This project enables **executive-level financial reporting**, **sales & purchase performance analysis**, **general ledger tracking**, and **inventory margin analysis** — all sourced live from Business Central's API.
 
 > **Note:** Power BI Desktop projects (PBIP) is a **preview** feature. You must enable it before opening or saving this project: *File → Options and settings → Options → Preview features → Power BI Project (.pbip) save option*.
 
@@ -15,9 +17,12 @@ CRONUS_DATA_MODELING_VISUALIZATION/
 │   ├── .pbi/
 │   │   └── localSettings.json                       # (gitignored) Local editor state
 │   ├── .platform                                    # Fabric platform metadata
-│   ├── StaticResources/SharedResources/BaseThemes/  # Theme assets (CY26SU04)
+│   ├── StaticResources/SharedResources/             # Theme assets (CY26SU04 + NewExecutive)
 │   ├── definition.pbir                              # Report properties & dataset reference
-│   └── report.json                                  # Report layout & visual definitions
+│   ├── definition/
+│   │   ├── version.json                             # Report definition version (2.0.0)
+│   │   ├── report.json                              # Report layout, themes & settings
+│   │   └── pages/                                   # 5 report pages with visuals
 ├── CRONUS_DATA_MODELING_VISUALIZATION.SemanticModel/ # Semantic model definition
 │   ├── .pbi/
 │   │   ├── cache.abf                                # (gitignored) Local data cache
@@ -26,13 +31,13 @@ CRONUS_DATA_MODELING_VISUALIZATION/
 │   ├── .platform                                    # Fabric platform metadata
 │   ├── definition/
 │   │   ├── cultures/en-US.tmdl                      # Culture metadata
-│   │   ├── database.tmdl                            # Database level (compat 1600)
+│   │   ├── database.tmdl                            # Database level (compat 1601)
 │   │   ├── model.tmdl                               # Model metadata & table refs
-│   │   ├── relationships.tmdl                       # All relationships
-│   │   └── tables/                                  # One .tmdl per table
-│   ├── definition.pbism                             # Semantic model properties
+│   │   ├── relationships.tmdl                       # All relationships (business + auto-date)
+│   │   └── tables/                                  # One .tmdl per table (31 files)
+│   ├── definition.pbism                             # Semantic model properties (v4.2)
 │   └── diagramLayout.json                           # Model diagram layout
-└── .gitignore                                       # Excludes .pbi/localSettings.json & cache.abf
+└── .gitignore                                       # Excludes .pbi/ local files & .DS_Store
 ```
 
 ---
@@ -47,82 +52,135 @@ CRONUS_DATA_MODELING_VISUALIZATION/
 | **Connector** | `Dynamics365BusinessCentral.ApiContentsWithOptions` |
 | **Storage Mode** | Import |
 | **Culture** | en-US |
+| **Compatibility Level** | 1601 |
 
-All dimension and fact tables connect to the same Business Central instance and follow a consistent M pattern: `Source → SelectColumns → RenameColumns`.
+All tables connect to the same Business Central instance. Dimension tables follow a consistent M pattern: `Source → SelectColumns → RenameColumns`. Fact invoice tables use an expanded pattern: `Source → ExpandTableColumn → SelectColumns → RenameColumns`. The `DimItem` table applies additional transformations: removing `ItemName2` and replacing null/blank `ItemCategoryCode` values with `"Uncategorized"`.
 
 ---
 
 ## Semantic Model
 
+### Star Schema Overview
+
+```mermaid
+graph LR
+    subgraph Dimensions
+        DimDate[DimDate]
+        DimCustomer[DimCustomer]
+        DimVendor[DimVendor]
+        DimItem[DimItem]
+        DimAccount[DimAccount]
+        DimCurrency[DimCurrency]
+        DimPaymentTerm[DimPaymentTerm]
+        DimShipmentMethod[DimShipmentMethod]
+    end
+
+    subgraph Facts
+        FactSales[FactSalesInvoiceLine]
+        FactPurchase[FactPurchaseInvoiceLine]
+        FactGL[FactGLEntry]
+        FactInventory[FactItemLedgerEntry]
+    end
+
+    DimDate ---|PostingDate| FactSales
+    DimDate ---|PostingDate| FactPurchase
+    DimDate ---|PostingDate| FactGL
+    DimDate ---|PostingDate| FactInventory
+
+    DimCustomer ---|CustomerID| FactSales
+    DimCustomer ---|SourceNumber| FactInventory
+    DimVendor ---|VendorID| FactPurchase
+
+    DimItem ---|ItemID| FactSales
+    DimItem ---|ItemID| FactPurchase
+    DimItem ---|ItemNumber| FactInventory
+
+    DimAccount ---|AccountID| FactGL
+    DimCurrency ---|CurrencyID| FactSales
+    DimCurrency ---|CurrencyID| FactPurchase
+    DimShipmentMethod ---|ShipmentMethodID| FactSales
+    DimPaymentTerm ---|PaymentTermsID| DimCustomer
+```
+
 ### Dimension Tables
 
 | Table | Key Column | Source API Endpoint | Description |
 |---|---|---|---|
-| `DimCustomer` | `CustomerID` | `customers` | Customer master with address, contact, tax, and credit info |
-| `DimVendor` | `VendorID` | `vendors` | Vendor master with address, contact, tax, and balance |
-| `DimItem` | `ItemID` / `ItemNumber` | `items` | Item master with pricing, costing, posting groups |
-| `DimAccount` | `AccountID` | `accounts` | G/L account master with category & subcategory |
-| `DimCurrency` | `CurrencyID` | `currencies` | Currency definitions with symbol & rounding precision |
+| `DimCustomer` | `CustomerID` (hidden) | `customers` | Customer master with address, contact, tax, credit, and salesperson info |
+| `DimVendor` | `VendorID` (hidden) | `vendors` | Vendor master with address, contact, tax, and balance info |
+| `DimItem` | `ItemID` (hidden) / `ItemNumber` | `items` | Item master with pricing, costing, category, and posting groups |
+| `DimAccount` | `AccountID` (hidden) | `accounts` | G/L account master with category & subcategory |
+| `DimCurrency` | `CurrencyID` | `currencies` | Currency definitions with symbol, decimal places & rounding precision |
 | `DimPaymentTerm` | `PaymentTermsID` | `paymentTerms` | Payment terms with due/discount date calculations |
-| `DimPaymentMethod` | `PaymentMethodID` | `paymentMethods` | Payment method codes |
-| `DimShipmentMethod` | `ShipmentMethodID` | `shipmentMethods` | Shipment method codes |
-| `DimDate` | `Date` | *Calculated (M)* | Custom date dimension: 2020-01-01 → 2030-12-31 |
+| `DimShipmentMethod` | `ShipmentMethodID` | `shipmentMethods` | Shipment method codes and names |
+| `DimDate` | `Date` (key) | *Calculated (M)* | Custom date dimension: 2020-01-01 → 2030-12-31 |
 
 ### Fact Tables
 
-| Table | Key Column | Source API Endpoint | Grain |
+| Table | Key Column(s) | Source API Endpoint | Grain |
 |---|---|---|---|
-| `FactSalesInvoiceLine` | `SalesInvoiceID` + `LineID` | `salesInvoices` → expand `salesInvoiceLines` | One row per sales invoice line |
-| `FactPurchaseInvoiceLine` | `PurchaseInvoiceID` + `LineID` | `purchaseInvoices` → expand `purchaseInvoiceLines` | One row per purchase invoice line |
+| `FactSalesInvoiceLine` | `SalesInvoiceID` + `LineID` | `salesInvoices` → expand `salesInvoiceLines` | One row per sales invoice line (includes header-level denormalized fields) |
+| `FactPurchaseInvoiceLine` | `PurchaseInvoiceID` + `LineID` | `purchaseInvoices` → expand `purchaseInvoiceLines` | One row per purchase invoice line (includes header-level denormalized fields) |
 | `FactGLEntry` | `GLEntryID` | `generalLedgerEntries` | One row per G/L entry |
 | `FactItemLedgerEntry` | `ItemLedgerEntryID` | `itemLedgerEntries` | One row per item ledger entry |
 
 ### Measure Tables
 
-Calculated tables (using `ROW("Dummy", 1)` or `Row("Column", BLANK())` as a placeholder partition) that serve as organizational containers for DAX measures:
+Calculated tables (using `ROW("Dummy", 1)` or `Row("Column", BLANK())` as a placeholder partition) that serve as organizational containers for DAX measures. All monetary measures use **€ (Euro)** format strings.
 
-**MeasureSales**
+**MeasureSales** — 11 measures
 
-| Measure | DAX |
-|---|---|
-| Total Sales Excl Tax | `SUM(FactSalesInvoiceLine[AmountExcludingTax])` |
-| Total Sales Incl Tax | `SUM(FactSalesInvoiceLine[AmountIncludingTax])` |
-| Sales Invoice Count | `DISTINCTCOUNT(FactSalesInvoiceLine[SalesInvoiceID])` |
-| Average Sales per Invoice | `DIVIDE([Total Sales Excl Tax], [Sales Invoice Count])` |
-| Sales YTD | `TOTALYTD([Total Sales Excl Tax], DimDate[Date])` |
-| Sales MTD | `TOTALMTD([Total Sales Excl Tax], DimDate[Date])` |
-| Sales PY | `CALCULATE([Total Sales Excl Tax], SAMEPERIODLASTYEAR(DimDate[Date]))` |
-| Sales YoY % | `DIVIDE([Total Sales Excl Tax] - [Sales PY], [Sales PY])` |
+| Measure | DAX | Explanation | Example |
+|---|---|---|---|
+| Total Sales Excl Tax | `SUMX(VALUES(FactSalesInvoiceLine[SalesInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountExcludingTax)))` | Total revenue from all sales invoices, excluding tax. Uses SUMX+MIN to avoid double-counting header amounts across line items. | 3 invoices for €1,000 each → **€3,000** |
+| Total Sales Incl Tax | `SUMX(VALUES(…SalesInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountIncludingTax)))` | Same as above but includes tax amounts. | €3,000 sales + €600 tax → **€3,600** |
+| Sales Invoice Count | `DISTINCTCOUNT(FactSalesInvoiceLine[SalesInvoiceID])` | Number of unique sales invoices issued. | 3 invoices → **3** |
+| Average Sales per Invoice | `DIVIDE([Total Sales Excl Tax], [Sales Invoice Count])` | Average revenue per invoice. | €3,000 ÷ 3 invoices → **€1,000** |
+| Sales YTD | `TOTALYTD([Total Sales Excl Tax], DimDate[Date])` | Cumulative sales from Jan 1 of the current year up to the selected date. Resets every January. | Jan €40K + Feb €35K + Mar €20K (to date) → **€95,000** |
+| Sales MTD | `TOTALMTD([Total Sales Excl Tax], DimDate[Date])` | Cumulative sales from the 1st of the current month up to the selected date. Resets every month. | Mar 1–15 daily sales total → **€20,000** |
+| Sales PY | `CALCULATE([Total Sales Excl Tax], SAMEPERIODLASTYEAR(DimDate[Date]))` | Sales for the same period in the prior year. Used as the baseline for YoY comparison. | If viewing Jan–Mar 2025, shows Jan–Mar **2024** sales → **€80,000** |
+| Sales YoY % | `DIVIDE([Total Sales Excl Tax] - [Sales PY], [Sales PY])` | Percentage growth (or decline) compared to the same period last year. Positive = growth, negative = decline. | 2025 sales €120K, 2024 sales €100K → (20K ÷ 100K) = **+20%** |
+| Sales Tax Amount | `[Total Sales Incl Tax] - [Total Sales Excl Tax]` | Total VAT/tax collected on sales. | €3,600 incl − €3,000 excl → **€600** |
+| Gross Profit | `[Total Sales Excl Tax] - [Total Purchase Excl Tax]` | Revenue minus cost of goods purchased. Answers: did we sell for more than we bought? | Sales €100K − Purchases €65K → **€35,000** |
+| Gross Margin % | `IF([Total Sales Excl Tax] = 0, BLANK(), [Gross Profit] / [Total Sales Excl Tax])` | Out of every €1 of sales, how much is kept after paying for goods. Higher = more profitable. | €35K profit ÷ €100K sales → **35%** (keep €0.35 per €1) |
 
-**MeasurePurchases**
+> **Design Note:** `Total Sales Excl Tax` and `Total Sales Incl Tax` use `SUMX` over `SalesInvoiceID` with `MIN` of header-level amounts. This avoids double-counting when multiple line items share the same invoice header totals.
 
-| Measure | DAX |
-|---|---|
-| Total Purchase Excl Tax | `SUM(FactPurchaseInvoiceLine[AmountExcludingTax])` |
-| Total Purchase Incl Tax | `SUM(FactPurchaseInvoiceLine[AmountIncludingTax])` |
-| Purchase Invoice Count | `DISTINCTCOUNT(FactPurchaseInvoiceLine[PurchaseInvoiceID])` |
-| Average Purchase per Invoice | `DIVIDE([Total Purchase Excl Tax], [Purchase Invoice Count])` |
-| Purchase YTD | `TOTALYTD([Total Purchase Excl Tax], DimDate[Date])` |
-| Purchase MTD | `TOTALMTD([Total Purchase Excl Tax], DimDate[Date])` |
-| Purchase PY | `CALCULATE([Total Purchase Excl Tax], SAMEPERIODLASTYEAR(DimDate[Date]))` |
-| Purchase YoY % | `DIVIDE([Total Purchase Excl Tax] - [Purchase PY], [Purchase PY])` |
+**MeasurePurchases** — 9 measures
 
-**MeasureGL**
+| Measure | DAX | Explanation | Example |
+|---|---|---|---|
+| Total Purchase Excl Tax | `SUMX(VALUES(…PurchaseInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountExcludingTax)))` | Total spending on purchase invoices, excluding tax. Same SUMX+MIN pattern as sales to avoid double-counting. | 5 purchase invoices averaging €2K each → **€10,000** |
+| Total Purchase Incl Tax | `SUMX(VALUES(…PurchaseInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountIncludingTax)))` | Same as above but includes tax. | €10,000 purchases + €2,000 tax → **€12,000** |
+| Purchase Invoice Count | `DISTINCTCOUNT(FactPurchaseInvoiceLine[PurchaseInvoiceID])` | Number of unique purchase invoices received. | 5 invoices → **5** |
+| Average Purchase per Invoice | `DIVIDE([Total Purchase Excl Tax], [Purchase Invoice Count])` | Average cost per purchase invoice. | €10,000 ÷ 5 invoices → **€2,000** |
+| Purchase YTD | `TOTALYTD([Total Purchase Excl Tax], DimDate[Date])` | Cumulative purchases from Jan 1 up to the selected date. Resets every January. | Jan €25K + Feb €22K + Mar €13K → **€60,000** |
+| Purchase MTD | `TOTALMTD([Total Purchase Excl Tax], DimDate[Date])` | Cumulative purchases from the 1st of the current month up to the selected date. Resets every month. | Mar 1–15 purchases → **€13,000** |
+| Purchase PY | `CALCULATE([Total Purchase Excl Tax], SAMEPERIODLASTYEAR(DimDate[Date]))` | Purchases for the same period in the prior year. Baseline for YoY comparison. | If viewing Jan–Mar 2025, shows Jan–Mar **2024** purchases → **€50,000** |
+| Purchase YoY % | `DIVIDE([Total Purchase Excl Tax] - [Purchase PY], [Purchase PY])` | Percentage change in purchase spending vs. same period last year. Read alongside Sales YoY %: spending more because sales grew (good) vs. costs rising (bad). | 2025 purchases €78K, 2024 purchases €65K → (13K ÷ 65K) = **+20%** |
+| Purchase Tax Amount | `[Total Purchase Incl Tax] - [Total Purchase Excl Tax]` | Total VAT/tax paid on purchases. | €12,000 incl − €10,000 excl → **€2,000** |
 
-| Measure | DAX |
-|---|---|
-| GL Debit | `SUM(FactGLEntry[DebitAmount])` |
-| GL Credit | `SUM(FactGLEntry[CreditAmount])` |
-| GL Net | `[GL Debit] - [GL Credit]` |
+> **Design Note:** Same `SUMX` + `MIN` pattern as sales measures to correctly handle header-level amounts at line-level grain.
 
-**MeasureInventory**
+**MeasureGL** — 4 measures
 
-| Measure | DAX |
-|---|---|
-| Inventory Cost Amount | `SUM(FactItemLedgerEntry[CostAmountActual])` |
-| Inventory Sales Amount | `SUM(FactItemLedgerEntry[SalesAmountActual])` |
-| Inventory Margin | `[Inventory Sales Amount] - [Inventory Cost Amount]` |
-| Inventory Margin % | `DIVIDE([Inventory Margin], [Inventory Sales Amount])` |
+| Measure | DAX | Explanation | Example |
+|---|---|---|---|
+| GL Debit | `SUM(FactGLEntry[DebitAmount])` | Total of all debit entries in the general ledger (money received or assets increased). | All debit postings across every GL account → **€500,000** |
+| GL Credit | `SUM(FactGLEntry[CreditAmount])` | Total of all credit entries in the general ledger (money paid out or liabilities increased). | All credit postings across every GL account → **€490,000** |
+| GL Net | `ROUND([GL Debit] - [GL Credit], 2)` | Net financial result after ALL expenses (purchases, salaries, rent, utilities, depreciation, taxes). This is the true bottom line. | €500K debits − €490K credits → **€10,000** net profit |
+| Net Profit % | `IF([Total Sales Excl Tax] = 0, BLANK(), [GL Net] / [Total Sales Excl Tax])` | Out of every €1 of sales, how much remains after every single expense. Always lower than Gross Margin % (which only deducts purchases). | €10K net profit ÷ €100K sales → **10%** (keep €0.10 per €1 after all costs) |
+
+**MeasureInventory** — 4 measures
+
+| Measure | DAX | Explanation | Example |
+|---|---|---|---|
+| Inventory Cost Amount | `CALCULATE(SUM(FactItemLedgerEntry[CostAmountActual]), EntryType="Sale")` | Total cost of goods sold (COGS) for Sale entries. In BC, this is stored as a **negative** value for sales and **positive** for returns. | Sale: CostAmount = −€6,000; Return: CostAmount = +€1,000; Total → **−€5,000** |
+| Inventory Sales Amount | `CALCULATE(SUM(FactItemLedgerEntry[SalesAmountActual]), EntryType="Sale")` | Total revenue from item ledger Sale entries. Positive for sales, negative for returns. | Sale: SalesAmount = +€10,000; Return: SalesAmount = −€2,000; Total → **€8,000** |
+| Inventory Margin | `[Inventory Sales Amount] + [Inventory Cost Amount]` | Profit on inventory items. Uses **addition** because CostAmountActual is negative for sales, so adding it to sales yields the margin. | €8,000 sales + (−€5,000 cost) → **€3,000** margin |
+| Inventory Margin % | `DIVIDE([Inventory Margin], [Inventory Sales Amount])` | Percentage of inventory revenue that is profit. Same concept as Gross Margin % but calculated from item-level ledger data. | €3,000 margin ÷ €8,000 sales → **37.5%** |
+
+> **Design Note:** Inventory measures filter to `EntryType = "Sale"` only. `Inventory Margin` uses **addition** (`+`) rather than subtraction because `CostAmountActual` for Sale entries is stored as a **negative value** in Business Central, so adding the negative cost to the positive sales amount yields the margin.
 
 ### Auto-Generated Tables
 
@@ -130,31 +188,46 @@ Power BI's **Auto date/time** feature generates 14 `LocalDateTable_<guid>` table
 
 ---
 
-## Data Model Diagram
+## Relationships
+
+### Business Relationships (15 total)
+
+These are the active relationships that define the star schema:
 
 ```mermaid
 erDiagram
     DimDate ||--o{ FactGLEntry : "PostingDate"
     DimDate ||--o{ FactSalesInvoiceLine : "PostingDate"
+    DimDate ||--o{ FactPurchaseInvoiceLine : "PostingDate"
+    DimDate ||--o{ FactItemLedgerEntry : "PostingDate"
+
     DimCustomer ||--o{ FactSalesInvoiceLine : "CustomerID"
+    DimCustomer ||--o{ FactItemLedgerEntry : "SourceNumber-CustomerNumber"
+
     DimPaymentTerm ||--o{ DimCustomer : "PaymentTermsID"
+
     DimVendor ||--o{ FactPurchaseInvoiceLine : "VendorID"
+
     DimItem ||--o{ FactSalesInvoiceLine : "ItemID"
     DimItem ||--o{ FactPurchaseInvoiceLine : "ItemID"
     DimItem ||--o{ FactItemLedgerEntry : "ItemNumber"
+
     DimAccount ||--o{ FactGLEntry : "AccountID"
+
     DimCurrency ||--o{ FactSalesInvoiceLine : "CurrencyID"
     DimCurrency ||--o{ FactPurchaseInvoiceLine : "CurrencyID"
+
     DimShipmentMethod ||--o{ FactSalesInvoiceLine : "ShipmentMethodID"
-    FactGLEntry ||--o| FactItemLedgerEntry : "EntryNumber (bi-directional)"
 
     DimDate {
         dateTime Date PK
         int64 Year
         string Quarter
+        int64 QuarterSort
         int64 MonthNumber
         string MonthName
         string MonthYear
+        int64 MonthYearSort
         int64 WeekNumber
         string DayName
         int64 DayOfMonth
@@ -166,10 +239,15 @@ erDiagram
         string CustomerName
         string CustomerType
         string City
+        string State
         string Country
+        string SalespersonCode
+        string CurrencyCode
+        string Blocked
+        boolean TaxLiable
         double BalanceDue
         double CreditLimit
-        string PaymentTermsID_FK
+        string PaymentTermsID FK
     }
 
     DimVendor {
@@ -177,10 +255,15 @@ erDiagram
         string VendorNumber
         string VendorName
         string City
+        string State
         string Country
+        string PhoneNumber
+        string CurrencyCode
+        string Blocked
+        boolean TaxLiable
         double Balance
-        string PaymentTermsID_FK
-        string PaymentMethodID_FK
+        string PaymentTermsID FK
+        string PaymentMethodID FK
     }
 
     DimItem {
@@ -188,9 +271,14 @@ erDiagram
         string ItemNumber
         string ItemName
         string ItemType
+        string ItemCategoryCode
+        boolean Blocked
         double Inventory
         double UnitPrice
+        boolean PriceIncludesTax
         double UnitCost
+        string TaxGroupCode
+        string BaseUnitOfMeasureCode
     }
 
     DimAccount {
@@ -206,6 +294,8 @@ erDiagram
         string CurrencyCode
         string CurrencyName
         string Symbol
+        string AmountDecimalPlaces
+        double AmountRoundingPrecision
     }
 
     DimPaymentTerm {
@@ -213,13 +303,9 @@ erDiagram
         string PaymentTermsCode
         string PaymentTermsName
         string DueDateCalculation
+        string DiscountDateCalculation
         double DiscountPercent
-    }
-
-    DimPaymentMethod {
-        string PaymentMethodID PK
-        string PaymentMethodCode
-        string PaymentMethodName
+        boolean CalculateDiscountOnCreditMemos
     }
 
     DimShipmentMethod {
@@ -231,38 +317,44 @@ erDiagram
     FactSalesInvoiceLine {
         string SalesInvoiceID PK
         string LineID PK
-        string CustomerID_FK
-        string ItemID_FK
-        string CurrencyID_FK
-        string ShipmentMethodID_FK
+        string CustomerID FK
+        string ItemID FK
+        string CurrencyID FK
+        string ShipmentMethodID FK
+        dateTime PostingDate FK
         dateTime InvoiceDate
-        dateTime PostingDate_FK
         dateTime DueDate
-        double AmountExcludingTax
-        double AmountIncludingTax
+        double HeaderTotalAmountExcludingTax
+        double HeaderTotalAmountIncludingTax
         double Quantity
         double UnitPrice
+        double AmountExcludingTax
+        double AmountIncludingTax
     }
 
     FactPurchaseInvoiceLine {
         string PurchaseInvoiceID PK
         string LineID PK
-        string VendorID_FK
-        string ItemID_FK
-        string CurrencyID_FK
+        string VendorID FK
+        string ItemID FK
+        string CurrencyID FK
+        dateTime PostingDate FK
         dateTime InvoiceDate
         dateTime DueDate
-        double AmountExcludingTax
-        double AmountIncludingTax
+        double HeaderTotalAmountExcludingTax
+        double HeaderTotalAmountIncludingTax
         double Quantity
         double UnitCost
+        double AmountExcludingTax
+        double AmountIncludingTax
     }
 
     FactGLEntry {
         string GLEntryID PK
         int64 EntryNumber
-        string AccountID_FK
-        dateTime PostingDate_FK
+        string AccountID FK
+        dateTime PostingDate FK
+        string DocumentType
         string DocumentNumber
         double DebitAmount
         double CreditAmount
@@ -271,28 +363,63 @@ erDiagram
     FactItemLedgerEntry {
         string ItemLedgerEntryID PK
         int64 EntryNumber
-        string ItemNumber_FK
-        dateTime PostingDate
+        string ItemNumber FK
+        dateTime PostingDate FK
         string EntryType
+        string SourceNumber FK
         double Quantity
         double SalesAmountActual
         double CostAmountActual
     }
 ```
 
+### Relationship Detail Reference
+
+| # | From Column (Many side) | To Column (One side) | Cardinality |
+|---|---|---|---|
+| 1 | `FactSalesInvoiceLine.CustomerID` | `DimCustomer.CustomerID` | Many-to-One |
+| 2 | `DimCustomer.PaymentTermsID` | `DimPaymentTerm.PaymentTermsID` | Many-to-One |
+| 3 | `FactPurchaseInvoiceLine.VendorID` | `DimVendor.VendorID` | Many-to-One |
+| 4 | `FactItemLedgerEntry.ItemNumber` | `DimItem.ItemNumber` | Many-to-One |
+| 5 | `FactGLEntry.AccountID` | `DimAccount.AccountID` | Many-to-One |
+| 6 | `FactSalesInvoiceLine.ItemID` | `DimItem.ItemID` | Many-to-One |
+| 7 | `FactPurchaseInvoiceLine.ItemID` | `DimItem.ItemID` | Many-to-One |
+| 8 | `FactSalesInvoiceLine.CurrencyID` | `DimCurrency.CurrencyID` | Many-to-One |
+| 9 | `FactPurchaseInvoiceLine.CurrencyID` | `DimCurrency.CurrencyID` | Many-to-One |
+| 10 | `FactSalesInvoiceLine.ShipmentMethodID` | `DimShipmentMethod.ShipmentMethodID` | Many-to-One |
+| 11 | `FactGLEntry.PostingDate` | `DimDate.Date` | Many-to-One |
+| 12 | `FactSalesInvoiceLine.PostingDate` | `DimDate.Date` | Many-to-One |
+| 13 | `FactPurchaseInvoiceLine.PostingDate` | `DimDate.Date` | Many-to-One |
+| 14 | `FactItemLedgerEntry.PostingDate` | `DimDate.Date` | Many-to-One |
+| 15 | `FactItemLedgerEntry.SourceNumber` | `DimCustomer.CustomerNumber` | Many-to-One |
+
+> All 15 business relationships follow the star schema pattern: fact/dimension tables on the **Many** side connect to dimension tables on the **One** side. Cross-filter direction is **Single** (from Many to One) unless otherwise noted, meaning filters flow from dimensions into facts — the standard pattern for analytical queries.
+
+### Auto-Date Relationships
+
+Power BI's Auto date/time feature generates 14 additional relationships, each connecting a datetime column (e.g., `InvoiceDate`, `DueDate`, `LastModifiedDateTime`) from fact and dimension tables to its own auto-created `LocalDateTable_<guid>` table. These provide built-in date hierarchies (Year → Quarter → Month → Day) for every datetime field. They are managed entirely by Power BI Desktop, **must not be edited externally**, and are excluded from the relationship diagram above for clarity.
+
 ---
 
 ## Report
 
-The report layer is currently a blank canvas with a single page:
+The report contains **5 pages** with interactive visuals, using the **NewExecutive** custom theme layered on the **CY26SU04** base theme. All pages use **FitToPage** display at 1280 × 720.
+
+| Page | Visuals | Visual Types |
+|---|---|---|
+| **Executive Overview** | 11 | Combo chart (line + stacked column), KPI cards (×6), clustered bar charts (×2), slicers (×2) |
+| **Sales Performance** | 7 | Line chart, donut chart, KPI cards (×2), clustered bar chart, column chart, slicer |
+| **Purchase Analysis** | 7 | Line chart, donut chart, KPI cards (×2), clustered bar chart, column chart, slicer |
+| **Financial Overview** | 8 | Pivot table, column chart, KPI cards (×2), clustered bar charts (×2), slicers (×2) |
+| **Inventory & Margin** | 10 | Area chart, scatter chart, KPI cards (×4), clustered bar charts (×2), slicers (×2) |
 
 | Property | Value |
 |---|---|
-| **Page** | Page 1 (1280 × 720) |
-| **Theme** | CY26SU04 (built-in) |
-| **Report Version** | 5.72 |
-| **Visuals** | None yet |
-| **Dataset Binding** | Relative path to `../CRONUS_DATA_MODELING_VISUALIZATION.SemanticModel` |
+| **Base Theme** | CY26SU04 |
+| **Custom Theme** | NewExecutive |
+| **Report Definition Version** | 2.0.0 |
+| **Semantic Model Binding** | Relative path: `../CRONUS_DATA_MODELING_VISUALIZATION.SemanticModel` |
+| **Active Page** | Inventory & Margin |
 
 ---
 
@@ -327,15 +454,19 @@ This project uses the PBIP format specifically for Git-friendly source control. 
 
 ### .gitignore
 
-Ensure the following entries exist (Power BI Desktop creates them automatically on first PBIP save):
+The following entries are configured (Power BI Desktop creates some automatically on first PBIP save):
 
 ```gitignore
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+**/.pbi/editorSettings.json
+.DS_Store
 ```
 
 - `localSettings.json` — machine-specific editor settings (not shareable)
 - `cache.abf` — local data cache binary (can be large; never commit)
+- `editorSettings.json` — personal editor preferences (not shareable)
+- `.DS_Store` — macOS folder metadata
 
 ### Git Configuration
 
@@ -375,11 +506,25 @@ Windows has a 260-character max path limit by default. Because PBIP uses nested 
 
 This project can be deployed to a Fabric workspace using:
 
-| Method | Deploys | Notes |
+| Method | Deploys | Steps |
 |---|---|---|
-| **Power BI Desktop Publish** | Metadata + local data cache | Uses a temporary PBIX under the hood |
-| **Fabric Git Integration** | Metadata only | Connects workspace to Git repo; syncs on commit |
+| **Power BI Desktop Publish** | Metadata + local data cache | Open `.pbip` in PBI Desktop → click **Publish** → select workspace |
+| **Fabric Git Integration** | Metadata only | Connect workspace to Git repo; syncs on commit |
 | **Fabric REST API** | Metadata only | Programmatic deployment via `POST /items` |
+
+### Publish from Power BI Desktop
+
+1. Open `CRONUS_DATA_MODELING_VISUALIZATION.pbip` in Power BI Desktop
+2. Refresh data if needed
+3. Click **Publish** on the Home ribbon
+4. Select the target Fabric workspace
+5. The semantic model and report are deployed together
+
+### Deploy via Fabric Git Integration
+
+1. Push this repo to a Git provider (Azure DevOps, GitHub, etc.)
+2. In a Fabric workspace, connect to the Git branch
+3. Commit and push changes — Fabric syncs automatically
 
 ---
 
