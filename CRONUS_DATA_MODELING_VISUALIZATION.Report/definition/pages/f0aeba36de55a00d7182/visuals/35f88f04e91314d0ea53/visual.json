@@ -164,6 +164,24 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       ]
     },
     "drillFilterOtherVisuals": true
@@ -271,6 +289,34 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "a773e409450027480d77",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactSalesInvoiceLine"
+              }
+            },
+            "Property": "Salesperson"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bb3731b465056b90215a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Total Sales Excl Tax"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
