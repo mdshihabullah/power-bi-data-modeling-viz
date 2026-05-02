@@ -507,34 +507,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "351266040007ebd73a05",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Margin"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "60dd873689b2a39a6669",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimCustomer"
-              }
-            },
-            "Property": "CustomerName"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

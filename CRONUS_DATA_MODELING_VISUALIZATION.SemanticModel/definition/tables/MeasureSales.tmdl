@@ -7,8 +7,10 @@ table MeasureSales
 			    VALUES ( FactSalesInvoiceLine[SalesInvoiceID] ),
 			    CALCULATE ( MIN ( FactSalesInvoiceLine[HeaderTotalAmountExcludingTax] ) )
 			)
-		formatString: "€"\ #,0.00;-"€"\ #,0.00;"€"\ #,0.00
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 9a94abe1-4102-48d9-96af-d4bca8d4cc7e
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Total Sales Incl Tax' =
 			
@@ -16,8 +18,10 @@ table MeasureSales
 			    VALUES ( FactSalesInvoiceLine[SalesInvoiceID] ),
 			    CALCULATE ( MIN ( FactSalesInvoiceLine[HeaderTotalAmountIncludingTax] ) )
 			)
-		formatString: "€"\ #,0.00;-"€"\ #,0.00;"€"\ #,0.00
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 7152834b-a957-4b35-b52b-d4d9f7767be4
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Sales Invoice Count' =
 			
@@ -30,10 +34,10 @@ table MeasureSales
 	measure 'Average Sales per Invoice' =
 			
 			DIVIDE ( [Total Sales Excl Tax], [Sales Invoice Count] )
-		formatString: €#.##0
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 519fc188-0d82-478a-8dd4-6bac0d4a366b
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Sales YoY %' =
 			
@@ -46,40 +50,40 @@ table MeasureSales
 	measure 'Sales YTD' =
 			
 			TOTALYTD ( [Total Sales Excl Tax], DimDate[Date] )
-		formatString: €#.##0
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 3c0d6268-41a3-4c36-9031-015e654e11c7
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Sales MTD' =
 			
 			TOTALMTD ( [Total Sales Excl Tax], DimDate[Date] )
-		formatString: " €#.##0"
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 34902901-afe1-4ef2-aebd-86511744f5e4
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Sales PY' =
 			
 			CALCULATE ( [Total Sales Excl Tax], SAMEPERIODLASTYEAR ( DimDate[Date] ) )
-		formatString: " €#.##0"
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: c19af002-3c07-4163-9251-5c665357def2
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Sales Tax Amount' =
 			
 			[Total Sales Incl Tax] - [Total Sales Excl Tax]
-		formatString: " €#.##0"
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: a2b3c4d5-e6f7-4a8b-9c0d-1e2f3a4b5c6d
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Gross Profit' = [Total Sales Excl Tax] - [Total Purchase Excl Tax]
-		formatString: € #.#0
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 5483a305-1379-4456-9c5b-785772773929
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Gross Margin %' = IF([Total Sales Excl Tax] = 0, BLANK(), [Gross Profit] / [Total Sales Excl Tax])
 		formatString: 0.00%;-0.00%;0.00%

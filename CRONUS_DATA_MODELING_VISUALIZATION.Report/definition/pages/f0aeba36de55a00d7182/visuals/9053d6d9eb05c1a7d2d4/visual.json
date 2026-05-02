@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "2b825ac69675092053b0",
+  "name": "9053d6d9eb05c1a7d2d4",
   "position": {
-    "x": 587.94258373205741,
-    "y": 494.54545454545456,
-    "z": 4000,
-    "height": 214.35406698564594,
-    "width": 633.87559808612446,
-    "tabOrder": 4000
+    "x": 0,
+    "y": 483.8277511961723,
+    "z": 9000,
+    "height": 235.78947368421055,
+    "width": 500.66985645933016,
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "columnChart",
@@ -28,6 +28,21 @@
               },
               "queryRef": "DimDate.Quarter",
               "nativeQueryRef": "Quarter",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimDate"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "DimDate.Year",
+              "nativeQueryRef": "Year",
               "active": true
             }
           ]
@@ -119,9 +134,29 @@
           }
         }
       ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
       "valueAxis": [
         {
           "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
             "gridlineShow": {
               "expr": {
                 "Literal": {
@@ -134,5 +169,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ea5d9a7ad800d1572a58",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Quarter"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "39d4213fd0c083d91e4a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1ac904f56d51b9c816eb",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Sales Tax Amount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b371e8087843c6cbe90b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Purchase Tax Amount"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -7,10 +7,10 @@ table MeasurePurchases
 			    VALUES ( FactPurchaseInvoiceLine[PurchaseInvoiceID] ),
 			    CALCULATE ( MIN ( FactPurchaseInvoiceLine[HeaderTotalAmountExcludingTax] ) )
 			)
-		formatString: € #.#0
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 02aeb645-636d-4d6f-b5f9-220db5654240
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Total Purchase Incl Tax' =
 			
@@ -18,10 +18,10 @@ table MeasurePurchases
 			    VALUES ( FactPurchaseInvoiceLine[PurchaseInvoiceID] ),
 			    CALCULATE ( MIN ( FactPurchaseInvoiceLine[HeaderTotalAmountIncludingTax] ) )
 			)
-		formatString: € #.#0
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 0fead841-f554-455b-951c-6eb290da0ff6
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Purchase Invoice Count' =
 			
@@ -32,34 +32,34 @@ table MeasurePurchases
 	measure 'Average Purchase per Invoice' =
 			
 			DIVIDE ( [Total Purchase Excl Tax], [Purchase Invoice Count] )
-		formatString: " € #.##0"
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 394f6a03-436b-4090-9246-8c78898899f5
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Purchase YTD' =
 			
 			TOTALYTD ( [Total Purchase Excl Tax], DimDate[Date] )
-		formatString: " € #.##0"
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 184dc2d7-66f2-4eaa-b588-2efa4e4acc50
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Purchase MTD' =
 			
 			TOTALMTD ( [Total Purchase Excl Tax], DimDate[Date] )
-		formatString: " € #.##0"
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 3054aefc-5ae9-4a4d-bb80-29b5fcbf24d6
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Purchase PY' =
 			
 			CALCULATE ( [Total Purchase Excl Tax], SAMEPERIODLASTYEAR ( DimDate[Date] ) )
-		formatString: " € #.#0"
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 51e67ca1-2a3b-4703-bd3e-79512c30d97f
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Purchase YoY %' =
 			
@@ -70,10 +70,10 @@ table MeasurePurchases
 	measure 'Purchase Tax Amount' =
 			
 			[Total Purchase Incl Tax] - [Total Purchase Excl Tax]
-		formatString: " € #.#0"
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: b3c4d5e6-f7a8-4b9c-0d1e-2f3a4b5c6d7e
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	column Dummy
 		isHidden

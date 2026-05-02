@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "1b18de2137165e2be6c0",
   "position": {
-    "x": 13.779904306220097,
-    "y": 494.54545454545456,
+    "x": 597.12918660287085,
+    "y": 13.779904306220097,
     "z": 3000,
-    "height": 214.35406698564594,
-    "width": 560.38277511961724,
+    "height": 223.54066985645935,
+    "width": 564.976076555024,
     "tabOrder": 3000
   },
   "visual": {
@@ -71,5 +71,38 @@
       }
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3df1f1f65b7b6b9d0368",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimItem"
+              }
+            },
+            "Property": "ItemCategoryCode"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
 }

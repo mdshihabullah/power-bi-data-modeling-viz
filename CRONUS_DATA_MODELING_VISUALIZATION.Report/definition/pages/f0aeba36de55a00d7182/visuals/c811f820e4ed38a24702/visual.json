@@ -4,10 +4,10 @@
   "position": {
     "x": 684.4019138755981,
     "y": 0,
-    "z": 10000,
+    "z": 8000,
     "height": 214.35406698564594,
     "width": 217.41626794258374,
-    "tabOrder": 10000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -318,23 +318,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "8f1873e70126831200de",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureGL"
-              }
-            },
-            "Property": "Net Profit %"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

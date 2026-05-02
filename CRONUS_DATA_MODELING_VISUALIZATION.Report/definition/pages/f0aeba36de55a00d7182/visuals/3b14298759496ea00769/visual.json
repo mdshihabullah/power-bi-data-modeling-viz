@@ -4,10 +4,10 @@
   "position": {
     "x": 223.54066985645935,
     "y": 0,
-    "z": 2000,
+    "z": 1000,
     "height": 214.35406698564594,
     "width": 280.19138755980862,
-    "tabOrder": 2000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -250,23 +250,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "880b203b6032e2784d75",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Total Purchase Excl Tax"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -4,10 +4,10 @@
   "position": {
     "x": 488.42105263157896,
     "y": 0,
-    "z": 3000,
+    "z": 2000,
     "height": 214.35406698564594,
     "width": 214.35406698564594,
-    "tabOrder": 3000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -366,23 +366,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "4d1ebff98b8916970790",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureSales"
-              }
-            },
-            "Property": "Sales YoY %"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

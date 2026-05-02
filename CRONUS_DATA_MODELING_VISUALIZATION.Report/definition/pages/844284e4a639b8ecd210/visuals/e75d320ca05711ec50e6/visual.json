@@ -226,5 +226,79 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "726f6da55400d9be0357",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "MonthYear"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a5b72710a7c0548720c0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Average Purchase per Invoice"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bbdabbf5c50c07d5296a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Purchase Invoice Count"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "aa1712003c9b4e0db150",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Total Purchase Excl Tax"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "65f9b5175be0a3831e02",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Purchase PY"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

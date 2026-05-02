@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "e28e6afc161a228b8a3b",
   "position": {
-    "x": 592.53588516746413,
-    "y": 13.779904306220097,
+    "x": 13.779904306220097,
+    "y": 476.17224880382776,
     "z": 2000,
-    "height": 220.47846889952154,
+    "height": 243.44497607655504,
     "width": 571.10047846889961,
     "tabOrder": 2000
   },
@@ -140,5 +140,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "02b954a87512078c8c19",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimVendor"
+              }
+            },
+            "Property": "VendorName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e09fe7c8069484034842",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Total Purchase Excl Tax"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -4,24 +4,26 @@ table MeasureGL
 	measure 'GL Debit' =
 			
 			SUM ( FactGLEntry[DebitAmount] )
-		formatString: " € #.#0"
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 97c10e00-57f9-4884-8414-bf25769358be
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'GL Credit' =
 			
 			SUM ( FactGLEntry[CreditAmount] )
-		formatString: " € #.#0"
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: c0a71da9-b86b-42b2-85f3-f127595eb498
 
-		annotation PBI_FormatHint = {"isCustom":true}
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'GL Net' =
 			
 			ROUND ( [GL Debit] - [GL Credit], 2 )
-		formatString: "€"\ #,0.00;-"€"\ #,0.00;"€"\ #,0.00
+		formatString: "£"#,0.00;-"£"#,0.00;"£"#,0.00
 		lineageTag: 18b53858-6080-44d3-b2af-964737ad9312
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
 
 	measure 'Net Profit %' = IF([Total Sales Excl Tax] = 0, BLANK(), [GL Net] / [Total Sales Excl Tax])
 		formatString: 0.00%;-0.00%;0.00%
