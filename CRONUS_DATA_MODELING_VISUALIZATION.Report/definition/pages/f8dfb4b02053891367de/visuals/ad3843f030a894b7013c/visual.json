@@ -250,23 +250,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "0714e1b04bb0e264540e",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureGL"
-              }
-            },
-            "Property": "GL Debit"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -130,3 +130,8 @@ relationship 9a676c1e-e4cb-330e-82b5-f9099b0afee2
 	fromColumn: FactItemLedgerEntry.SourceNumber
 	toColumn: DimCustomer.CustomerNumber
 
+relationship a5068915-67a0-4688-860f-bc34994afb85
+	joinOnDateBehavior: datePartOnly
+	fromColumn: CurrentDateTimeLocalTZ.LastRefresh
+	toColumn: LocalDateTable_f5871a70-4e7a-4467-b0c1-82d79494d2e8.Date
+

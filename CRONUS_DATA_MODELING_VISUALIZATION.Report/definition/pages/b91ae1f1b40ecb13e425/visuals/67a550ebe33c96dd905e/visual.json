@@ -251,23 +251,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "89600b5d0ede40881b7d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Sales Amount"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

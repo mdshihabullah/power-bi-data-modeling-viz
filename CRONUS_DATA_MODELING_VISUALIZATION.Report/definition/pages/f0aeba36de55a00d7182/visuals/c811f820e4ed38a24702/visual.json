@@ -319,23 +319,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "176596f408961d817027",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureGL"
-              }
-            },
-            "Property": "Net Profit %"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

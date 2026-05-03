@@ -155,37 +155,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "f942d7ad31063518a63b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimVendor"
-              }
-            },
-            "Property": "VendorName"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d2e8377d3eb2b4d50725",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Total Purchase Excl Tax"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

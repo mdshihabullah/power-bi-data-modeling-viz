@@ -117,20 +117,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "dd93df79d3d776a3c191",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Total Purchase Excl Tax"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

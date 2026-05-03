@@ -251,23 +251,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "16223add1dabc079a1ad",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Average Purchase per Invoice"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

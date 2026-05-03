@@ -108,37 +108,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "d30d5cb720397237b9a3",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimItem"
-              }
-            },
-            "Property": "ItemCategoryCode"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "de513699398d3b230dd3",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureSales"
-              }
-            },
-            "Property": "Total Sales Excl Tax"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

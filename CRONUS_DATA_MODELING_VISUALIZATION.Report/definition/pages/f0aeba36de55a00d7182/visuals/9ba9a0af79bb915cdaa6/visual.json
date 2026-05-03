@@ -418,23 +418,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c00eb7c28e8007b05da9",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Margin %"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

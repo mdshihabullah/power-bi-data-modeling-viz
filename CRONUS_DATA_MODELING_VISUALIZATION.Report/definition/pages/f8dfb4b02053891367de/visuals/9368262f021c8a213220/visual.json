@@ -675,34 +675,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "dc6cd140a291a4da1293",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureGL"
-              }
-            },
-            "Property": "GL Debit"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c5214b2d0938b6b7176b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureGL"
-              }
-            },
-            "Property": "GL Credit"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

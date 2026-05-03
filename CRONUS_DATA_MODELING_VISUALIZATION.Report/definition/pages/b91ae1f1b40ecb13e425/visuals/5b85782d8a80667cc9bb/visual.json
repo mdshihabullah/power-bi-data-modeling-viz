@@ -442,20 +442,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "ae4c6deb0c0215dd1a3a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureInventory"
-              }
-            },
-            "Property": "Inventory Margin %"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

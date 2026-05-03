@@ -318,23 +318,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "e988f2336802b0b79323",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureGL"
-              }
-            },
-            "Property": "GL Net"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

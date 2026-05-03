@@ -235,51 +235,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "c331dff892dd84971746",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "MonthYear"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "51ec3bcdacc3c8883b57",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimItem"
-              }
-            },
-            "Property": "ItemCategoryCode"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "31bac61cd806e322b719",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Purchase YoY %"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }
