@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "2e8f028765231861303c",
   "position": {
-    "x": 251.10047846889955,
+    "x": 284.78468899521533,
     "y": 52.057416267942585,
     "z": 1000,
-    "height": 163.82775119617227,
-    "width": 298.56459330143542,
+    "height": 160.76555023923447,
+    "width": 300.09569377990431,
     "tabOrder": 1000
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasureSales.Average Sales per Invoice",
-              "nativeQueryRef": "Average Sales per Invoice"
+              "nativeQueryRef": "Average Invoice Amount",
+              "displayName": "Average Invoice Amount"
             }
           ]
         }
@@ -250,5 +251,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d382c631a33beed93b46",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Average Sales per Invoice"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

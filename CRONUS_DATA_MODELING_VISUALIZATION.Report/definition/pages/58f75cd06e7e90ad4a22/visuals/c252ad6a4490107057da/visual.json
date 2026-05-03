@@ -136,6 +136,67 @@
         }
       ]
     },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Total Sales vs Last Year'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5b6edec1ca9421b7a3a6",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "MonthYear"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7389691b3005a2580b23",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Total Sales Excl Tax"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6ebf3cd469c17e62864d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Sales PY"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

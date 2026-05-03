@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "92cefb9c12d0a9e2d5bc",
   "position": {
-    "x": 488.42105263157896,
-    "y": 50.526315789473685,
+    "x": 404.21052631578948,
+    "y": 48.995215311004785,
     "z": 2000,
-    "height": 165.35885167464116,
-    "width": 214.35406698564594,
+    "height": 160.76555023923447,
+    "width": 220.47846889952154,
     "tabOrder": 2000
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasureSales.Sales YoY %",
-              "nativeQueryRef": "Sales YoY %"
+              "nativeQueryRef": "Sales YoY",
+              "displayName": "Sales YoY"
             }
           ]
         }
@@ -366,5 +367,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b0e405493a52b734e7cd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Sales YoY %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -91,5 +91,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "38bc0dc110c15cb8b22d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimItem"
+              }
+            },
+            "Property": "ItemCategoryCode"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

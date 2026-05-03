@@ -475,6 +475,21 @@
         }
       ]
     },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top Profitable Items'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
@@ -507,6 +522,34 @@
             }
           ]
         }
+      },
+      {
+        "name": "1bc5e4258a0ab0014d4b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimCustomer"
+              }
+            },
+            "Property": "CustomerName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ee10e8871503d8947206",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureInventory"
+              }
+            },
+            "Property": "Inventory Margin"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

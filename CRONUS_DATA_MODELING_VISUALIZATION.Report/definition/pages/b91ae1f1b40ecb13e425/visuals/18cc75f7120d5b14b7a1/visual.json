@@ -191,6 +191,67 @@
         }
       ]
     },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Inventory Sales & Margin Trend'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3aff422fc3ddd73d3508",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "MonthYear"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3ba786181a88061d7ace",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureInventory"
+              }
+            },
+            "Property": "Inventory Sales Amount"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5ea3dc345de5baabaa5e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureInventory"
+              }
+            },
+            "Property": "Inventory Margin"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -177,6 +177,21 @@
         }
       ]
     },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top Items'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
@@ -281,6 +296,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "5b30a262b8a4c6976dec",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Total Sales Excl Tax"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

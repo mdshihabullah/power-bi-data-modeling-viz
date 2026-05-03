@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "7b8771360c174ea5655c",
   "position": {
-    "x": 806.88995215311013,
-    "y": 52.057416267942585,
+    "x": 817.60765550239239,
+    "y": 53.588516746411486,
     "z": 0,
-    "height": 162.29665071770336,
-    "width": 280.19138755980862,
+    "height": 160.76555023923447,
+    "width": 270,
     "tabOrder": 0
   },
   "visual": {
@@ -417,5 +417,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ae94712f4b3651295ab1",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureInventory"
+              }
+            },
+            "Property": "Inventory Margin %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

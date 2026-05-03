@@ -5,8 +5,8 @@
     "x": 0,
     "y": 50.526315789473685,
     "z": 6000,
-    "height": 163.82775119617227,
-    "width": 240.38277511961724,
+    "height": 160,
+    "width": 220,
     "tabOrder": 6000
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasureSales.Total Sales Excl Tax",
-              "nativeQueryRef": "Total Sales Excl Tax"
+              "nativeQueryRef": "Total Sales",
+              "displayName": "Total Sales"
             }
           ]
         }
@@ -250,5 +251,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8faed2e8e03a89565857",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Total Sales Excl Tax"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

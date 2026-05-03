@@ -238,7 +238,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Gross Margin % Trend'"
+                  "Value": "'Gross Margin Trend'"
                 }
               }
             }
@@ -247,5 +247,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d8283b527dc6982c37dc",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimDate"
+              }
+            },
+            "Property": "MonthYear"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f7cfe0c83610040b2a63",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Gross Margin %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -2,7 +2,7 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "53abf70f70300ba7089c",
   "position": {
-    "x": 549.665071770335,
+    "x": 595.5980861244019,
     "y": 52.057416267942585,
     "z": 3000,
     "height": 241.91387559808615,
@@ -92,6 +92,53 @@
         }
       ]
     },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Total Sales by Item Category'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d30d5cb720397237b9a3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimItem"
+              }
+            },
+            "Property": "ItemCategoryCode"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "de513699398d3b230dd3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Total Sales Excl Tax"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

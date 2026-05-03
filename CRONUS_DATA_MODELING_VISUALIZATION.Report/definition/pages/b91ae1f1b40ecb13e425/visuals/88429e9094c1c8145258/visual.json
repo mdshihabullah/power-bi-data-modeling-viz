@@ -3,10 +3,10 @@
   "name": "88429e9094c1c8145258",
   "position": {
     "x": 280.19138755980862,
-    "y": 52.057416267942585,
+    "y": 50.526315789473685,
     "z": 2000,
-    "height": 162.29665071770336,
-    "width": 278.66028708133973,
+    "height": 160.76555023923447,
+    "width": 270,
     "tabOrder": 2000
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasureInventory.Inventory Cost Amount",
-              "nativeQueryRef": "Inventory Cost Amount"
+              "nativeQueryRef": "Inventory Cost",
+              "displayName": "Inventory Cost"
             }
           ]
         }
@@ -250,5 +251,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d857eed176be2be00014",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureInventory"
+              }
+            },
+            "Property": "Inventory Cost Amount"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

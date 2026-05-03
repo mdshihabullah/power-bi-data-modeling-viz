@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "3b14298759496ea00769",
   "position": {
-    "x": 223.54066985645935,
+    "x": 200.57416267942585,
     "y": 50.526315789473685,
     "z": 1000,
-    "height": 163.82775119617227,
-    "width": 280.19138755980862,
+    "height": 160.76555023923447,
+    "width": 220.47846889952154,
     "tabOrder": 1000
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasurePurchases.Total Purchase Excl Tax",
-              "nativeQueryRef": "Total Purchase Excl Tax"
+              "nativeQueryRef": "Total Purchases",
+              "displayName": "Total Purchases"
             }
           ]
         }
@@ -250,5 +251,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5a4ac34b3426e998d833",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Total Purchase Excl Tax"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasureGL.GL Credit",
-              "nativeQueryRef": "GL Credit"
+              "nativeQueryRef": "Total Credit",
+              "displayName": "Total Credit"
             }
           ]
         }
@@ -250,5 +251,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "bc83f88b55667019a022",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureGL"
+              }
+            },
+            "Property": "GL Credit"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

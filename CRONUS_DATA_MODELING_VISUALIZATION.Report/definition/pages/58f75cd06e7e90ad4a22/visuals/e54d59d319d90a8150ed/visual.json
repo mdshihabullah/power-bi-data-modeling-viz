@@ -5,8 +5,8 @@
     "x": 0,
     "y": 52.057416267942585,
     "z": 2000,
-    "height": 162.29665071770336,
-    "width": 267.94258373205741,
+    "height": 160,
+    "width": 300,
     "tabOrder": 2000
   },
   "visual": {
@@ -251,5 +251,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "9049fd200a73582827b8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureSales"
+              }
+            },
+            "Property": "Sales Invoice Count"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

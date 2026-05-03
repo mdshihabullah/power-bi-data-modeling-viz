@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasureGL.GL Debit",
-              "nativeQueryRef": "GL Debit"
+              "nativeQueryRef": "Total Debit",
+              "displayName": "Total Debit"
             }
           ]
         }
@@ -249,5 +250,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0714e1b04bb0e264540e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureGL"
+              }
+            },
+            "Property": "GL Debit"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

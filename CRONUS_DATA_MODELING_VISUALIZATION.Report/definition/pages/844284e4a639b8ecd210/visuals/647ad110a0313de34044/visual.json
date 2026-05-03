@@ -5,8 +5,8 @@
     "x": 234.25837320574163,
     "y": 52.057416267942585,
     "z": 0,
-    "height": 163.82775119617227,
-    "width": 335.31100478468903,
+    "height": 160,
+    "width": 300,
     "tabOrder": 0
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasurePurchases.Average Purchase per Invoice",
-              "nativeQueryRef": "Average Purchase per Invoice"
+              "nativeQueryRef": "Average Invoice Amount",
+              "displayName": "Average Invoice Amount"
             }
           ]
         }
@@ -250,5 +251,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "16223add1dabc079a1ad",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Average Purchase per Invoice"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

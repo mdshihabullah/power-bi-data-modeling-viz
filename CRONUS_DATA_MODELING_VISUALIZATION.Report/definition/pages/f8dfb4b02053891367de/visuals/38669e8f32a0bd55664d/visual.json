@@ -206,6 +206,53 @@
         }
       ]
     },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Net by Account'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e08f812d5ea0b4107cc9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimAccount"
+              }
+            },
+            "Property": "AccountName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1e1393ff2ecb29775367",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureGL"
+              }
+            },
+            "Property": "GL Net"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

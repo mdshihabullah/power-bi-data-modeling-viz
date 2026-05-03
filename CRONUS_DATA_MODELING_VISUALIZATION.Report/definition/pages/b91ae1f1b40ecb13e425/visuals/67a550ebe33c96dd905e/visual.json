@@ -5,8 +5,8 @@
     "x": 10.717703349282298,
     "y": 52.057416267942585,
     "z": 1000,
-    "height": 162.29665071770336,
-    "width": 284.78468899521533,
+    "height": 160,
+    "width": 270,
     "tabOrder": 1000
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasureInventory.Inventory Sales Amount",
-              "nativeQueryRef": "Inventory Sales Amount"
+              "nativeQueryRef": "Inventory Sales",
+              "displayName": "Inventory Sales"
             }
           ]
         }
@@ -250,5 +251,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "89600b5d0ede40881b7d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureInventory"
+              }
+            },
+            "Property": "Inventory Sales Amount"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

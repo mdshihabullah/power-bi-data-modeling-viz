@@ -5,8 +5,8 @@
     "x": 0,
     "y": 52.057416267942585,
     "z": 5000,
-    "height": 162.29665071770336,
-    "width": 251.10047846889955,
+    "height": 160,
+    "width": 250,
     "tabOrder": 5000
   },
   "visual": {
@@ -251,5 +251,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8ccb37301eeabdbbe373",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Purchase Invoice Count"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

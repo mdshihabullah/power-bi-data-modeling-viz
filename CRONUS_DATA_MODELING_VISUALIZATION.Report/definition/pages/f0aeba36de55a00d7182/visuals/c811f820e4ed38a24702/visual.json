@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "c811f820e4ed38a24702",
   "position": {
-    "x": 684.4019138755981,
-    "y": 50.526315789473685,
+    "x": 609.377990430622,
+    "y": 48.995215311004785,
     "z": 8000,
-    "height": 163.82775119617227,
-    "width": 217.41626794258374,
+    "height": 160.76555023923447,
+    "width": 220.47846889952154,
     "tabOrder": 8000
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasureGL.Net Profit %",
-              "nativeQueryRef": "Net Profit %"
+              "nativeQueryRef": "Net Profit",
+              "displayName": "Net Profit"
             }
           ]
         }
@@ -318,5 +319,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "176596f408961d817027",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasureGL"
+              }
+            },
+            "Property": "Net Profit %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

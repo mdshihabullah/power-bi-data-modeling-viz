@@ -5,7 +5,7 @@
     "x": 569.56937799043067,
     "y": 52.057416267942585,
     "z": 3000,
-    "height": 223.54066985645935,
+    "height": 232.72727272727275,
     "width": 569.56937799043067,
     "tabOrder": 3000
   },
@@ -70,6 +70,21 @@
         "isDefaultSort": true
       }
     },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Total Spent per Item Category'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
     "drillFilterOtherVisuals": true
   },
   "filterConfig": {
@@ -102,6 +117,20 @@
             }
           ]
         }
+      },
+      {
+        "name": "dd93df79d3d776a3c191",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MeasurePurchases"
+              }
+            },
+            "Property": "Total Purchase Excl Tax"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }
