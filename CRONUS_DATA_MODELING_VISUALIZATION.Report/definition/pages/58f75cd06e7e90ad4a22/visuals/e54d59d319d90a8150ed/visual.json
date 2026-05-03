@@ -3,9 +3,9 @@
   "name": "e54d59d319d90a8150ed",
   "position": {
     "x": 0,
-    "y": 0,
+    "y": 52.057416267942585,
     "z": 2000,
-    "height": 214.35406698564594,
+    "height": 162.29665071770336,
     "width": 267.94258373205741,
     "tabOrder": 2000
   },
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasureSales.Sales Invoice Count",
-              "nativeQueryRef": "Sales Invoice Count"
+              "nativeQueryRef": "Sales Invoices",
+              "displayName": "Sales Invoices"
             }
           ]
         }
@@ -61,7 +62,7 @@
                   "expr": {
                     "ThemeDataColor": {
                       "ColorId": 1,
-                      "Percent": 0
+                      "Percent": 0.2
                     }
                   }
                 }

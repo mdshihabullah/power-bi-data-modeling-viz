@@ -281,20 +281,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "85c6128647080a1265d4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureSales"
-              }
-            },
-            "Property": "Total Sales Excl Tax"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

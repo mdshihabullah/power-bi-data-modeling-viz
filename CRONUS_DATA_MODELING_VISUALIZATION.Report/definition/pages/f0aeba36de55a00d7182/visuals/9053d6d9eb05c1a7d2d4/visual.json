@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "9053d6d9eb05c1a7d2d4",
   "position": {
-    "x": 0,
-    "y": 483.8277511961723,
+    "x": 12.248803827751196,
+    "y": 488.42105263157896,
     "z": 9000,
-    "height": 235.78947368421055,
-    "width": 500.66985645933016,
+    "height": 232.72727272727275,
+    "width": 489.9521531100479,
     "tabOrder": 9000
   },
   "visual": {
@@ -169,65 +169,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ea5d9a7ad800d1572a58",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "Quarter"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "39d4213fd0c083d91e4a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "Year"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "1ac904f56d51b9c816eb",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureSales"
-              }
-            },
-            "Property": "Sales Tax Amount"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "b371e8087843c6cbe90b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Purchase Tax Amount"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

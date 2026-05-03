@@ -3,9 +3,9 @@
   "name": "e75d320ca05711ec50e6",
   "position": {
     "x": 13.779904306220097,
-    "y": 234.25837320574163,
+    "y": 255.69377990430624,
     "z": 1000,
-    "height": 241.91387559808615,
+    "height": 234.25837320574163,
     "width": 1208.0382775119617,
     "tabOrder": 1000
   },
@@ -226,79 +226,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "726f6da55400d9be0357",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "MonthYear"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "a5b72710a7c0548720c0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Average Purchase per Invoice"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "bbdabbf5c50c07d5296a",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Purchase Invoice Count"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "aa1712003c9b4e0db150",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Total Purchase Excl Tax"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "65f9b5175be0a3831e02",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasurePurchases"
-              }
-            },
-            "Property": "Purchase PY"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
-  "name": "38669e8f32a0bd55664d",
+  "name": "2db0aa84d27d2ea502e0",
   "position": {
-    "x": 465.4545454545455,
-    "y": 310.81339712918663,
-    "z": 5000,
-    "height": 166.88995215311007,
-    "width": 736.45933014354068,
-    "tabOrder": 5000
+    "x": 585,
+    "y": 490,
+    "z": 7000,
+    "height": 230,
+    "width": 637,
+    "tabOrder": 7000
   },
   "visual": {
-    "visualType": "clusteredBarChart",
+    "visualType": "clusteredColumnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -20,14 +20,29 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "DimAccount"
+                      "Entity": "DimDate"
                     }
                   },
-                  "Property": "AccountName"
+                  "Property": "MonthYear"
                 }
               },
-              "queryRef": "DimAccount.AccountName",
-              "nativeQueryRef": "AccountName",
+              "queryRef": "DimDate.MonthYear",
+              "nativeQueryRef": "MonthYear",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimItem"
+                    }
+                  },
+                  "Property": "ItemCategoryCode"
+                }
+              },
+              "queryRef": "DimItem.ItemCategoryCode",
+              "nativeQueryRef": "ItemCategoryCode",
               "active": true
             }
           ]
@@ -39,45 +54,34 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "MeasureGL"
+                      "Entity": "MeasurePurchases"
                     }
                   },
-                  "Property": "GL Net"
+                  "Property": "Purchase YoY %"
                 }
               },
-              "queryRef": "MeasureGL.GL Net",
-              "nativeQueryRef": "GL Net"
+              "queryRef": "MeasurePurchases.Purchase YoY %",
+              "nativeQueryRef": "Purchase YoY %"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "MeasureGL"
-                  }
-                },
-                "Property": "GL Net"
-              }
-            },
-            "direction": "Descending"
-          }
-        ],
-        "isDefaultSort": true
       }
     },
     "objects": {
-      "labels": [
+      "valueAxis": [
         {
           "properties": {
-            "show": {
+            "gridlineShow": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
                 }
               }
             }
@@ -87,30 +91,36 @@
       "categoryAxis": [
         {
           "properties": {
-            "showAxisTitle": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
-                }
-              }
-            },
-            "bold": {
+            "gridlineShow": {
               "expr": {
                 "Literal": {
                   "Value": "true"
                 }
               }
-            }
-          }
-        }
-      ],
-      "valueAxis": [
-        {
-          "properties": {
-            "show": {
+            },
+            "gridlineStyle": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "'solid'"
+                }
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0.4
+                    }
+                  }
+                }
+              }
+            },
+            "gridlineThickness": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
                 }
               }
             },
@@ -125,6 +135,9 @@
         }
       ],
       "dataPoint": [
+        {
+          "properties": {}
+        },
         {
           "properties": {
             "fill": {
@@ -141,37 +154,10 @@
                                 "Measure": {
                                   "Expression": {
                                     "SourceRef": {
-                                      "Entity": "MeasureGL"
+                                      "Entity": "MeasurePurchases"
                                     }
                                   },
-                                  "Property": "GL Net"
-                                }
-                              },
-                              "Right": {
-                                "Literal": {
-                                  "Value": "0D"
-                                }
-                              }
-                            }
-                          },
-                          "Value": {
-                            "Literal": {
-                              "Value": "'#DD6B7F'"
-                            }
-                          }
-                        },
-                        {
-                          "Condition": {
-                            "Comparison": {
-                              "ComparisonKind": 2,
-                              "Left": {
-                                "Measure": {
-                                  "Expression": {
-                                    "SourceRef": {
-                                      "Entity": "MeasureGL"
-                                    }
-                                  },
-                                  "Property": "GL Net"
+                                  "Property": "Purchase YoY %"
                                 }
                               },
                               "Right": {
@@ -184,6 +170,33 @@
                           "Value": {
                             "Literal": {
                               "Value": "'#37A794'"
+                            }
+                          }
+                        },
+                        {
+                          "Condition": {
+                            "Comparison": {
+                              "ComparisonKind": 2,
+                              "Left": {
+                                "Measure": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "MeasurePurchases"
+                                    }
+                                  },
+                                  "Property": "Purchase YoY %"
+                                }
+                              },
+                              "Right": {
+                                "Literal": {
+                                  "Value": "0D"
+                                }
+                              }
+                            }
+                          },
+                          "Value": {
+                            "Literal": {
+                              "Value": "'#DD6B7F'"
                             }
                           }
                         }

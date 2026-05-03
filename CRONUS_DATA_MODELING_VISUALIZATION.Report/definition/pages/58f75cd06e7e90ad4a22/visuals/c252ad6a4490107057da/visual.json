@@ -3,9 +3,9 @@
   "name": "c252ad6a4490107057da",
   "position": {
     "x": 16.842105263157897,
-    "y": 214.35406698564594,
+    "y": 237.32057416267943,
     "z": 0,
-    "height": 269.47368421052636,
+    "height": 246.50717703349284,
     "width": 1240.1913875598086,
     "tabOrder": 0
   },
@@ -137,51 +137,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "a6be116863d2d08e3926",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "MonthYear"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "3731ffb30507aae25190",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureSales"
-              }
-            },
-            "Property": "Total Sales Excl Tax"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "3e7ff4244c00d3757e10",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureSales"
-              }
-            },
-            "Property": "Sales PY"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

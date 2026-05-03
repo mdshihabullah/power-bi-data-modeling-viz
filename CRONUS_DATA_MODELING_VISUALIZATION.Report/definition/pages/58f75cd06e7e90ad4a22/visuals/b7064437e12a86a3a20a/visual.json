@@ -289,34 +289,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "9387af9c8d3e9939c9e7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "FactSalesInvoiceLine"
-              }
-            },
-            "Property": "Salesperson"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "702a8da08862e010e00b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "MeasureSales"
-              }
-            },
-            "Property": "Total Sales Excl Tax"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

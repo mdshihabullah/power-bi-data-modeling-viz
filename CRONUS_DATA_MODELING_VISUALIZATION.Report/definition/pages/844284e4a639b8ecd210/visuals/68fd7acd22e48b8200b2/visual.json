@@ -3,10 +3,10 @@
   "name": "68fd7acd22e48b8200b2",
   "position": {
     "x": 0,
-    "y": 0,
+    "y": 52.057416267942585,
     "z": 5000,
-    "height": 214.35406698564594,
-    "width": 278.66028708133973,
+    "height": 162.29665071770336,
+    "width": 251.10047846889955,
     "tabOrder": 5000
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "MeasurePurchases.Purchase Invoice Count",
-              "nativeQueryRef": "Purchase Invoice Count"
+              "nativeQueryRef": "Purchase Invoices",
+              "displayName": "Purchase Invoices"
             }
           ]
         }
@@ -61,7 +62,7 @@
                   "expr": {
                     "ThemeDataColor": {
                       "ColorId": 1,
-                      "Percent": 0
+                      "Percent": 0.2
                     }
                   }
                 }
