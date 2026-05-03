@@ -6,6 +6,20 @@ This project enables **executive-level financial reporting**, **sales & purchase
 
 > **Note:** Power BI Desktop projects (PBIP) is a **preview** feature. You must enable it before opening or saving this project: *File → Options and settings → Options → Preview features → Power BI Project (.pbip) save option*.
 
+## Table of Contents
+
+- [Project Structure](#project-structure)
+- [Data Source](#data-source)
+- [Getting Started](#getting-started)
+- [Semantic Model](#semantic-model)
+- [Relationships](#relationships)
+- [Report](#report)
+- [Version Control & Git](#version-control--git)
+- [Deployment](#deployment)
+- [Considerations & Limitations](#considerations--limitations)
+- [JSON Schema References](#json-schema-references)
+- [References](#references)
+
 ---
 
 ## Project Structure
@@ -55,6 +69,31 @@ CRONUS_DATA_MODELING_VISUALIZATION/
 | **Compatibility Level** | 1601 |
 
 All tables connect to the same Business Central instance. Dimension tables follow a consistent M pattern: `Source → SelectColumns → RenameColumns`. Fact invoice tables use an expanded pattern: `Source → ExpandTableColumn → SelectColumns → RenameColumns`. The `DimItem` table applies additional transformations: removing `ItemName2` and replacing null/blank `ItemCategoryCode` values with `"Uncategorized"`.
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- **Power BI Desktop** (latest monthly release)
+- **Dynamics 365 Business Central** access (PRODUCTION environment, CRONUS UK Ltd. company)
+- **Git** (recommended for version control)
+
+### Enable PBIP Preview
+
+1. Open Power BI Desktop
+2. Go to *File → Options and settings → Options → Preview features*
+3. Check **Power BI Project (.pbip) save option**
+4. Restart Power BI Desktop
+
+### Open the Project
+
+Double-click `CRONUS_DATA_MODELING_VISUALIZATION.pbip` or open `CRONUS_DATA_MODELING_VISUALIZATION.Report/definition.pbir` in Power BI Desktop. Both open the report for editing with the connected semantic model.
+
+### Refresh Data
+
+On first open, Power BI Desktop will prompt for credentials to connect to the Business Central API. After authentication, use **Refresh** to load data into the import-mode model.
 
 ---
 
@@ -403,15 +442,7 @@ Power BI's Auto date/time feature generates 14 additional relationships, each co
 
 ## Report
 
-The report contains **5 pages** with interactive visuals, using the **NewExecutive** custom theme layered on the **CY26SU04** base theme. All pages use **FitToPage** display at 1280 × 720.
-
-| Page | Visuals | Visual Types |
-|---|---|---|
-| **Executive Overview** | 11 | Combo chart (line + stacked column), KPI cards (×6), clustered bar charts (×2), slicers (×2) |
-| **Sales Performance** | 7 | Line chart, donut chart, KPI cards (×2), clustered bar chart, column chart, slicer |
-| **Purchase Analysis** | 7 | Line chart, donut chart, KPI cards (×2), clustered bar chart, column chart, slicer |
-| **Financial Overview** | 8 | Pivot table, column chart, KPI cards (×2), clustered bar charts (×2), slicers (×2) |
-| **Inventory & Margin** | 10 | Area chart, scatter chart, KPI cards (×4), clustered bar charts (×2), slicers (×2) |
+The report contains **5 pages** with interactive visuals, using the **NewExecutive** custom theme layered on the **CY26SU04** base theme. All pages use **FitToPage** display at 1280 × 720. Year and Quarter slicers on every page enable cross-page filtering.
 
 | Property | Value |
 |---|---|
@@ -419,32 +450,95 @@ The report contains **5 pages** with interactive visuals, using the **NewExecuti
 | **Custom Theme** | NewExecutive |
 | **Report Definition Version** | 2.0.0 |
 | **Semantic Model Binding** | Relative path: `../CRONUS_DATA_MODELING_VISUALIZATION.SemanticModel` |
-| **Active Page** | Inventory & Margin |
 
----
+### Executive Overview
 
-## Getting Started
+**Business question:** *How is the company performing overall — are we profitable and growing?*
 
-### Prerequisites
+This page is the executive dashboard. It provides a single-screen snapshot of the most critical KPIs so leadership can immediately assess financial health without drilling into details.
 
-- **Power BI Desktop** (latest monthly release)
-- **Dynamics 365 Business Central** access (PRODUCTION environment, CRONUS UK Ltd. company)
-- **Git** (recommended for version control)
+| Visual | Type | Data | Insight |
+|---|---|---|---|
+| Total Sales Excl Tax | Card | `MeasureSales[Total Sales Excl Tax]` | Current period revenue at a glance |
+| Total Purchase Excl Tax | Card | `MeasurePurchases[Total Purchase Excl Tax]` | Current period spending at a glance |
+| Gross Profit | Card | `MeasureSales[Gross Profit]` | Revenue minus purchases — are we selling for more than we buy? Conditional color: green if positive, red if negative |
+| GL Net | Card | `MeasureGL[GL Net]` | True bottom line after ALL expenses. Conditional color: green if positive, red if negative |
+| Inventory Margin % | Card | `MeasureInventory[Inventory Margin %]` | Item-level profitability. Conditional color ranges: red (< 0%), yellow (0–15%), green (> 30%) |
+| Sales vs Purchases Trend | Line + Stacked Column Combo | `Total Sales Excl Tax` + `Total Purchase Excl Tax` by `DimDate[MonthYear]` | Are sales consistently outpacing purchases month over month? |
+| Top 5 Items by Sales | Clustered Bar | `Total Sales Excl Tax` by `DimItem[ItemName]` (Top 5 filter) | Which products generate the most revenue? |
+| Sales by Customer | Clustered Bar | `Total Sales Excl Tax` by `DimCustomer[CustomerName]` | Which customers drive revenue? |
+| Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
+| Quarter Slicer | Slicer | `DimDate[Quarter]` | Filter all visuals by quarter |
 
-### Enable PBIP Preview
+### Sales Performance
 
-1. Open Power BI Desktop
-2. Go to *File → Options and settings → Options → Preview features*
-3. Check **Power BI Project (.pbip) save option**
-4. Restart Power BI Desktop
+**Business question:** *How are sales trending over time, who are our best customers, and which product categories sell the most?*
 
-### Open the Project
+This page helps sales managers track revenue trends, identify top-performing customers and product categories, and monitor tax exposure.
 
-Double-click `CRONUS_DATA_MODELING_VISUALIZATION.pbip` or open `CRONUS_DATA_MODELING_VISUALIZATION.Report/definition.pbir` in Power BI Desktop. Both open the report for editing with the connected semantic model.
+| Visual | Type | Data | Insight |
+|---|---|---|---|
+| Sales Invoice Count | Card | `MeasureSales[Sales Invoice Count]` | How many invoices were issued this period? |
+| Average Sales per Invoice | Card | `MeasureSales[Average Sales per Invoice]` | Is our average deal size healthy? |
+| Sales Trend vs Prior Year | Line Chart | `Total Sales Excl Tax` + `Sales PY` by `DimDate[MonthYear]` | Compare current year sales to same months last year — are we growing or declining? |
+| Sales by Customer | Clustered Bar | `Total Sales Excl Tax` by `DimCustomer[CustomerName]` | Who are the top revenue-generating customers? |
+| Sales by Category | Donut | `Total Sales Excl Tax` by `DimItem[ItemCategoryCode]` | Which product categories contribute the most to revenue? |
+| Tax by Quarter | Column Chart | `Sales Tax Amount` by `DimDate[Quarter]` + `DimDate[Year]` | How much VAT are we collecting per quarter? Useful for tax planning |
+| Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
 
-### Refresh Data
+### Purchase Analysis
 
-On first open, Power BI Desktop will prompt for credentials to connect to the Business Central API. After authentication, use **Refresh** to load data into the import-mode model.
+**Business question:** *How are purchase costs trending, which vendors cost us the most, and are purchase costs rising faster than sales?*
+
+This page helps procurement managers monitor spending, identify costly vendors and categories, and track year-over-year cost changes.
+
+| Visual | Type | Data | Insight |
+|---|---|---|---|
+| Purchase Invoice Count | Card | `MeasurePurchases[Purchase Invoice Count]` | How many purchase invoices were received? |
+| Average Purchase per Invoice | Card | `MeasurePurchases[Average Purchase per Invoice]` | What is the average cost per purchase? |
+| Purchase Trend | Line Chart | `Total Purchase Excl Tax` by `DimDate[MonthYear]` (tooltips: `Average Purchase per Invoice`, `Purchase Invoice Count`) | Are monthly purchase costs trending up or down? Tooltip reveals per-invoice cost and volume |
+| Purchase by Vendor | Clustered Bar | `Total Purchase Excl Tax` by `DimVendor[VendorName]` | Which vendors account for the most spending? |
+| Purchase by Category | Donut | `Total Purchase Excl Tax` by `DimItem[ItemCategoryCode]` | Which product categories cost the most to purchase? |
+| Purchase YoY % by Month | Clustered Column | `Purchase YoY %` by `DimDate[MonthYear]` + `DimItem[ItemCategoryCode]` | Are purchase costs rising vs. last year, broken down by category and month? |
+| Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
+| Page Title | Textbox | "Purchase Analysis" | Page heading |
+| Last Refresh | Card | `CurrentDateTimeLocalTZ[Last Refresh]` | When was the data last refreshed? |
+
+### Financial Overview
+
+**Business question:** *What is the company's true financial position — which accounts are profitable, which are losing money, and how do debits and credits compare over time?*
+
+This page provides the full general ledger picture for finance teams. It goes beyond gross profit to show the net impact of every account category.
+
+| Visual | Type | Data | Insight |
+|---|---|---|---|
+| Total Debit | Card | `MeasureGL[GL Debit]` | Total money received/assets increased across all GL accounts |
+| Total Credit | Card | `MeasureGL[GL Credit]` | Total money paid out/liabilities increased across all GL accounts |
+| GL Debit vs Credit Trend | Column Chart | `GL Debit` + `GL Credit` by `DimDate[MonthYear]` | Are debits consistently higher than credits (profitable), or is the gap narrowing? |
+| GL Net by Account Category | Clustered Bar | `GL Net` by `DimAccount[Category]` | Which account categories are net positive (income) vs. net negative (expense)? |
+| GL Net by Account | Clustered Bar | `GL Net` by `DimAccount[AccountName]` | Which specific accounts contribute most to profit or loss? |
+| GL Detail by Year | Pivot Table | Rows: `DimAccount[Category]` → `SubCategory` → `AccountNumber`; Columns: `DimDate[Year]`; Values: `GL Debit`, `GL Credit`, `GL Net` | Full drill-down from category to account number, year over year — the detailed financial statement view |
+| Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
+| Account SubCategory Slicer | Slicer | `DimAccount[SubCategory]` | Filter to specific account sub-categories (e.g., only "Trade Receivables") |
+
+### Inventory & Margin
+
+**Business question:** *How profitable is our inventory — which items and categories have the best margins, and is item-level profitability improving over time?*
+
+This page helps inventory and product managers understand which items are truly profitable (not just high-selling) and where margin erosion may be occurring.
+
+| Visual | Type | Data | Insight |
+|---|---|---|---|
+| Inventory Sales | Card | `MeasureInventory[Inventory Sales Amount]` | Total revenue from item ledger Sale entries |
+| Inventory Cost | Card | `MeasureInventory[Inventory Cost Amount]` | Total COGS from item ledger Sale entries (negative value in BC) |
+| Inventory Margin | Card | `MeasureInventory[Inventory Margin]` | Total margin on inventory items. Conditional color: green if positive, red if negative |
+| Inventory Margin % | Card | `MeasureInventory[Inventory Margin %]` | Overall margin percentage. Conditional color ranges: red, yellow, green |
+| Sales & Margin Trend | Area Chart | `Inventory Sales Amount` + `Inventory Margin` by `DimDate[MonthYear]` | Is the margin growing proportionally with sales, or is it shrinking? |
+| Margin vs Sales by Item | Scatter Chart | X: `Inventory Sales Amount`, Y: `Inventory Margin %`, Size: `Inventory Margin`, Category: `DimItem[ItemNumber]` | Identify high-margin/low-volume vs. low-margin/high-volume items — the portfolio analysis view |
+| Margin % by Category | Clustered Bar | `Inventory Margin %` by `DimItem[ItemCategoryCode]` | Which product categories have the highest margin percentages? |
+| Margin by Item | Clustered Bar | `Inventory Margin` by `DimItem[ItemName]` (drill to `DimCustomer[CustomerName]`) | Which items generate the most absolute margin? Drill down to see which customers buy them |
+| Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
+| Category Slicer | Slicer | `DimItem[ItemCategoryCode]` | Filter to specific product categories |
 
 ---
 
