@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 3433.8195765286309,
+        "x": 0,
         "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 50,
-            "y": 306.14219861494661
+            "x": 224.77037477589755,
+            "y": 623.22559285121781
           },
           "nodeIndex": "DimAccount",
           "nodeLineageTag": "8e07ee82-5400-4ca0-b331-20f2cd1a660e",
@@ -23,8 +23,8 @@
         },
         {
           "location": {
-            "x": 2357.4314207675834,
-            "y": 213.08277578148585
+            "x": 1650.8597627450265,
+            "y": 1169.326397769611
           },
           "nodeIndex": "DimCurrency",
           "nodeLineageTag": "f4b16e8c-51b9-4918-9a23-98a66170e3e4",
@@ -36,8 +36,8 @@
         },
         {
           "location": {
-            "x": 1271.2931050974262,
-            "y": 300.16555156297176
+            "x": 1895.4730150113455,
+            "y": 137.31958018106235
           },
           "nodeIndex": "DimCustomer",
           "nodeLineageTag": "da53be43-58e0-4b62-8ded-b4a7beb5cb87",
@@ -49,8 +49,8 @@
         },
         {
           "location": {
-            "x": 2641.4314207675834,
-            "y": 177.08277578148585
+            "x": 421.84766111368481,
+            "y": 916.11178911956677
           },
           "nodeIndex": "DimDate",
           "nodeLineageTag": "f047ba7b-b7b3-42e1-b94e-e106b0ecebe1",
@@ -62,8 +62,8 @@
         },
         {
           "location": {
-            "x": 902.62216291713673,
-            "y": 44.023352948025121
+            "x": 408.27167426531219,
+            "y": 184.75725333452027
           },
           "nodeIndex": "DimItem",
           "nodeLineageTag": "acde10f5-f2ba-4b2b-a16b-092a81eebbd2",
@@ -75,8 +75,8 @@
         },
         {
           "location": {
-            "x": 1555.4314207675832,
-            "y": 116.72488905878674
+            "x": 2249.5194805918627,
+            "y": 0
           },
           "nodeIndex": "DimPaymentTerm",
           "nodeLineageTag": "ea85b566-a71a-4ad4-8e36-dcf4e2f08388",
@@ -88,8 +88,8 @@
         },
         {
           "location": {
-            "x": 3209.4314207675834,
-            "y": 249.08277578148585
+            "x": 2105.881340039773,
+            "y": 890.73972317299547
           },
           "nodeIndex": "DimShipmentMethod",
           "nodeLineageTag": "2efe72fb-fa3d-444a-9a22-fcc0e807e71d",
@@ -101,8 +101,8 @@
         },
         {
           "location": {
-            "x": 2123.4314207675834,
-            "y": 125.08277578148585
+            "x": 2235.7838045520884,
+            "y": 454.64976821603545
           },
           "nodeIndex": "DimVendor",
           "nodeLineageTag": "64b87ac7-955b-407a-9e20-2ef71c3e78d0",
@@ -114,8 +114,8 @@
         },
         {
           "location": {
-            "x": 334.20225510460892,
-            "y": 179.91004052664564
+            "x": 1252.9950824978987,
+            "y": 1101.1995875595908
           },
           "nodeIndex": "FactGLEntry",
           "nodeLineageTag": "3fdb7e68-7d43-4ae0-940f-629017504b4e",
@@ -127,8 +127,8 @@
         },
         {
           "location": {
-            "x": 618.41040181545577,
-            "y": 102.40205071715835
+            "x": 1245.0870313690314,
+            "y": 132.36268639302648
           },
           "nodeIndex": "FactItemLedgerEntry",
           "nodeLineageTag": "09c81f6c-cfe1-4390-b846-45f8fa4d2f02",
@@ -140,8 +140,8 @@
         },
         {
           "location": {
-            "x": 1839.4314207675832,
-            "y": 125.08277578148585
+            "x": 1245.2121465295313,
+            "y": 454.64976821603551
           },
           "nodeIndex": "FactPurchaseInvoiceLine",
           "nodeLineageTag": "b645b25c-5cd5-454d-a589-c85f9313ff31",
@@ -153,8 +153,8 @@
         },
         {
           "location": {
-            "x": 1186.6221629171368,
-            "y": -50
+            "x": 1249.040153908529,
+            "y": 773.98308829326061
           },
           "nodeIndex": "FactSalesInvoiceLine",
           "nodeLineageTag": "8d109aac-2d02-4656-9d73-36675375295d",
@@ -166,10 +166,11 @@
         },
         {
           "location": {
-            "x": 3443.4314207675834,
-            "y": 225.08277578148591
+            "x": 2816.754791214008,
+            "y": 37.828802807310012
           },
           "nodeIndex": "MeasureSales",
+          "nodeLineageTag": "0e1187c9-9bc1-4b6f-b970-db7c70b7b7ad",
           "size": {
             "height": 200,
             "width": 234
@@ -178,10 +179,11 @@
         },
         {
           "location": {
-            "x": 3677.4314207675834,
-            "y": 225.08277578148591
+            "x": 2821.0565843656855,
+            "y": 270.02372929528815
           },
           "nodeIndex": "MeasurePurchases",
+          "nodeLineageTag": "3d231d59-2211-47a0-9ab9-777f82fc2c42",
           "size": {
             "height": 200,
             "width": 234
@@ -190,10 +192,11 @@
         },
         {
           "location": {
-            "x": 3911.4314207675834,
-            "y": 225.08277578148591
+            "x": 2822.8616578777073,
+            "y": 499.72193614361061
           },
           "nodeIndex": "MeasureGL",
+          "nodeLineageTag": "310a4acf-96e3-4527-bb14-b74f2f792e6a",
           "size": {
             "height": 200,
             "width": 234
@@ -202,10 +205,11 @@
         },
         {
           "location": {
-            "x": 4145.4314207675834,
-            "y": 225.08277578148591
+            "x": 2824.6667313897292,
+            "y": 731.91686263158874
           },
           "nodeIndex": "MeasureInventory",
+          "nodeLineageTag": "f88ef3a1-ee2d-4f3d-ac3e-0d06dfd01114",
           "size": {
             "height": 200,
             "width": 234
@@ -214,8 +218,8 @@
         },
         {
           "location": {
-            "x": 4379.4314207675834,
-            "y": 273.08277578148591
+            "x": 2823.9751614559318,
+            "y": 969.66755524542043
           },
           "nodeIndex": "CurrentDateTimeLocalTZ",
           "nodeLineageTag": "b1d98fcf-81e8-443a-80f1-d0878d3d2578",
@@ -227,7 +231,7 @@
         }
       ],
       "name": "All tables",
-      "zoomValue": 70.955543900968991,
+      "zoomValue": 40.0525547248833,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
