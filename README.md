@@ -48,7 +48,7 @@ CRONUS_DATA_MODELING_VISUALIZATION/
 │   │   ├── database.tmdl                            # Database level (compat 1601)
 │   │   ├── model.tmdl                               # Model metadata & table refs
 │   │   ├── relationships.tmdl                       # All relationships (business + auto-date)
-│   │   └── tables/                                  # One .tmdl per table (31 files)
+│   │   └── tables/                                  # One .tmdl per table (32 files)
 │   ├── definition.pbism                             # Semantic model properties (v4.2)
 │   └── diagramLayout.json                           # Model diagram layout
 └── .gitignore                                       # Excludes .pbi/ local files & .DS_Store
@@ -165,23 +165,23 @@ graph LR
 
 ### Measure Tables
 
-Calculated tables (using `ROW("Dummy", 1)` or `Row("Column", BLANK())` as a placeholder partition) that serve as organizational containers for DAX measures. All monetary measures use **€ (Euro)** format strings.
+Calculated tables (using `ROW("Dummy", 1)` or `Row("Column", BLANK())` as a placeholder partition) that serve as organizational containers for DAX measures. All monetary measures use **£ (GBP)** format strings.
 
 **MeasureSales** — 11 measures
 
 | Measure | DAX | Explanation | Example |
 |---|---|---|---|
-| Total Sales Excl Tax | `SUMX(VALUES(FactSalesInvoiceLine[SalesInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountExcludingTax)))` | Total revenue from all sales invoices, excluding tax. Uses SUMX+MIN to avoid double-counting header amounts across line items. | 3 invoices for €1,000 each → **€3,000** |
-| Total Sales Incl Tax | `SUMX(VALUES(…SalesInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountIncludingTax)))` | Same as above but includes tax amounts. | €3,000 sales + €600 tax → **€3,600** |
+| Total Sales Excl Tax | `SUMX(VALUES(FactSalesInvoiceLine[SalesInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountExcludingTax)))` | Total revenue from all sales invoices, excluding tax. Uses SUMX+MIN to avoid double-counting header amounts across line items. | 3 invoices for £1,000 each → **£3,000** |
+| Total Sales Incl Tax | `SUMX(VALUES(…SalesInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountIncludingTax)))` | Same as above but includes tax amounts. | £3,000 sales + £600 tax → **£3,600** |
 | Sales Invoice Count | `DISTINCTCOUNT(FactSalesInvoiceLine[SalesInvoiceID])` | Number of unique sales invoices issued. | 3 invoices → **3** |
-| Average Sales per Invoice | `DIVIDE([Total Sales Excl Tax], [Sales Invoice Count])` | Average revenue per invoice. | €3,000 ÷ 3 invoices → **€1,000** |
-| Sales YTD | `TOTALYTD([Total Sales Excl Tax], DimDate[Date])` | Cumulative sales from Jan 1 of the current year up to the selected date. Resets every January. | Jan €40K + Feb €35K + Mar €20K (to date) → **€95,000** |
-| Sales MTD | `TOTALMTD([Total Sales Excl Tax], DimDate[Date])` | Cumulative sales from the 1st of the current month up to the selected date. Resets every month. | Mar 1–15 daily sales total → **€20,000** |
-| Sales PY | `CALCULATE([Total Sales Excl Tax], SAMEPERIODLASTYEAR(DimDate[Date]))` | Sales for the same period in the prior year. Used as the baseline for YoY comparison. | If viewing Jan–Mar 2025, shows Jan–Mar **2024** sales → **€80,000** |
-| Sales YoY % | `DIVIDE([Total Sales Excl Tax] - [Sales PY], [Sales PY])` | Percentage growth (or decline) compared to the same period last year. Positive = growth, negative = decline. | 2025 sales €120K, 2024 sales €100K → (20K ÷ 100K) = **+20%** |
-| Sales Tax Amount | `[Total Sales Incl Tax] - [Total Sales Excl Tax]` | Total VAT/tax collected on sales. | €3,600 incl − €3,000 excl → **€600** |
-| Gross Profit | `[Total Sales Excl Tax] - [Total Purchase Excl Tax]` | Revenue minus cost of goods purchased. Answers: did we sell for more than we bought? | Sales €100K − Purchases €65K → **€35,000** |
-| Gross Margin % | `IF([Total Sales Excl Tax] = 0, BLANK(), [Gross Profit] / [Total Sales Excl Tax])` | Out of every €1 of sales, how much is kept after paying for goods. Higher = more profitable. | €35K profit ÷ €100K sales → **35%** (keep €0.35 per €1) |
+| Average Sales per Invoice | `DIVIDE([Total Sales Excl Tax], [Sales Invoice Count])` | Average revenue per invoice. | £3,000 ÷ 3 invoices → **£1,000** |
+| Sales YTD | `TOTALYTD([Total Sales Excl Tax], DimDate[Date])` | Cumulative sales from Jan 1 of the current year up to the selected date. Resets every January. | Jan £40K + Feb £35K + Mar £20K (to date) → **£95,000** |
+| Sales MTD | `TOTALMTD([Total Sales Excl Tax], DimDate[Date])` | Cumulative sales from the 1st of the current month up to the selected date. Resets every month. | Mar 1–15 daily sales total → **£20,000** |
+| Sales PY | `CALCULATE([Total Sales Excl Tax], SAMEPERIODLASTYEAR(DimDate[Date]))` | Sales for the same period in the prior year. Used as the baseline for YoY comparison. | If viewing Jan–Mar 2025, shows Jan–Mar **2024** sales → **£80,000** |
+| Sales YoY % | `DIVIDE([Total Sales Excl Tax] - [Sales PY], [Sales PY])` | Percentage growth (or decline) compared to the same period last year. Positive = growth, negative = decline. | 2025 sales £120K, 2024 sales £100K → (20K ÷ 100K) = **+20%** |
+| Sales Tax Amount | `[Total Sales Incl Tax] - [Total Sales Excl Tax]` | Total VAT/tax collected on sales. | £3,600 incl − £3,000 excl → **£600** |
+| Gross Profit | `[Total Sales Excl Tax] - [Total Purchase Excl Tax]` | Revenue minus cost of goods purchased. Answers: did we sell for more than we bought? | Sales £100K − Purchases £65K → **£35,000** |
+| Gross Margin % | `IF([Total Sales Excl Tax] = 0, BLANK(), [Gross Profit] / [Total Sales Excl Tax])` | Out of every £1 of sales, how much is kept after paying for goods. Higher = more profitable. | £35K profit ÷ £100K sales → **35%** (keep £0.35 per £1) |
 
 > **Design Note:** `Total Sales Excl Tax` and `Total Sales Incl Tax` use `SUMX` over `SalesInvoiceID` with `MIN` of header-level amounts. This avoids double-counting when multiple line items share the same invoice header totals.
 
@@ -189,15 +189,15 @@ Calculated tables (using `ROW("Dummy", 1)` or `Row("Column", BLANK())` as a plac
 
 | Measure | DAX | Explanation | Example |
 |---|---|---|---|
-| Total Purchase Excl Tax | `SUMX(VALUES(…PurchaseInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountExcludingTax)))` | Total spending on purchase invoices, excluding tax. Same SUMX+MIN pattern as sales to avoid double-counting. | 5 purchase invoices averaging €2K each → **€10,000** |
-| Total Purchase Incl Tax | `SUMX(VALUES(…PurchaseInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountIncludingTax)))` | Same as above but includes tax. | €10,000 purchases + €2,000 tax → **€12,000** |
+| Total Purchase Excl Tax | `SUMX(VALUES(…PurchaseInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountExcludingTax)))` | Total spending on purchase invoices, excluding tax. Same SUMX+MIN pattern as sales to avoid double-counting. | 5 purchase invoices averaging £2K each → **£10,000** |
+| Total Purchase Incl Tax | `SUMX(VALUES(…PurchaseInvoiceID]), CALCULATE(MIN(…HeaderTotalAmountIncludingTax)))` | Same as above but includes tax. | £10,000 purchases + £2,000 tax → **£12,000** |
 | Purchase Invoice Count | `DISTINCTCOUNT(FactPurchaseInvoiceLine[PurchaseInvoiceID])` | Number of unique purchase invoices received. | 5 invoices → **5** |
-| Average Purchase per Invoice | `DIVIDE([Total Purchase Excl Tax], [Purchase Invoice Count])` | Average cost per purchase invoice. | €10,000 ÷ 5 invoices → **€2,000** |
-| Purchase YTD | `TOTALYTD([Total Purchase Excl Tax], DimDate[Date])` | Cumulative purchases from Jan 1 up to the selected date. Resets every January. | Jan €25K + Feb €22K + Mar €13K → **€60,000** |
-| Purchase MTD | `TOTALMTD([Total Purchase Excl Tax], DimDate[Date])` | Cumulative purchases from the 1st of the current month up to the selected date. Resets every month. | Mar 1–15 purchases → **€13,000** |
-| Purchase PY | `CALCULATE([Total Purchase Excl Tax], SAMEPERIODLASTYEAR(DimDate[Date]))` | Purchases for the same period in the prior year. Baseline for YoY comparison. | If viewing Jan–Mar 2025, shows Jan–Mar **2024** purchases → **€50,000** |
-| Purchase YoY % | `DIVIDE([Total Purchase Excl Tax] - [Purchase PY], [Purchase PY])` | Percentage change in purchase spending vs. same period last year. Read alongside Sales YoY %: spending more because sales grew (good) vs. costs rising (bad). | 2025 purchases €78K, 2024 purchases €65K → (13K ÷ 65K) = **+20%** |
-| Purchase Tax Amount | `[Total Purchase Incl Tax] - [Total Purchase Excl Tax]` | Total VAT/tax paid on purchases. | €12,000 incl − €10,000 excl → **€2,000** |
+| Average Purchase per Invoice | `DIVIDE([Total Purchase Excl Tax], [Purchase Invoice Count])` | Average cost per purchase invoice. | £10,000 ÷ 5 invoices → **£2,000** |
+| Purchase YTD | `TOTALYTD([Total Purchase Excl Tax], DimDate[Date])` | Cumulative purchases from Jan 1 up to the selected date. Resets every January. | Jan £25K + Feb £22K + Mar £13K → **£60,000** |
+| Purchase MTD | `TOTALMTD([Total Purchase Excl Tax], DimDate[Date])` | Cumulative purchases from the 1st of the current month up to the selected date. Resets every month. | Mar 1–15 purchases → **£13,000** |
+| Purchase PY | `CALCULATE([Total Purchase Excl Tax], SAMEPERIODLASTYEAR(DimDate[Date]))` | Purchases for the same period in the prior year. Baseline for YoY comparison. | If viewing Jan–Mar 2025, shows Jan–Mar **2024** purchases → **£50,000** |
+| Purchase YoY % | `DIVIDE([Total Purchase Excl Tax] - [Purchase PY], [Purchase PY])` | Percentage change in purchase spending vs. same period last year. Read alongside Sales YoY %: spending more because sales grew (good) vs. costs rising (bad). | 2025 purchases £78K, 2024 purchases £65K → (13K ÷ 65K) = **+20%** |
+| Purchase Tax Amount | `[Total Purchase Incl Tax] - [Total Purchase Excl Tax]` | Total VAT/tax paid on purchases. | £12,000 incl − £10,000 excl → **£2,000** |
 
 > **Design Note:** Same `SUMX` + `MIN` pattern as sales measures to correctly handle header-level amounts at line-level grain.
 
@@ -205,25 +205,37 @@ Calculated tables (using `ROW("Dummy", 1)` or `Row("Column", BLANK())` as a plac
 
 | Measure | DAX | Explanation | Example |
 |---|---|---|---|
-| GL Debit | `SUM(FactGLEntry[DebitAmount])` | Total of all debit entries in the general ledger (money received or assets increased). | All debit postings across every GL account → **€500,000** |
-| GL Credit | `SUM(FactGLEntry[CreditAmount])` | Total of all credit entries in the general ledger (money paid out or liabilities increased). | All credit postings across every GL account → **€490,000** |
-| GL Net | `ROUND([GL Debit] - [GL Credit], 2)` | Net financial result after ALL expenses (purchases, salaries, rent, utilities, depreciation, taxes). This is the true bottom line. | €500K debits − €490K credits → **€10,000** net profit |
-| Net Profit % | `IF([Total Sales Excl Tax] = 0, BLANK(), [GL Net] / [Total Sales Excl Tax])` | Out of every €1 of sales, how much remains after every single expense. Always lower than Gross Margin % (which only deducts purchases). | €10K net profit ÷ €100K sales → **10%** (keep €0.10 per €1 after all costs) |
+| GL Debit | `SUM(FactGLEntry[DebitAmount])` | Total of all debit entries in the general ledger (money received or assets increased). | All debit postings across every GL account → **£500,000** |
+| GL Credit | `SUM(FactGLEntry[CreditAmount])` | Total of all credit entries in the general ledger (money paid out or liabilities increased). | All credit postings across every GL account → **£490,000** |
+| GL Net | `ROUND([GL Debit] - [GL Credit], 2)` | Net financial result after ALL expenses (purchases, salaries, rent, utilities, depreciation, taxes). This is the true bottom line. | £500K debits − £490K credits → **£10,000** net profit |
+| Net Profit % | `IF([Total Sales Excl Tax] = 0, BLANK(), [GL Net] / [Total Sales Excl Tax])` | Out of every £1 of sales, how much remains after every single expense. Always lower than Gross Margin % (which only deducts purchases). | £10K net profit ÷ £100K sales → **10%** (keep £0.10 per £1 after all costs) |
 
 **MeasureInventory** — 4 measures
 
 | Measure | DAX | Explanation | Example |
 |---|---|---|---|
-| Inventory Cost Amount | `CALCULATE(SUM(FactItemLedgerEntry[CostAmountActual]), EntryType="Sale")` | Total cost of goods sold (COGS) for Sale entries. In BC, this is stored as a **negative** value for sales and **positive** for returns. | Sale: CostAmount = −€6,000; Return: CostAmount = +€1,000; Total → **−€5,000** |
-| Inventory Sales Amount | `CALCULATE(SUM(FactItemLedgerEntry[SalesAmountActual]), EntryType="Sale")` | Total revenue from item ledger Sale entries. Positive for sales, negative for returns. | Sale: SalesAmount = +€10,000; Return: SalesAmount = −€2,000; Total → **€8,000** |
-| Inventory Margin | `[Inventory Sales Amount] + [Inventory Cost Amount]` | Profit on inventory items. Uses **addition** because CostAmountActual is negative for sales, so adding it to sales yields the margin. | €8,000 sales + (−€5,000 cost) → **€3,000** margin |
-| Inventory Margin % | `DIVIDE([Inventory Margin], [Inventory Sales Amount])` | Percentage of inventory revenue that is profit. Same concept as Gross Margin % but calculated from item-level ledger data. | €3,000 margin ÷ €8,000 sales → **37.5%** |
+| Inventory Cost Amount | `CALCULATE(SUM(FactItemLedgerEntry[CostAmountActual]), EntryType="Sale")` | Total cost of goods sold (COGS) for Sale entries. In BC, this is stored as a **negative** value for sales and **positive** for returns. | Sale: CostAmount = −£6,000; Return: CostAmount = +£1,000; Total → **−£5,000** |
+| Inventory Sales Amount | `CALCULATE(SUM(FactItemLedgerEntry[SalesAmountActual]), EntryType="Sale")` | Total revenue from item ledger Sale entries. Positive for sales, negative for returns. | Sale: SalesAmount = +£10,000; Return: SalesAmount = −£2,000; Total → **£8,000** |
+| Inventory Margin | `[Inventory Sales Amount] + [Inventory Cost Amount]` | Profit on inventory items. Uses **addition** because CostAmountActual is negative for sales, so adding it to sales yields the margin. | £8,000 sales + (−£5,000 cost) → **£3,000** margin |
+| Inventory Margin % | `DIVIDE([Inventory Margin], [Inventory Sales Amount])` | Percentage of inventory revenue that is profit. Same concept as Gross Margin % but calculated from item-level ledger data. | £3,000 margin ÷ £8,000 sales → **37.5%** |
 
 > **Design Note:** Inventory measures filter to `EntryType = "Sale"` only. `Inventory Margin` uses **addition** (`+`) rather than subtraction because `CostAmountActual` for Sale entries is stored as a **negative value** in Business Central, so adding the negative cost to the positive sales amount yields the margin.
 
+### Utility Tables
+
+| Table | Key Column | Source | Description |
+|---|---|---|---|
+| `CurrentDateTimeLocalTZ` | `LastRefresh` | *Calculated (M)* — `DateTime.LocalNow()` | Single-row table that captures the local datetime on every data refresh. Used by the **Last Refresh** measure to display a human-readable "Updated ..." timestamp on every report page. |
+
+**Last Refresh Measure**
+
+| Measure | DAX | Explanation |
+|---|---|---|
+| Last Refresh | `VAR _refreshTime = MAX('CurrentDateTimeLocalTZ'[LastRefresh]) ... SWITCH(TRUE(), _daysDiff=0, "Today at " & _timePart, ...)` | Displays a friendly timestamp: "Updated Today at 14:30", "Updated Yesterday at 09:15", "Updated 3 Mar at 11:00", or "Updated 3 Mar 2024 at 11:00" for older dates. Appears as a card on every report page. |
+
 ### Auto-Generated Tables
 
-Power BI's **Auto date/time** feature generates 14 `LocalDateTable_<guid>` tables and 1 `DateTableTemplate_<guid>` table. These provide automatic date hierarchies for every datetime column across fact and dimension tables. They are managed entirely by Power BI Desktop and **must not be edited externally**.
+Power BI's **Auto date/time** feature generates 15 `LocalDateTable_<guid>` tables and 1 `DateTableTemplate_<guid>` table. These provide automatic date hierarchies for every datetime column across fact, dimension, and utility tables. They are managed entirely by Power BI Desktop and **must not be edited externally**.
 
 ---
 
@@ -436,13 +448,13 @@ erDiagram
 
 ### Auto-Date Relationships
 
-Power BI's Auto date/time feature generates 14 additional relationships, each connecting a datetime column (e.g., `InvoiceDate`, `DueDate`, `LastModifiedDateTime`) from fact and dimension tables to its own auto-created `LocalDateTable_<guid>` table. These provide built-in date hierarchies (Year → Quarter → Month → Day) for every datetime field. They are managed entirely by Power BI Desktop, **must not be edited externally**, and are excluded from the relationship diagram above for clarity.
+Power BI's Auto date/time feature generates 15 additional relationships, each connecting a datetime column (e.g., `InvoiceDate`, `DueDate`, `LastModifiedDateTime`) from fact and dimension tables to its own auto-created `LocalDateTable_<guid>` table. These provide built-in date hierarchies (Year → Quarter → Month → Day) for every datetime field. They are managed entirely by Power BI Desktop, **must not be edited externally**, and are excluded from the relationship diagram above for clarity.
 
 ---
 
 ## Report
 
-The report contains **5 pages** with interactive visuals, using the **NewExecutive** custom theme layered on the **CY26SU04** base theme. All pages use **FitToPage** display at 1280 × 720. Year and Quarter slicers on every page enable cross-page filtering.
+The report contains **5 pages** with interactive visuals, using the **NewExecutive** custom theme layered on the **CY26SU04** base theme. All pages use **FitToPage** display at 1280 × 720. A Year slicer on every page enables cross-page filtering; the Executive Overview page additionally has a Quarter slicer.
 
 | Property | Value |
 |---|---|
@@ -461,12 +473,13 @@ This page is the executive dashboard. It provides a single-screen snapshot of th
 |---|---|---|---|
 | Total Sales Excl Tax | Card | `MeasureSales[Total Sales Excl Tax]` | Current period revenue at a glance |
 | Total Purchase Excl Tax | Card | `MeasurePurchases[Total Purchase Excl Tax]` | Current period spending at a glance |
-| Gross Profit | Card | `MeasureSales[Gross Profit]` | Revenue minus purchases — are we selling for more than we buy? Conditional color: green if positive, red if negative |
-| GL Net | Card | `MeasureGL[GL Net]` | True bottom line after ALL expenses. Conditional color: green if positive, red if negative |
+| Gross Margin Trend | Line Chart | `MeasureSales[Gross Margin %]` by `DimDate[MonthYear]` | Is gross margin improving or eroding over time? |
+| Sales vs Purchases | Line + Stacked Column Combo | `Total Sales Excl Tax` + `Total Purchase Excl Tax` by `DimDate[MonthYear]` | Are sales consistently outpacing purchases month over month? |
+| Tax by Quarter | Column Chart | `Sales Tax Amount` + `Purchase Tax Amount` by `DimDate[Quarter]` + `DimDate[Year]` | How much VAT are we collecting and paying per quarter? Useful for tax planning |
+| Sales YoY % | Card | `MeasureSales[Sales YoY %]` | Year-over-year sales growth at a glance |
+| Net Profit % | Card | `MeasureGL[Net Profit %]` | True bottom-line profitability after all expenses |
 | Inventory Margin % | Card | `MeasureInventory[Inventory Margin %]` | Item-level profitability. Conditional color ranges: red (< 0%), yellow (0–15%), green (> 30%) |
-| Sales vs Purchases Trend | Line + Stacked Column Combo | `Total Sales Excl Tax` + `Total Purchase Excl Tax` by `DimDate[MonthYear]` | Are sales consistently outpacing purchases month over month? |
-| Top 5 Items by Sales | Clustered Bar | `Total Sales Excl Tax` by `DimItem[ItemName]` (Top 5 filter) | Which products generate the most revenue? |
-| Sales by Customer | Clustered Bar | `Total Sales Excl Tax` by `DimCustomer[CustomerName]` | Which customers drive revenue? |
+| Last Refresh | Card | `CurrentDateTimeLocalTZ[Last Refresh]` | When was the data last refreshed? |
 | Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
 | Quarter Slicer | Slicer | `DimDate[Quarter]` | Filter all visuals by quarter |
 
@@ -480,10 +493,12 @@ This page helps sales managers track revenue trends, identify top-performing cus
 |---|---|---|---|
 | Sales Invoice Count | Card | `MeasureSales[Sales Invoice Count]` | How many invoices were issued this period? |
 | Average Sales per Invoice | Card | `MeasureSales[Average Sales per Invoice]` | Is our average deal size healthy? |
-| Sales Trend vs Prior Year | Line Chart | `Total Sales Excl Tax` + `Sales PY` by `DimDate[MonthYear]` | Compare current year sales to same months last year — are we growing or declining? |
-| Sales by Customer | Clustered Bar | `Total Sales Excl Tax` by `DimCustomer[CustomerName]` | Who are the top revenue-generating customers? |
-| Sales by Category | Donut | `Total Sales Excl Tax` by `DimItem[ItemCategoryCode]` | Which product categories contribute the most to revenue? |
-| Tax by Quarter | Column Chart | `Sales Tax Amount` by `DimDate[Quarter]` + `DimDate[Year]` | How much VAT are we collecting per quarter? Useful for tax planning |
+| Total Sales vs Last Year | Line Chart | `Total Sales Excl Tax` + `Sales PY` by `DimDate[MonthYear]` | Compare current year sales to same months last year — are we growing or declining? |
+| Top Items | Clustered Bar | `Total Sales Excl Tax` by `DimItem[ItemName]` | Which products generate the most revenue? |
+| Top Salespeople | Clustered Bar | `Total Sales Excl Tax` by `FactSalesInvoiceLine[Salesperson]` | Which salespeople drive the most revenue? |
+| Top Customers | Clustered Bar | `Total Sales Excl Tax` by `DimCustomer[CustomerName]` | Who are the top revenue-generating customers? |
+| Total Sales by Item Category | Donut | `Total Sales Excl Tax` by `DimItem[ItemCategoryCode]` | Which product categories contribute the most to revenue? |
+| Last Refresh | Card | `CurrentDateTimeLocalTZ[Last Refresh]` | When was the data last refreshed? |
 | Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
 
 ### Purchase Analysis
@@ -496,13 +511,12 @@ This page helps procurement managers monitor spending, identify costly vendors a
 |---|---|---|---|
 | Purchase Invoice Count | Card | `MeasurePurchases[Purchase Invoice Count]` | How many purchase invoices were received? |
 | Average Purchase per Invoice | Card | `MeasurePurchases[Average Purchase per Invoice]` | What is the average cost per purchase? |
-| Purchase Trend | Line Chart | `Total Purchase Excl Tax` by `DimDate[MonthYear]` (tooltips: `Average Purchase per Invoice`, `Purchase Invoice Count`) | Are monthly purchase costs trending up or down? Tooltip reveals per-invoice cost and volume |
-| Purchase by Vendor | Clustered Bar | `Total Purchase Excl Tax` by `DimVendor[VendorName]` | Which vendors account for the most spending? |
-| Purchase by Category | Donut | `Total Purchase Excl Tax` by `DimItem[ItemCategoryCode]` | Which product categories cost the most to purchase? |
-| Purchase YoY % by Month | Clustered Column | `Purchase YoY %` by `DimDate[MonthYear]` + `DimItem[ItemCategoryCode]` | Are purchase costs rising vs. last year, broken down by category and month? |
-| Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
-| Page Title | Textbox | "Purchase Analysis" | Page heading |
+| Total Spent vs Last Year | Line Chart | `Total Purchase Excl Tax` + `Purchase PY` by `DimDate[MonthYear]` (tooltips: `Average Purchase per Invoice`, `Purchase Invoice Count`) | Are monthly purchase costs trending up or down vs. last year? Tooltip reveals per-invoice cost and volume |
+| Top Vendors | Clustered Bar | `Total Purchase Excl Tax` by `DimVendor[VendorName]` | Which vendors account for the most spending? |
+| Total Spent per Item Category | Donut | `Total Purchase Excl Tax` by `DimItem[ItemCategoryCode]` | Which product categories cost the most to purchase? |
+| Which purchase categories are growing vs declining year-over-year? | Clustered Column | `Purchase YoY %` by `DimDate[MonthYear]` + `DimItem[ItemCategoryCode]` | Are purchase costs rising vs. last year, broken down by category and month? |
 | Last Refresh | Card | `CurrentDateTimeLocalTZ[Last Refresh]` | When was the data last refreshed? |
+| Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
 
 ### Financial Overview
 
@@ -514,10 +528,11 @@ This page provides the full general ledger picture for finance teams. It goes be
 |---|---|---|---|
 | Total Debit | Card | `MeasureGL[GL Debit]` | Total money received/assets increased across all GL accounts |
 | Total Credit | Card | `MeasureGL[GL Credit]` | Total money paid out/liabilities increased across all GL accounts |
-| GL Debit vs Credit Trend | Column Chart | `GL Debit` + `GL Credit` by `DimDate[MonthYear]` | Are debits consistently higher than credits (profitable), or is the gap narrowing? |
-| GL Net by Account Category | Clustered Bar | `GL Net` by `DimAccount[Category]` | Which account categories are net positive (income) vs. net negative (expense)? |
-| GL Net by Account | Clustered Bar | `GL Net` by `DimAccount[AccountName]` | Which specific accounts contribute most to profit or loss? |
+| Debit vs Credit | Column Chart | `GL Debit` + `GL Credit` by `DimDate[MonthYear]` | Are debits consistently higher than credits (profitable), or is the gap narrowing? |
+| Net by Category | Clustered Bar | `GL Net` by `DimAccount[Category]` | Which account categories are net positive (income) vs. net negative (expense)? |
+| Net by Account | Clustered Bar | `GL Net` by `DimAccount[AccountName]` | Which specific accounts contribute most to profit or loss? |
 | GL Detail by Year | Pivot Table | Rows: `DimAccount[Category]` → `SubCategory` → `AccountNumber`; Columns: `DimDate[Year]`; Values: `GL Debit`, `GL Credit`, `GL Net` | Full drill-down from category to account number, year over year — the detailed financial statement view |
+| Last Refresh | Card | `CurrentDateTimeLocalTZ[Last Refresh]` | When was the data last refreshed? |
 | Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
 | Account SubCategory Slicer | Slicer | `DimAccount[SubCategory]` | Filter to specific account sub-categories (e.g., only "Trade Receivables") |
 
@@ -533,12 +548,13 @@ This page helps inventory and product managers understand which items are truly 
 | Inventory Cost | Card | `MeasureInventory[Inventory Cost Amount]` | Total COGS from item ledger Sale entries (negative value in BC) |
 | Inventory Margin | Card | `MeasureInventory[Inventory Margin]` | Total margin on inventory items. Conditional color: green if positive, red if negative |
 | Inventory Margin % | Card | `MeasureInventory[Inventory Margin %]` | Overall margin percentage. Conditional color ranges: red, yellow, green |
-| Sales & Margin Trend | Area Chart | `Inventory Sales Amount` + `Inventory Margin` by `DimDate[MonthYear]` | Is the margin growing proportionally with sales, or is it shrinking? |
-| Margin vs Sales by Item | Scatter Chart | X: `Inventory Sales Amount`, Y: `Inventory Margin %`, Size: `Inventory Margin`, Category: `DimItem[ItemNumber]` | Identify high-margin/low-volume vs. low-margin/high-volume items — the portfolio analysis view |
-| Margin % by Category | Clustered Bar | `Inventory Margin %` by `DimItem[ItemCategoryCode]` | Which product categories have the highest margin percentages? |
-| Margin by Item | Clustered Bar | `Inventory Margin` by `DimItem[ItemName]` (drill to `DimCustomer[CustomerName]`) | Which items generate the most absolute margin? Drill down to see which customers buy them |
+| Inventory Sales & Margin Trend | Area Chart | `Inventory Sales Amount` + `Inventory Margin` by `DimDate[MonthYear]` | Is the margin growing proportionally with sales, or is it shrinking? |
+| Item Potentiality | Scatter Chart | X: `Inventory Sales Amount`, Y: `Inventory Margin %`, Size: `Inventory Margin`, Category: `DimItem[ItemNumber]` | Identify high-margin/low-volume vs. low-margin/high-volume items — the portfolio analysis view |
+| Top Profitable Item Categories | Clustered Bar | `Inventory Margin %` by `DimItem[ItemCategoryCode]` | Which product categories have the highest margin percentages? |
+| Top Profitable Items | Clustered Bar | `Inventory Margin` by `DimItem[ItemName]` (drill to `DimCustomer[CustomerName]`) | Which items generate the most absolute margin? Drill down to see which customers buy them |
+| Last Refresh | Card | `CurrentDateTimeLocalTZ[Last Refresh]` | When was the data last refreshed? |
 | Year Slicer | Slicer | `DimDate[Year]` | Filter all visuals by year |
-| Category Slicer | Slicer | `DimItem[ItemCategoryCode]` | Filter to specific product categories |
+| Category Slicer | Slicer (Dropdown) | `DimItem[ItemCategoryCode]` | Filter to specific product categories |
 
 ---
 
