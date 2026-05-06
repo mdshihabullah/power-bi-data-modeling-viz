@@ -301,23 +301,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "ed4cffaf09e62007ae2c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CurrentDateTimeLocalTZ"
-              }
-            },
-            "Property": "Last Refresh"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

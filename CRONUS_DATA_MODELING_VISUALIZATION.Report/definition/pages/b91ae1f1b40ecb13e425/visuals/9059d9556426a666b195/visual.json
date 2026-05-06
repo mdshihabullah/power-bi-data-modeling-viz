@@ -4,10 +4,10 @@
   "position": {
     "x": 880.38277511961724,
     "y": 0,
-    "z": 10001,
+    "z": 11000,
     "height": 48.995215311004785,
     "width": 399.61722488038282,
-    "tabOrder": 10001
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -301,23 +301,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "3fb6a2c247b5ccc94bab",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "CurrentDateTimeLocalTZ"
-              }
-            },
-            "Property": "Last Refresh"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

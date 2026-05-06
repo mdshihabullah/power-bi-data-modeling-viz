@@ -96,23 +96,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "20cdc32285a0848b9037",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "DimDate"
-              }
-            },
-            "Property": "Quarter"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   }
 }

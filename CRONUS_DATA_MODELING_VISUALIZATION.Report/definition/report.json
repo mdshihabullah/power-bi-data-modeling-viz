@@ -33,8 +33,24 @@
           }
         }
       }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
     ]
   },
+  "publicCustomVisuals": [
+    "GanttChartByMAQSoftware1448688115701"
+  ],
   "resourcePackages": [
     {
       "name": "SharedResources",
