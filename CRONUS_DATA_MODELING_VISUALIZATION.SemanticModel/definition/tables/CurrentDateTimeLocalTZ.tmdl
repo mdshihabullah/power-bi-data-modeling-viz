@@ -9,11 +9,11 @@ table CurrentDateTimeLocalTZ
 			VAR _daysDiff = DATEDIFF ( _refreshDay, _today, DAY )
 			VAR _timePart = FORMAT ( _refreshTime, "HH:mm" )
 			RETURN
-			    "Updated " &
+			    "Data updated " &
 			    SWITCH (
 			        TRUE (),
-			        _daysDiff = 0,  "Today at " & _timePart,
-			        _daysDiff = 1,  "Yesterday at " & _timePart,
+			        _daysDiff = 0,  "today at " & _timePart,
+			        _daysDiff = 1,  "yesterday at " & _timePart,
 			        _daysDiff < 365, FORMAT ( _refreshTime, "d MMM" ) & " at " & _timePart,
 			        FORMAT ( _refreshTime, "d MMM yyyy" ) & " at " & _timePart
 			    )
